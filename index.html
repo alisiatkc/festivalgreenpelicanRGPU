@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фестиваль "Зеленый пеликан"</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Helvetica Light', Arial, sans-serif;
+            font-weight: 300;
+        }
+
+        :root {
+            --gray: #646363;
+            --yellow: #FFE17D;
+            --light-gray: #f5f5f5;
+            --dark-gray: #333333;
+        }
+
+        body {
+            background-color: white;
+            color: var(--gray);
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 400;
+            color: var(--dark-gray);
+        }
+
+        header {
+            background-color: white;
+            padding: 1.2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid #eee;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            color: var(--dark-gray);
+        }
+
+        .logo i {
+            color: var(--yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--dark-gray);
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.9)), 
+                        url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--dark-gray);
+            padding: 0 1.5rem;
+            margin-top: 70px;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1.5rem;
+            max-width: 900px;
+            line-height: 1.2;
+            font-weight: 400;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin-bottom: 2.5rem;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--yellow);
+            color: var(--dark-gray);
+            padding: 0.9rem 2.2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn:hover {
+            background-color: #f5d465;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 225, 125, 0.3);
+        }
+
+        section {
+            padding: 5rem 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--dark-gray);
+            font-size: 2.2rem;
+            font-weight: 400;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background-color: var(--yellow);
+            margin: 1rem auto;
+        }
+
+        .mission-text {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 4rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--gray);
+        }
+
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #f0f0f0;
+        }
+
+        .info-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .info-card-img {
+            height: 180px;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 2.5rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .info-card-content {
+            padding: 1.8rem;
+        }
+
+        .info-card h3 {
+            margin-bottom: 1rem;
+            color: var(--dark-gray);
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+
+        .info-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Activities Slider */
+        .activities-slider-container {
+            position: relative;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+
+        .activities-slider {
+            display: flex;
+            transition: transform 0.5s ease;
+            gap: 2rem;
+        }
+
+        .activities-slide {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            min-width: 100%;
+        }
+
+        .activity-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #f0f0f0;
+            height: 100%;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .activity-card-img {
+            height: 140px;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 2rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .activity-card-content {
+            padding: 1.5rem;
+        }
+
+        .activity-card h3 {
+            margin-bottom: 0.8rem;
+            color: var(--dark-gray);
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .activity-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .slider-dot.active {
+            background-color: var(--yellow);
+        }
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            color: var(--dark-gray);
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .slider-arrow:hover {
+            background-color: var(--yellow);
+        }
+
+        .slider-arrow.prev {
+            left: 10px;
+        }
+
+        .slider-arrow.next {
+            right: 10px;
+        }
+
+        /* Past Events Slider */
+        .past-events-slider {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background: white;
+            border: 1px solid #f0f0f0;
+        }
+
+        .past-events-slides {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .past-events-slide {
+            min-width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .past-events-img {
+            flex: 1;
+            min-width: 300px;
+            height: 380px;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 2.5rem;
+            border-right: 1px solid #f0f0f0;
+            border-radius: 16px 0 0 16px;
+        }
+
+        .past-events-content {
+            flex: 1;
+            min-width: 300px;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .past-events-content h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+            color: var(--dark-gray);
+            font-weight: 500;
+        }
+
+        .past-events-content p {
+            margin-bottom: 1rem;
+            color: var(--gray);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            border: 1px solid #f0f0f0;
+        }
+
+        .contact-card i {
+            font-size: 1.8rem;
+            color: var(--dark-gray);
+            margin-bottom: 1.2rem;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 0.8rem;
+            color: var(--dark-gray);
+            font-weight: 500;
+        }
+
+        .faq-item {
+            margin-bottom: 1.2rem;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f0f0f0;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            background-color: white;
+            color: var(--dark-gray);
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #f9f9f9;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        footer {
+            background-color: var(--dark-gray);
+            color: white;
+            padding: 3.5rem 1.5rem;
+            text-align: center;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.2rem;
+            color: var(--yellow);
+            font-weight: 500;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-top: 1.2rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.4rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--yellow);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .past-events-slide {
+                flex-direction: column;
+            }
+            
+            .past-events-img {
+                border-right: none;
+                border-bottom: 1px solid #f0f0f0;
+                border-radius: 16px 16px 0 0;
+            }
+            
+            .activities-slide {
+                grid-template-columns: 1fr;
+            }
+            
+            .slider-arrow {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-feather-alt"></i>
+                <span>Зеленый пеликан</span>
+            </div>
+            <div class="nav-links">
+                <a href="#about">О фестивале</a>
+                <a href="#activities">Активности</a>
+                <a href="#past-events">Прошедшие мероприятия</a>
+                <a href="#contacts">Контакты</a>
+                <a href="#faq">FAQ</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Фестиваль "Зеленый пеликан"</h1>
+        <p>Формируем особую городскую среду для решения образовательных, экологических и архитектурных задач</p>
+        <a href="#about" class="btn">Узнать больше</a>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">О фестивале</h2>
+        <p class="mission-text">Фестиваль «Зеленый пеликан» позволит сформировать особую городскую среду для решения образовательных, экологических и архитектурных задач. Мероприятие приурочено ко Дню города и направлено на развитие экологической культуры, популяризацию естественно-научных знаний и практик, создание площадки для взаимодействия учащихся, студентов и экспертов.</p>
+        <div class="info-cards">
+            <div class="info-card">
+                <div class="info-card-img">
+                    <i class="far fa-calendar-alt"></i>
+                </div>
+                <div class="info-card-content">
+                    <h3>Даты проведения</h3>
+                    <p>Весна 2026 года. Фестиваль пройдет в рамках празднования Дня города.</p>
+                </div>
+            </div>
+            <div class="info-card">
+                <div class="info-card-img">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="info-card-content">
+                    <h3>Локация</h3>
+                    <p>РГПУ им. А.И. Герцена и Воронихинский сквер. Историческое место в центре города с уникальной атмосферой.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="activities">
+        <h2 class="section-title">Активности фестиваля</h2>
+        <div class="activities-slider-container">
+            <button class="slider-arrow prev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="activities-slider">
+                <!-- Slide 1 -->
+                <div class="activities-slide">
+                    <div class="activity-card">
+                        <div class="activity-card-img">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="activity-card-content">
+                            <h3>Естественно-научная проектная школа</h3>
+                            <p>Интенсив «Life Science School» - проекты участников направлены на решение прикладных экотехнических и архитектурных задач и улучшение качества жизни жителей города.</p>
+                        </div>
+                    </div>
+                    <div class="activity-card">
+                        <div class="activity-card-img">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div class="activity-card-content">
+                            <h3>Лекторий и экспертный клуб</h3>
+                            <p>Лекции и мастер-классы от ведущих экспертов в области экологии, науки и устойчивого развития.</p>
+                        </div>
+                    </div>
+                    <div class="activity-card">
+                        <div class="activity-card-img">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="activity-card-content">
+                            <h3>Интерактивное пространство «Наука и искусство»</h3>
+                            <p>Регулярные экспозиции интерактивных художественных и экологических объектов, и малых архитектурных форм.</p>
+                        </div>
+                    </div>
+                    <div class="activity-card">
+                        <div class="activity-card-img">
+                            <i class="fas fa-tree"></i>
+                        </div>
+                        <div class="activity-card-content">
+                            <h3>Инвентаризация насаждений</h3>
+                            <p>Определение возраста деревьев и оценка состояния зеленых насаждений городской среды.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="activities-slide">
+                    <div class="activity-card">
+                        <div class="activity-card-img">
+                            <i class="fas fa-cut"></i>
+                        </div>
+                        <div class="activity-card-content">
+                            <h3>Топиарное искусство</h3>
+                            <p>Создание художественных форм из растений и кустарников - искусство фигурной стрижки деревьев и кустов.</p>
+                        </div>
+                    </div>
+                    <div class="activity-card">
+                        <div class="activity-card-img">
+                            <i class="fas fa-mountain"></i>
+                        </div>
+                        <div class="activity-card-content">
+                            <h3>Ландшафтный дизайн и архитектура</h3>
+                            <p>Практические занятия по созданию гармоничной и экологичной городской среды.</p>
+                        </div>
+                    </div>
+                    <div class="activity-card">
+                        <div class="activity-card-img">
+                            <i class="fas fa-recycle"></i>
+                        </div>
+                        <div class="activity-card-content">
+                            <h3>Компостирование и проект «Отходы в доходы»</h3>
+                            <p>Выращивание микрозелени и пищевых культур на основе переработанных органических отходов.</p>
+                        </div>
+                    </div>
+                    <div class="activity-card">
+                        <div class="activity-card-img">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <div class="activity-card-content">
+                            <h3>Умное земледелие и городское огородничество</h3>
+                            <p>Кулинарные мастер-классы и практики устойчивого земледелия в городских условиях.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="activities-slide">
+                    <div class="activity-card">
+                        <div class="activity-card-img">
+                            <i class="fas fa-cubes"></i>
+                        </div>
+                        <div class="activity-card-content">
+                            <h3>Создание объектов из переработанного сырья</h3>
+                            <p>Recycle, Reuse, Reduce - практика создания полезных и красивых объектов из вторичных материалов.</p>
+                        </div>
+                    </div>
+                    <div class="activity-card">
+                        <div class="activity-card-img">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="activity-card-content">
+                            <h3>Экскурсии по кампусу Герценовского университета</h3>
+                            <p>Знакомство с историей и архитектурой одного из старейших педагогических вузов России.</p>
+                        </div>
+                    </div>
+                    <div class="activity-card">
+                        <div class="activity-card-img">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="activity-card-content">
+                            <h3>Экотехническое проектирование</h3>
+                            <p>Разработка энергоэффективных теплиц, работа с датчиками и микроконтроллерами, использование нейронных сетей для поиска механизма плодородия почвы.</p>
+                        </div>
+                    </div>
+                    <div class="activity-card">
+                        <div class="activity-card-img">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <div class="activity-card-content">
+                            <h3>Семейный и детский досуг</h3>
+                            <p>Трек «Всем ребятам-эколятам» - специальная программа для детей и семей с интерактивными играми и занятиями.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="slider-arrow next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="slider-nav">
+                <div class="slider-dot active" data-slide="0"></div>
+                <div class="slider-dot" data-slide="1"></div>
+                <div class="slider-dot" data-slide="2"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="past-events">
+        <h2 class="section-title">Прошедшие мероприятия</h2>
+        <div class="past-events-slider">
+            <div class="past-events-slides">
+                <div class="past-events-slide">
+                    <div class="past-events-img">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="past-events-content">
+                        <h3>Проектная школа "Эко-лидеры"</h3>
+                        <p>В рамках проектной школы участники разрабатывали и реализовывали экологические инициативы в своих сообществах. Программа включала лекции, воркшопы и менторские сессии от экспертов в области устойчивого развития.</p>
+                        <p><strong>Дата проведения:</strong> 10-12 июня 2023</p>
+                        <p><strong>Участники:</strong> 50 молодых активистов из разных регионов</p>
+                    </div>
+                </div>
+                <div class="past-events-slide">
+                    <div class="past-events-img">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <div class="past-events-content">
+                        <h3>Фестиваль городского озеленения</h3>
+                        <p>Масштабное мероприятие по озеленению городских пространств с участием волонтеров и профессиональных ландшафтных дизайнеров. Было высажено более 500 деревьев и создано 3 новых общественных сада.</p>
+                        <p><strong>Дата проведения:</strong> 22 апреля 2023</p>
+                        <p><strong>Результат:</strong> 3 новых общественных сада</p>
+                    </div>
+                </div>
+                <div class="past-events-slide">
+                    <div class="past-events-img">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <div class="past-events-content">
+                        <h3>Эко-волонтерский лагерь</h3>
+                        <p>Недельный лагерь для волонтеров, посвященный очистке природных территорий и экологическому просвещению. Участники занимались уборкой леса, организацией раздельного сбора отходов и проведением эко-уроков для местных жителей.</p>
+                        <p><strong>Дата проведения:</strong> 15-21 мая 2023</p>
+                        <p><strong>Убрано:</strong> 2 тонны мусора</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-nav">
+                <div class="slider-dot active" data-slide="0"></div>
+                <div class="slider-dot" data-slide="1"></div>
+                <div class="slider-dot" data-slide="2"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacts">
+        <h2 class="section-title">Контакты</h2>
+        <div class="contact-info">
+            <div class="contact-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Адрес</h3>
+                <p>РГПУ им. А.И. Герцена и Воронихинский сквер</p>
+            </div>
+            <div class="contact-card">
+                <i class="fas fa-phone"></i>
+                <h3>Телефон</h3>
+                <p>+7 (123) 456-78-90</p>
+            </div>
+            <div class="contact-card">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>info@greenpelican.ru</p>
+            </div>
+            <div class="contact-card">
+                <i class="fas fa-clock"></i>
+                <h3>Время проведения</h3>
+                <p>Весна 2026</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <h2 class="section-title">Часто задаваемые вопросы</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Нужно ли покупать билеты на фестиваль?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Вход на фестиваль бесплатный для всех посетителей. Однако для участия в некоторых мастер-классах и воркшопах может потребоваться предварительная регистрация из-за ограниченного количества мест.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Можно ли прийти с детьми?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Да, фестиваль является семейным мероприятием. Для детей организована специальная программа "Всем ребятам-эколятам" с играми, творческими занятиями и образовательными программами, адаптированными для разных возрастных групп.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Как принять участие в проектной школе?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Для участия в естественно-научной проектной школе "Life Science School" необходимо заполнить заявку на нашем сайте и пройти конкурсный отбор. Заявки принимаются до 1 марта 2026 года.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Как добраться до места проведения?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>До РГПУ им. А.И. Герцена и Воронихинского сквера можно добраться на общественном транспорте: станция метро "Невский проспект", далее 10 минут пешком. Также мы организуем специальные шаттлы от станции метро "Гостиный двор".</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Можно ли стать волонтером фестиваля?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Да, мы всегда рады волонтерам! Заполните заявку на нашем сайте, и мы свяжемся с вами для обсуждения возможных вариантов участия. Волонтеры получают фирменную эко-продукцию и особые привилегии на фестивале.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Фестиваль "Зеленый пеликан"</h3>
+                <p>Формируем особую городскую среду для решения образовательных, экологических и архитектурных задач.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Быстрые ссылки</h3>
+                <p><a href="#about" style="color: white;">О фестивале</a></p>
+                <p><a href="#activities" style="color: white;">Активности</a></p>
+                <p><a href="#contacts" style="color: white;">Контакты</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Социальные сети</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-vk"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <p>&copy; 2026 Фестиваль "Зеленый пеликан". Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Activities Slider
+        const activitiesSlider = document.querySelector('.activities-slider');
+        const activityDots = document.querySelectorAll('#activities .slider-dot');
+        const prevArrow = document.querySelector('.slider-arrow.prev');
+        const nextArrow = document.querySelector('.slider-arrow.next');
+        let currentActivitySlide = 0;
+
+        function showActivitySlide(n) {
+            currentActivitySlide = (n + 3) % 3;
+            activitiesSlider.style.transform = `translateX(-${currentActivitySlide * 100}%)`;
+            
+            activityDots.forEach(dot => dot.classList.remove('active'));
+            activityDots[currentActivitySlide].classList.add('active');
+        }
+
+        activityDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showActivitySlide(index);
+            });
+        });
+
+        prevArrow.addEventListener('click', () => {
+            showActivitySlide(currentActivitySlide - 1);
+        });
+
+        nextArrow.addEventListener('click', () => {
+            showActivitySlide(currentActivitySlide + 1);
+        });
+
+        // Past Events Slider
+        const pastEventsSlides = document.querySelector('.past-events-slides');
+        const pastEventsDots = document.querySelectorAll('#past-events .slider-dot');
+        let currentPastEventsSlide = 0;
+
+        function showPastEventsSlide(n) {
+            currentPastEventsSlide = (n + 3) % 3;
+            pastEventsSlides.style.transform = `translateX(-${currentPastEventsSlide * 100}%)`;
+            
+            pastEventsDots.forEach(dot => dot.classList.remove('active'));
+            pastEventsDots[currentPastEventsSlide].classList.add('active');
+        }
+
+        pastEventsDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showPastEventsSlide(index);
+            });
+        });
+
+        // Автопереключение слайдов
+        setInterval(() => {
+            showActivitySlide(currentActivitySlide + 1);
+            showPastEventsSlide(currentPastEventsSlide + 1);
+        }, 6000);
+
+        // FAQ аккордеон
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                // Закрываем все остальные элементы
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Переключаем текущий элемент
+                item.classList.toggle('active');
+            });
+        });
+
+        // Плавная прокрутка для навигационных ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
