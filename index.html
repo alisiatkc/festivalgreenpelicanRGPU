@@ -15,7 +15,7 @@
         }
 
         :root {
-            --gray: #9E9E9E;
+            --gray: #828282;
             --yellow: #FFE17D;
             --light-gray: #f5f5f5;
             --dark-gray: #333333;
@@ -453,12 +453,13 @@
 
         .partners {
             background-color: white;
-            padding: 3rem 1.5rem;
+            padding: 3rem 0;
             text-align: center;
+            width: 100%;
         }
 
         .partners-container {
-            max-width: 1200px;
+            max-width: 100%;
             margin: 0 auto;
         }
 
@@ -469,40 +470,42 @@
             flex-wrap: wrap;
             gap: 2rem;
             margin-top: 1.5rem;
+            width: 100%;
         }
 
         .partner-logo {
-            height: 120px;
-            width: 200px;
+            height: 200px;
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--gray);
             font-weight: 500;
             background-color: #f9f9f9;
-            border-radius: 8px;
             margin: 0 auto;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         footer {
             background-color: var(--gray);
             color: white;
-            padding: 2rem 1.5rem;
-            text-align: center;
+            padding: 3rem 1.5rem;
+            text-align: left;
         }
 
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
 
         .footer-section {
-            text-align: center;
+            text-align: left;
         }
 
         .footer-section h3 {
@@ -516,18 +519,17 @@
             display: flex;
             gap: 1rem;
             margin-top: 1rem;
-            justify-content: center;
         }
 
         .social-links a {
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             transition: color 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background-color: rgba(255, 255, 255, 0.1);
             transition: all 0.3s;
@@ -628,15 +630,15 @@
             }
 
             .footer-content {
-                text-align: center;
+                text-align: left;
             }
             
             .footer-section {
-                text-align: center;
+                text-align: left;
             }
             
             .social-links {
-                justify-content: center;
+                justify-content: flex-start;
             }
 
             .partners-logos {
@@ -644,8 +646,7 @@
             }
 
             .partner-logo {
-                height: 100px;
-                width: 180px;
+                height: 150px;
             }
 
             .btn {
@@ -675,8 +676,7 @@
             }
 
             .partner-logo {
-                height: 80px;
-                width: 150px;
+                height: 120px;
             }
 
             .btn {
@@ -911,7 +911,9 @@
         <div class="partners-container">
             <div class="partners-logos">
                 <!-- Оставили место только для одного фото партнера -->
-                <div class="partner-logo">Логотип партнера</div>
+                <div class="partner-logo" style="background-image: url('путь_к_фото_партнера.jpg');">
+                    <!-- Фото будет загружено как фон -->
+                </div>
             </div>
         </div>
     </section>
@@ -990,9 +992,16 @@
                 <p>Формируем особую городскую среду для решения образовательных, экологических и архитектурных задач.</p>
             </div>
             <div class="footer-section">
+                <h3>Быстрые ссылки</h3>
+                <p><a href="#about" style="color: white;">О фестивале</a></p>
+                <p><a href="#activities" style="color: white;">Активности</a></p>
+                <p><a href="#past-events" style="color: white;">Прошедшие мероприятия</a></p>
+                <p><a href="#contacts" style="color: white;">Контакты</a></p>
+                <p><a href="#faq" style="color: white;">FAQ</a></p>
+            </div>
+            <div class="footer-section">
                 <h3>Социальные сети</h3>
                 <div class="social-links">
-                    <!-- Оставили только ВК и Инстаграм -->
                     <a href="#"><i class="fab fa-vk"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
