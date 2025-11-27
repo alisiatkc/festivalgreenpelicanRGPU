@@ -35,7 +35,7 @@
 
         header {
             background-color: white;
-            padding: 1.2rem;
+            padding: 1.5rem 1.2rem; /* Увеличили верхний и нижний паддинг */
             position: fixed;
             width: 100%;
             top: 0;
@@ -59,7 +59,7 @@
         }
 
         .logo img {
-            height: 40px;
+            height: 60px; /* Увеличили высоту логотипа с 40px до 60px */
         }
 
         .nav-links {
@@ -104,7 +104,7 @@
             justify-content: center;
             align-items: center;
             padding: 0 1.5rem;
-            margin-top: 70px;
+            margin-top: 90px; /* Увеличили отступ сверху из-за увеличенной шапки */
         }
 
         .btn {
@@ -541,6 +541,14 @@
                 display: flex;
             }
 
+            .hero {
+                margin-top: 100px; /* Увеличили отступ для мобильной версии */
+            }
+
+            .logo img {
+                height: 50px; /* Немного уменьшили логотип для мобильных */
+            }
+
             .hero h1 {
                 font-size: 2.3rem;
             }
@@ -600,6 +608,10 @@
             .slider-arrow.next {
                 right: 5px;
             }
+            
+            .logo img {
+                height: 45px; /* Еще немного уменьшили для очень маленьких экранов */
+            }
         }
     </style>
 </head>
@@ -608,7 +620,7 @@
         <nav>
             <div class="logo">
                 <!-- ЗАМЕНИТЕ НА ПУТЬ К ВАШЕМУ ЛОГОТИПУ -->
-                <img src="pel white.png" alt="Логотип фестиваля Зеленый пеликан">
+                <img src="ВАШ_ЛОГОТИП.png" alt="Логотип фестиваля Зеленый пеликан">
             </div>
             <div class="nav-links">
                 <a href="#about">О фестивале</a>
