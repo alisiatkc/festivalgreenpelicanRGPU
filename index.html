@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Зеленый пеликан</title>
+    <title>Фестиваль "Зеленый пеликан"</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -79,37 +79,32 @@
             color: var(--dark-gray);
         }
 
+        /* Бургер-меню */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .burger-menu span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--gray);
+            transition: 0.3s;
+        }
+
         .hero {
             height: 100vh;
             /* ЗАМЕНИТЕ СЛЕДУЮЩУЮ СТРОКУ НА ПУТЬ К ВАШЕЙ КАРТИНКЕ */
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                        url('PTK .png');
+            background: url('ВАША_КАРТИНКА.jpg') no-repeat center center;
             background-size: cover;
-            background-position: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            color: white;
             padding: 0 1.5rem;
             margin-top: 70px;
-        }
-
-        .hero h1 {
-            font-size: 3.2rem;
-            margin-bottom: 1.5rem;
-            max-width: 900px;
-            line-height: 1.2;
-            font-weight: 400;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin-bottom: 2.5rem;
-            color: white;
-            line-height: 1.7;
         }
 
         .btn {
@@ -125,6 +120,7 @@
             cursor: pointer;
             font-size: 0.9rem;
             letter-spacing: 0.5px;
+            margin-top: 2rem;
         }
 
         .btn:hover {
@@ -303,8 +299,8 @@
             transform: translateY(-50%);
             background: white;
             border: none;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -493,9 +489,56 @@
             color: var(--yellow);
         }
 
+        /* Кнопка "Наверх" */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--yellow);
+            color: var(--dark-gray);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: #f5d465;
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .burger-menu {
+                display: flex;
             }
 
             .hero h1 {
@@ -525,9 +568,11 @@
             }
             
             .slider-arrow {
-                display: none;
+                width: 40px;
+                height: 40px;
+                display: flex;
             }
-            
+
             .footer-content {
                 text-align: center;
             }
@@ -540,6 +585,22 @@
                 justify-content: center;
             }
         }
+
+        @media (max-width: 480px) {
+            .slider-arrow {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            
+            .slider-arrow.prev {
+                left: 5px;
+            }
+            
+            .slider-arrow.next {
+                right: 5px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -547,7 +608,7 @@
         <nav>
             <div class="logo">
                 <!-- ЗАМЕНИТЕ НА ПУТЬ К ВАШЕМУ ЛОГОТИПУ -->
-                <img src="greenpel.png" alt="Логотип фестиваля Зеленый пеликан">
+                <img src="ВАШ_ЛОГОТИП.png" alt="Логотип фестиваля Зеленый пеликан">
             </div>
             <div class="nav-links">
                 <a href="#about">О фестивале</a>
@@ -556,12 +617,16 @@
                 <a href="#contacts">Контакты</a>
                 <a href="#faq">FAQ</a>
             </div>
+            <div class="burger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </nav>
     </header>
 
     <section class="hero">
-        <h1>Фестиваль "Зеленый пеликан"</h1>
-        <p>Формируем особую городскую среду для решения образовательных, экологических и архитектурных задач</p>
+        <!-- Название фестиваля будет на самой картинке -->
         <a href="#about" class="btn">Узнать больше</a>
     </section>
 
@@ -874,6 +939,11 @@
         <p style="text-align: center; margin-top: 2rem;">&copy; 2026 Фестиваль "Зеленый пеликан". Все права защищены.</p>
     </footer>
 
+    <!-- Кнопка "Наверх" -->
+    <div class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
     <script>
         // Activities Slider
         const activitiesSlider = document.querySelector('.activities-slider');
@@ -963,6 +1033,49 @@
                         behavior: 'smooth'
                     });
                 }
+                
+                // Закрываем бургер-меню после клика на мобильных устройствах
+                if (window.innerWidth <= 768) {
+                    document.querySelector('.nav-links').classList.remove('active');
+                }
+            });
+        });
+
+        // Бургер-меню
+        const burgerMenu = document.querySelector('.burger-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        burgerMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Анимация бургера
+            const spans = burgerMenu.querySelectorAll('span');
+            if (navLinks.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+
+        // Кнопка "Наверх"
+        const backToTopButton = document.querySelector('.back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
         });
     </script>
