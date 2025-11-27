@@ -26,6 +26,7 @@
             color: var(--gray);
             line-height: 1.6;
             font-weight: 300;
+            font-size: 15px; /* Уменьшили базовый размер шрифта */
         }
 
         h1, h2, h3, h4 {
@@ -72,7 +73,7 @@
             text-decoration: none;
             font-weight: 400;
             transition: color 0.3s;
-            font-size: 0.95rem;
+            font-size: 0.9rem; /* Уменьшили размер шрифта в навигации */
         }
 
         .nav-links a:hover {
@@ -118,7 +119,7 @@
             transition: all 0.3s;
             border: 2px solid white;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.85rem; /* Уменьшили размер шрифта кнопки */
             letter-spacing: 0.5px;
             margin-top: 2rem;
         }
@@ -129,16 +130,16 @@
         }
 
         section {
-            padding: 5rem 1.5rem;
+            padding: 4rem 1.5rem; /* Уменьшили отступы секций */
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem; /* Уменьшили отступ */
             color: var(--dark-gray);
-            font-size: 2.2rem;
+            font-size: 1.8rem; /* Уменьшили размер заголовка */
             font-weight: 400;
             position: relative;
         }
@@ -155,17 +156,17 @@
         .mission-text {
             text-align: center;
             max-width: 900px;
-            margin: 0 auto 4rem;
-            font-size: 1.1rem;
-            line-height: 1.7;
+            margin: 0 auto 3rem; /* Уменьшили отступ */
+            font-size: 1rem; /* Уменьшили размер шрифта */
+            line-height: 1.6;
             color: var(--gray);
         }
 
         .info-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-bottom: 3rem;
+            gap: 2rem; /* Уменьшили расстояние между карточками */
+            margin-bottom: 2rem; /* Уменьшили отступ */
         }
 
         .info-card {
@@ -183,50 +184,50 @@
         }
 
         .info-card-img {
-            height: 180px;
+            height: 160px; /* Уменьшили высоту картинки */
             background-color: #f9f9f9;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--gray);
-            font-size: 2.5rem;
+            font-size: 2.2rem; /* Уменьшили размер иконки */
             border-bottom: 1px solid #f0f0f0;
         }
 
         .info-card-content {
-            padding: 1.8rem;
+            padding: 1.5rem; /* Уменьшили паддинг */
         }
 
         .info-card h3 {
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem; /* Уменьшили отступ */
             color: var(--dark-gray);
-            font-size: 1.3rem;
+            font-size: 1.2rem; /* Уменьшили размер заголовка */
             font-weight: 500;
         }
 
         .info-card p {
             color: var(--gray);
-            font-size: 0.95rem;
-            line-height: 1.6;
+            font-size: 0.9rem; /* Уменьшили размер текста */
+            line-height: 1.5;
         }
 
         /* Activities Slider */
         .activities-slider-container {
             position: relative;
             overflow: hidden;
-            margin: 2rem 0;
+            margin: 1.5rem 0; /* Уменьшили отступ */
         }
 
         .activities-slider {
             display: flex;
             transition: transform 0.5s ease;
-            gap: 2rem;
+            gap: 1.5rem; /* Уменьшили расстояние между слайдами */
         }
 
         .activities-slide {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
+            gap: 1.5rem; /* Уменьшили расстояние между карточками */
             min-width: 100%;
         }
 
@@ -246,43 +247,43 @@
         }
 
         .activity-card-img {
-            height: 140px;
+            height: 120px; /* Уменьшили высоту картинки */
             background-color: #f9f9f9;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--gray);
-            font-size: 2rem;
+            font-size: 1.8rem; /* Уменьшили размер иконки */
             border-bottom: 1px solid #f0f0f0;
         }
 
         .activity-card-content {
-            padding: 1.5rem;
+            padding: 1.2rem; /* Уменьшили паддинг */
         }
 
         .activity-card h3 {
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.6rem; /* Уменьшили отступ */
             color: var(--dark-gray);
-            font-size: 1.2rem;
+            font-size: 1.1rem; /* Уменьшили размер заголовка */
             font-weight: 500;
         }
 
         .activity-card p {
             color: var(--gray);
-            font-size: 0.9rem;
-            line-height: 1.6;
+            font-size: 0.85rem; /* Уменьшили размер текста */
+            line-height: 1.5;
         }
 
         .slider-nav {
             display: flex;
             justify-content: center;
-            margin-top: 2rem;
+            margin-top: 1.5rem; /* Уменьшили отступ */
             gap: 1rem;
         }
 
         .slider-dot {
-            width: 12px;
-            height: 12px;
+            width: 10px; /* Уменьшили точки */
+            height: 10px;
             border-radius: 50%;
             background-color: #e0e0e0;
             cursor: pointer;
@@ -299,8 +300,8 @@
             transform: translateY(-50%);
             background: white;
             border: none;
-            width: 50px;
-            height: 50px;
+            width: 45px; /* Уменьшили стрелки */
+            height: 45px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -309,7 +310,7 @@
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
             z-index: 10;
             color: var(--dark-gray);
-            font-size: 1.2rem;
+            font-size: 1.1rem; /* Уменьшили размер иконки стрелки */
             transition: all 0.3s;
         }
 
@@ -349,48 +350,52 @@
         .past-events-img {
             flex: 1;
             min-width: 300px;
-            height: 380px;
+            height: 350px; /* Уменьшили высоту */
             background-color: #f9f9f9;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--gray);
-            font-size: 2.5rem;
+            font-size: 2.2rem; /* Уменьшили размер иконки */
             border-right: 1px solid #f0f0f0;
             border-radius: 16px 0 0 16px;
+            /* Место для вставки фото */
+            background-size: cover;
+            background-position: center;
         }
 
         .past-events-content {
             flex: 1;
             min-width: 300px;
-            padding: 2.5rem;
+            padding: 2rem; /* Уменьшили паддинг */
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
         .past-events-content h3 {
-            font-size: 1.6rem;
-            margin-bottom: 1.2rem;
+            font-size: 1.4rem; /* Уменьшили размер заголовка */
+            margin-bottom: 1rem; /* Уменьшили отступ */
             color: var(--dark-gray);
             font-weight: 500;
         }
 
         .past-events-content p {
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem; /* Уменьшили отступ */
             color: var(--gray);
+            font-size: 0.9rem; /* Уменьшили размер текста */
         }
 
         .contact-info {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2.5rem;
-            margin-top: 2rem;
+            gap: 2rem; /* Уменьшили расстояние */
+            margin-top: 1.5rem; /* Уменьшили отступ */
         }
 
         .contact-card {
             background: white;
-            padding: 2rem;
+            padding: 1.8rem; /* Уменьшили паддинг */
             border-radius: 16px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             text-align: center;
@@ -398,19 +403,20 @@
         }
 
         .contact-card i {
-            font-size: 1.8rem;
+            font-size: 1.6rem; /* Уменьшили размер иконки */
             color: var(--dark-gray);
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem; /* Уменьшили отступ */
         }
 
         .contact-card h3 {
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.7rem; /* Уменьшили отступ */
             color: var(--dark-gray);
             font-weight: 500;
+            font-size: 1.2rem; /* Уменьшили размер заголовка */
         }
 
         .faq-item {
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem; /* Уменьшили отступ */
             background: white;
             border-radius: 16px;
             overflow: hidden;
@@ -419,7 +425,7 @@
         }
 
         .faq-question {
-            padding: 1.5rem;
+            padding: 1.2rem; /* Уменьшили паддинг */
             cursor: pointer;
             display: flex;
             justify-content: space-between;
@@ -428,6 +434,7 @@
             background-color: white;
             color: var(--dark-gray);
             transition: background-color 0.3s;
+            font-size: 0.95rem; /* Уменьшили размер шрифта */
         }
 
         .faq-question:hover {
@@ -435,21 +442,21 @@
         }
 
         .faq-answer {
-            padding: 0 1.5rem;
+            padding: 0 1.2rem;
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease, padding 0.3s ease;
         }
 
         .faq-item.active .faq-answer {
-            padding: 1.5rem;
+            padding: 1.2rem;
             max-height: 500px;
         }
 
         /* Партнеры */
         .partners {
             background-color: white;
-            padding: 4rem 1.5rem;
+            padding: 3rem 1.5rem; /* Уменьшили отступы */
             text-align: center;
         }
 
@@ -463,25 +470,41 @@
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            gap: 3rem;
-            margin-top: 2rem;
+            gap: 2rem; /* Уменьшили расстояние */
+            margin-top: 1.5rem; /* Уменьшили отступ */
         }
 
         .partner-logo {
-            height: 80px;
-            max-width: 200px;
+            height: 70px; /* Уменьшили высоту */
+            max-width: 180px; /* Уменьшили ширину */
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--gray);
             font-weight: 500;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        /* Большой баннер партнеров */
+        .partners-banner {
+            width: 100%;
+            height: 300px;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 1.2rem;
+            margin-top: 2rem;
+            border-radius: 8px;
         }
 
         /* Футер */
         footer {
             background-color: var(--dark-gray);
             color: white;
-            padding: 3.5rem 1.5rem;
+            padding: 3rem 1.5rem; /* Уменьшили отступы */
             text-align: left;
         }
 
@@ -490,8 +513,8 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2.5rem;
-            margin-bottom: 2.5rem;
+            gap: 2rem; /* Уменьшили расстояние */
+            margin-bottom: 2rem; /* Уменьшили отступ */
         }
 
         .footer-section {
@@ -499,25 +522,36 @@
         }
 
         .footer-section h3 {
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem; /* Уменьшили отступ */
             color: var(--yellow);
             font-weight: 500;
+            font-size: 1.2rem; /* Уменьшили размер заголовка */
         }
 
         .social-links {
             display: flex;
-            gap: 1.2rem;
-            margin-top: 1.2rem;
+            gap: 1rem; /* Уменьшили расстояние */
+            margin-top: 1rem; /* Уменьшили отступ */
         }
 
         .social-links a {
             color: white;
-            font-size: 1.4rem;
+            font-size: 1.3rem; /* Уменьшили размер иконок */
             transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
         }
 
         .social-links a:hover {
             color: var(--yellow);
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
         }
 
         /* Кнопка "Наверх" */
@@ -527,8 +561,8 @@
             right: 30px;
             background-color: var(--yellow);
             color: var(--dark-gray);
-            width: 50px;
-            height: 50px;
+            width: 45px; /* Уменьшили кнопку */
+            height: 45px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -580,16 +614,8 @@
                 height: 50px;
             }
 
-            .hero h1 {
-                font-size: 2.3rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
             .section-title {
-                font-size: 1.8rem;
+                font-size: 1.6rem; /* Уменьшили размер заголовка на мобильных */
             }
             
             .past-events-slide {
@@ -600,10 +626,11 @@
                 border-right: none;
                 border-bottom: 1px solid #f0f0f0;
                 border-radius: 16px 16px 0 0;
+                height: 250px; /* Уменьшили высоту на мобильных */
             }
             
             .activities-slide {
-                grid-template-columns: 1fr; /* На мобильных 1 колонка */
+                grid-template-columns: 1fr;
             }
 
             .activity-card {
@@ -611,8 +638,8 @@
             }
             
             .slider-arrow {
-                width: 40px;
-                height: 40px;
+                width: 35px; /* Уменьшили стрелки на мобильных */
+                height: 35px;
                 display: flex;
             }
 
@@ -629,20 +656,24 @@
             }
 
             .partners-logos {
-                gap: 1.5rem;
+                gap: 1rem;
             }
 
             .partner-logo {
-                height: 60px;
-                max-width: 150px;
+                height: 50px;
+                max-width: 130px;
+            }
+
+            .partners-banner {
+                height: 200px; /* Уменьшили баннер на мобильных */
             }
         }
 
         @media (max-width: 480px) {
             .slider-arrow {
-                width: 35px;
-                height: 35px;
-                font-size: 1rem;
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
             }
             
             .slider-arrow.prev {
@@ -658,8 +689,8 @@
             }
 
             .partner-logo {
-                height: 50px;
-                max-width: 120px;
+                height: 40px;
+                max-width: 100px;
             }
         }
     </style>
@@ -840,27 +871,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Slide 4 с двумя новыми активностями -->
-                <div class="activities-slide">
-                    <div class="activity-card">
-                        <div class="activity-card-img">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="activity-card-content">
-                            <h3>Экспертный клуб</h3>
-                            <p>Профессиональное сообщество экспертов в области экологии, устойчивого развития и городского планирования для обмена опытом и разработки совместных проектов.</p>
-                        </div>
-                    </div>
-                    <div class="activity-card">
-                        <div class="activity-card-img">
-                            <i class="fas fa-school"></i>
-                        </div>
-                        <div class="activity-card-content">
-                            <h3>Соучаствующее проектирование пространств школ</h3>
-                            <p>Совместное проектирование образовательных пространств школ, готовящихся к реновации, с участием педагогов, учащихся и местного сообщества.</p>
-                        </div>
-                    </div>
-                </div>
             </div>
             <button class="slider-arrow next">
                 <i class="fas fa-chevron-right"></i>
@@ -869,7 +879,6 @@
                 <div class="slider-dot active" data-slide="0"></div>
                 <div class="slider-dot" data-slide="1"></div>
                 <div class="slider-dot" data-slide="2"></div>
-                <div class="slider-dot" data-slide="3"></div>
             </div>
         </div>
     </section>
@@ -879,8 +888,9 @@
         <div class="past-events-slider">
             <div class="past-events-slides">
                 <div class="past-events-slide">
-                    <div class="past-events-img">
-                        <i class="fas fa-graduation-cap"></i>
+                    <div class="past-events-img" style="background-image: url('ПУТЬ_К_ФОТО_1.jpg');">
+                        <!-- Можно оставить иконку как fallback, если фото не загрузится -->
+                        <i class="fas fa-graduation-cap" style="color: rgba(255,255,255,0.7);"></i>
                     </div>
                     <div class="past-events-content">
                         <h3>Проектная школа "Среда Обитания"</h3>
@@ -890,8 +900,8 @@
                     </div>
                 </div>
                 <div class="past-events-slide">
-                    <div class="past-events-img">
-                        <i class="fas fa-utensils"></i>
+                    <div class="past-events-img" style="background-image: url('ПУТЬ_К_ФОТО_2.jpg');">
+                        <i class="fas fa-utensils" style="color: rgba(255,255,255,0.7);"></i>
                     </div>
                     <div class="past-events-content">
                         <h3>Лекторий в открытом камбузе</h3>
@@ -919,6 +929,10 @@
                 <div class="partner-logo">Логотип партнера 3</div>
                 <div class="partner-logo">Логотип партнера 4</div>
             </div>
+            <!-- Большой баннер для партнеров -->
+            <div class="partners-banner">
+                Большой баннер партнеров (замените на ваше изображение)
+            </div>
         </div>
     </section>
 
@@ -934,14 +948,6 @@
                 <i class="fas fa-envelope"></i>
                 <h3>Email</h3>
                 <p>info@greenpelican.ru</p>
-            </div>
-            <div class="contact-card">
-                <i class="fas fa-share-alt"></i>
-                <h3>Социальные сети</h3>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-vk"></i></a>
-                    <a href="#"><i class="fab fa-telegram"></i></a>
-                </div>
             </div>
         </div>
     </section>
@@ -1004,14 +1010,18 @@
                 <p>Формируем особую городскую среду для решения образовательных, экологических и архитектурных задач.</p>
             </div>
             <div class="footer-section">
-                <h3>Адрес</h3>
-                <p>РГПУ им. А.И. Герцена<br>Воронихинский сквер<br>Санкт-Петербург</p>
+                <h3>Быстрые ссылки</h3>
+                <p><a href="#about" style="color: white;">О фестивале</a></p>
+                <p><a href="#activities" style="color: white;">Активности</a></p>
+                <p><a href="#contacts" style="color: white;">Контакты</a></p>
             </div>
             <div class="footer-section">
                 <h3>Социальные сети</h3>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-vk"></i></a>
                     <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
         </div>
@@ -1032,7 +1042,7 @@
         let currentActivitySlide = 0;
 
         function showActivitySlide(n) {
-            currentActivitySlide = (n + 4) % 4;
+            currentActivitySlide = (n + 3) % 3;
             activitiesSlider.style.transform = `translateX(-${currentActivitySlide * 100}%)`;
             
             activityDots.forEach(dot => dot.classList.remove('active'));
@@ -1072,11 +1082,11 @@
             });
         });
 
-        // Автопереключение слайдов
+        // Автопереключение слайдов (увеличили интервал для более медленного перелистывания)
         setInterval(() => {
             showActivitySlide(currentActivitySlide + 1);
             showPastEventsSlide(currentPastEventsSlide + 1);
-        }, 6000);
+        }, 8000); // Увеличили с 6000 до 8000 мс
 
         // FAQ аккордеон
         const faqItems = document.querySelectorAll('.faq-item');
