@@ -19,7 +19,6 @@
             --yellow: #FFE17D;
             --light-gray: #f5f5f5;
             --dark-gray: #333333;
-            --darker-gray: #2a2a2a;
         }
 
         body {
@@ -166,52 +165,51 @@
             color: var(--gray);
         }
 
-        .info-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+        /* Новый дизайн для информации о датах и локации */
+        .festival-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
         }
 
-        .info-card {
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid #f0f0f0;
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1rem;
+            background-color: var(--light-gray);
+            border-radius: 12px;
         }
 
-        .info-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
-        }
-
-        .info-card-img {
-            height: 160px;
-            background-color: #f9f9f9;
+        .info-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--yellow);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--gray);
-            font-size: 2.2rem;
-            border-bottom: 1px solid #f0f0f0;
+            font-size: 1.5rem;
+            color: var(--dark-gray);
+            flex-shrink: 0;
         }
 
-        .info-card-content {
-            padding: 1.5rem;
+        .info-content {
+            flex-grow: 1;
         }
 
-        .info-card h3 {
-            margin-bottom: 0.8rem;
+        .info-content h3 {
+            margin-bottom: 0.5rem;
             color: var(--dark-gray);
             font-size: 1.2rem;
             font-weight: 500;
         }
 
-        .info-card p {
+        .info-content p {
             color: var(--gray);
-            font-size: 0.9rem;
+            font-size: 1rem;
             line-height: 1.5;
         }
 
@@ -237,37 +235,37 @@
         }
 
         .stage-card {
-            min-width: 300px;
-            background: var(--darker-gray);
+            min-width: 280px;
+            background: var(--yellow);
             border-radius: 20px;
             padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(255, 225, 125, 0.3);
             transition: all 0.3s;
             text-align: center;
-            border: 2px solid var(--darker-gray);
-            color: white;
+            border: 2px solid var(--yellow);
+            color: var(--dark-gray);
         }
 
         .stage-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 40px rgba(255, 225, 125, 0.4);
         }
 
         .stage-number {
             font-size: 3rem;
             font-weight: bold;
             margin-bottom: 1rem;
-            color: var(--yellow);
+            color: var(--dark-gray);
         }
 
         .stage-card h3 {
             margin-bottom: 1rem;
-            color: white;
+            color: var(--dark-gray);
             font-size: 1.3rem;
         }
 
         .stage-card p {
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--dark-gray);
             font-size: 0.95rem;
             line-height: 1.6;
         }
@@ -305,21 +303,24 @@
             right: 0;
         }
 
-        /* Стили для слайдера активностей */
-        .activities-slider-container {
+        /* Стили для слайдера активностей - ДЕСКТОПНАЯ ВЕРСИЯ */
+        .activities-desktop {
+            display: block;
+        }
+
+        .activities-desktop .activities-slider-container {
             position: relative;
             overflow: hidden;
             margin: 1.5rem 0;
             padding: 0 4rem;
         }
 
-        .activities-slider {
+        .activities-desktop .activities-slider {
             display: flex;
             transition: transform 0.5s ease;
         }
 
-        /* Десктопная версия - 4 карточки в слайде */
-        .activities-slide {
+        .activities-desktop .activities-slide {
             min-width: 100%;
             padding: 1rem;
             display: grid;
@@ -327,25 +328,25 @@
             gap: 1.5rem;
         }
 
-        .activity-card {
+        .activity-card-desktop {
             background: white;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
             border: 1px solid #f0f0f0;
-            height: 100%;
+            height: 380px; /* Уменьшенная высота */
             display: flex;
             flex-direction: column;
         }
 
-        .activity-card:hover {
+        .activity-card-desktop:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
 
-        .activity-card-img {
-            height: 200px;
+        .activity-card-img-desktop {
+            height: 150px; /* Уменьшенная высота изображения */
             width: 100%;
             background-color: #f9f9f9;
             background-size: cover;
@@ -354,28 +355,28 @@
             flex-shrink: 0;
         }
 
-        .activity-card-content {
+        .activity-card-content-desktop {
             padding: 1.5rem;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
 
-        .activity-card h3 {
-            margin-bottom: 1rem;
+        .activity-card-desktop h3 {
+            margin-bottom: 0.8rem;
             color: var(--dark-gray);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 500;
         }
 
-        .activity-card p {
+        .activity-card-desktop p {
             color: var(--gray);
-            font-size: 0.95rem;
-            line-height: 1.6;
+            font-size: 0.9rem;
+            line-height: 1.5;
             flex-grow: 1;
         }
 
-        .activity-arrow {
+        .activity-arrow-desktop {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -395,27 +396,27 @@
             transition: all 0.3s;
         }
 
-        .activity-arrow:hover {
+        .activity-arrow-desktop:hover {
             background-color: var(--yellow);
             transform: translateY(-50%) scale(1.1);
         }
 
-        .activity-arrow.prev {
+        .activity-arrow-desktop.prev {
             left: 0;
         }
 
-        .activity-arrow.next {
+        .activity-arrow-desktop.next {
             right: 0;
         }
 
-        .activity-dots {
+        .activity-dots-desktop {
             display: flex;
             justify-content: center;
             margin-top: 2rem;
             gap: 0.5rem;
         }
 
-        .activity-dot {
+        .activity-dot-desktop {
             width: 12px;
             height: 12px;
             border-radius: 50%;
@@ -424,7 +425,134 @@
             transition: background-color 0.3s;
         }
 
-        .activity-dot.active {
+        .activity-dot-desktop.active {
+            background-color: var(--yellow);
+        }
+
+        /* Стили для слайдера активностей - МОБИЛЬНАЯ ВЕРСИЯ */
+        .activities-mobile {
+            display: none;
+        }
+
+        .activities-mobile .activities-slider-container {
+            position: relative;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            padding: 0 4rem;
+        }
+
+        .activities-mobile .activities-slider {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .activities-mobile .activities-slide {
+            min-width: 100%;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .activity-card-mobile {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #f0f0f0;
+            max-width: 400px;
+            width: 100%;
+            height: 380px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .activity-card-mobile:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .activity-card-img-mobile {
+            height: 150px;
+            width: 100%;
+            background-color: #f9f9f9;
+            background-size: cover;
+            background-position: center;
+            border-bottom: 1px solid #f0f0f0;
+            flex-shrink: 0;
+        }
+
+        .activity-card-content-mobile {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .activity-card-mobile h3 {
+            margin-bottom: 0.8rem;
+            color: var(--dark-gray);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .activity-card-mobile p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .activity-arrow-mobile {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            color: var(--dark-gray);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .activity-arrow-mobile:hover {
+            background-color: var(--yellow);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .activity-arrow-mobile.prev {
+            left: 0;
+        }
+
+        .activity-arrow-mobile.next {
+            right: 0;
+        }
+
+        .activity-dots-mobile {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            gap: 0.5rem;
+        }
+
+        .activity-dot-mobile {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .activity-dot-mobile.active {
             background-color: var(--yellow);
         }
 
@@ -454,21 +582,13 @@
             flex: 1;
             min-width: 50%;
             background-color: #f9f9f9;
-            background-size: cover;
+            background-size: contain; /* Изменено с cover на contain */
             background-position: center;
+            background-repeat: no-repeat;
             border-right: 1px solid #f0f0f0;
             position: relative;
             overflow: hidden;
-        }
-
-        .past-events-img::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.05);
+            background-color: #f5f5f5; /* Фон для пустых областей */
         }
 
         .past-events-content {
@@ -495,9 +615,12 @@
             line-height: 1.6;
         }
 
-        .past-events-content strong {
-            color: var(--dark-gray);
-            font-weight: 500;
+        /* Убрано жирное написание */
+        .past-events-content .event-detail {
+            margin-bottom: 0.8rem;
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
         .events-arrow {
@@ -828,33 +951,41 @@
                 padding: 2rem;
             }
             
-            /* Мобильная версия активностей - одна карточка в ряд */
-            .activities-slide {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-                padding: 0.5rem;
+            .past-events-content h3 {
+                font-size: 1.4rem;
             }
             
-            .activity-card {
+            .activities-desktop {
+                display: none;
+            }
+            
+            .activities-mobile {
+                display: block;
+            }
+            
+            .activities-mobile .activities-slider-container {
+                padding: 0 2.5rem;
+            }
+            
+            .activity-card-mobile {
                 max-width: 100%;
-                margin-bottom: 1rem;
+                height: 350px;
             }
             
-            .activity-card-img {
-                height: 180px;
+            .activity-card-img-mobile {
+                height: 140px;
             }
             
-            .activities-slider-container,
             .stages-slider-container {
                 padding: 0 2.5rem;
             }
             
             .stage-card {
-                min-width: 280px;
+                min-width: 260px;
             }
             
             .stage-arrow,
-            .activity-arrow,
+            .activity-arrow-mobile,
             .events-arrow {
                 width: 40px;
                 height: 40px;
@@ -862,12 +993,12 @@
             }
             
             .stage-arrow.prev,
-            .activity-arrow.prev {
+            .activity-arrow-mobile.prev {
                 left: -10px;
             }
             
             .stage-arrow.next,
-            .activity-arrow.next {
+            .activity-arrow-mobile.next {
                 right: -10px;
             }
             
@@ -914,6 +1045,19 @@
                 padding: 0.4rem 1rem;
                 font-size: 0.75rem;
             }
+            
+            .info-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .info-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 1.8rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -925,36 +1069,40 @@
                 padding: 1.5rem;
             }
             
-            .past-events-content h3 {
-                font-size: 1.4rem;
+            .activities-mobile .activities-slider-container {
+                padding: 0 1.5rem;
             }
             
-            .activities-slider-container,
+            .activity-card-mobile {
+                height: 330px;
+            }
+            
+            .activity-card-img-mobile {
+                height: 130px;
+            }
+            
             .stages-slider-container {
                 padding: 0 1.5rem;
             }
             
             .stage-card {
-                min-width: 250px;
-            }
-            
-            .activity-card-img {
-                height: 160px;
+                min-width: 240px;
+                padding: 1.5rem;
             }
             
             .stage-arrow,
-            .activity-arrow {
+            .activity-arrow-mobile {
                 width: 35px;
                 height: 35px;
             }
             
             .stage-arrow.prev,
-            .activity-arrow.prev {
+            .activity-arrow-mobile.prev {
                 left: -15px;
             }
             
             .stage-arrow.next,
-            .activity-arrow.next {
+            .activity-arrow-mobile.next {
                 right: -15px;
             }
             
@@ -1020,21 +1168,23 @@
     <section id="about">
         <h2 class="section-title">О фестивале</h2>
         <p class="mission-text">Фестиваль «Зеленый пеликан» позволит сформировать особую городскую среду для решения образовательных, экологических и архитектурных задач. Мероприятие приурочено ко Дню города и направлено на развитие экологической культуры, популяризацию естественно-научных знаний и практик, создание площадки для взаимодействия учащихся, студентов и экспертов.</p>
-        <div class="info-cards">
-            <div class="info-card">
-                <div class="info-card-img">
+        
+        <!-- Новая верстка для дат и локации -->
+        <div class="festival-info">
+            <div class="info-item">
+                <div class="info-icon">
                     <i class="far fa-calendar-alt"></i>
                 </div>
-                <div class="info-card-content">
+                <div class="info-content">
                     <h3>Даты проведения</h3>
                     <p>Весна 2026 года. Фестиваль пройдет в рамках празднования Дня города.</p>
                 </div>
             </div>
-            <div class="info-card">
-                <div class="info-card-img">
+            <div class="info-item">
+                <div class="info-icon">
                     <i class="fas fa-map-marker-alt"></i>
                 </div>
-                <div class="info-card-content">
+                <div class="info-content">
                     <h3>Локация</h3>
                     <p>РГПУ им. А.И. Герцена и Воронихинский сквер. Историческое место в центре города с уникальной атмосферой.</p>
                 </div>
@@ -1070,6 +1220,16 @@
                     <h3>Заключительный этап</h3>
                     <p>Подведение итогов, награждение победителей, презентация результатов проектов.</p>
                 </div>
+                <div class="stage-card">
+                    <div class="stage-number">5</div>
+                    <h3>Экспертная оценка</h3>
+                    <p>Оценка проектов участников жюри из ведущих экспертов в области экологии и устойчивого развития.</p>
+                </div>
+                <div class="stage-card">
+                    <div class="stage-number">6</div>
+                    <h3>Публикация результатов</h3>
+                    <p>Размещение лучших проектов на платформе фестиваля и в специализированных изданиях.</p>
+                </div>
             </div>
             <button class="stage-arrow next">
                 <i class="fas fa-chevron-right"></i>
@@ -1079,126 +1239,194 @@
 
     <section id="activities">
         <h2 class="section-title">Активности фестиваля</h2>
-        <div class="activities-slider-container">
-            <button class="activity-arrow prev">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <div class="activities-slider">
-                <!-- Слайд 1 - 4 карточки (2x2) -->
-                <div class="activities-slide">
-                    <div class="activity-card">
-                        <div class="activity-card-img" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+        
+        <!-- Десктопная версия (4 карточки в слайде) -->
+        <div class="activities-desktop">
+            <div class="activities-slider-container">
+                <button class="activity-arrow-desktop prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="activities-slider">
+                    <!-- Слайд 1 - 4 карточки (2x2) -->
+                    <div class="activities-slide">
+                        <div class="activity-card-desktop">
+                            <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                            </div>
+                            <div class="activity-card-content-desktop">
+                                <h3>Естественно-научная проектная школа</h3>
+                                <p>Интенсив «Life Science School» - проекты участников направлены на решение прикладных экотехнических и архитектурных задач и улучшение качества жизни жителей города.</p>
+                            </div>
                         </div>
-                        <div class="activity-card-content">
-                            <h3>Естественно-научная проектная школа</h3>
-                            <p>Интенсив «Life Science School» - проекты участников направлены на решение прикладных экотехнических и архитектурных задач и улучшение качества жизни жителей города.</p>
+                        <div class="activity-card-desktop">
+                            <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                            </div>
+                            <div class="activity-card-content-desktop">
+                                <h3>Лекторий и экспертный клуб</h3>
+                                <p>Лекции и мастер-классы от ведущих экспертов в области экологии, науки и устойчивого развития.</p>
+                            </div>
+                        </div>
+                        <div class="activity-card-desktop">
+                            <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                            </div>
+                            <div class="activity-card-content-desktop">
+                                <h3>Интерактивное пространство «Наука и искусство»</h3>
+                                <p>Регулярные экспозиции интерактивных художественных и экологических объектов, и малых архитектурных форм.</p>
+                            </div>
+                        </div>
+                        <div class="activity-card-desktop">
+                            <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                            </div>
+                            <div class="activity-card-content-desktop">
+                                <h3>Инвентаризация насаждений</h3>
+                                <p>Определение возраста деревьев и оценка состояния зеленых насаждений городской среды.</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="activity-card">
-                        <div class="activity-card-img" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                    
+                    <!-- Слайд 2 - 4 карточки (2x2) -->
+                    <div class="activities-slide">
+                        <div class="activity-card-desktop">
+                            <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                            </div>
+                            <div class="activity-card-content-desktop">
+                                <h3>Топиарное искусство</h3>
+                                <p>Создание художественных форм из растений и кустарников - искусство фигурной стрижки деревьев и кустов.</p>
+                            </div>
                         </div>
-                        <div class="activity-card-content">
-                            <h3>Лекторий и экспертный клуб</h3>
-                            <p>Лекции и мастер-классы от ведущих экспертов в области экологии, науки и устойчивого развития.</p>
+                        <div class="activity-card-desktop">
+                            <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                            </div>
+                            <div class="activity-card-content-desktop">
+                                <h3>Ландшафтный дизайн и архитектура</h3>
+                                <p>Практические занятия по созданию гармоничной и экологичной городской среды.</p>
+                            </div>
+                        </div>
+                        <div class="activity-card-desktop">
+                            <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                            </div>
+                            <div class="activity-card-content-desktop">
+                                <h3>Компостирование и проект «Отходы в доходы»</h3>
+                                <p>Выращивание микрозелени и пищевых культур на основе переработанных органических отходов.</p>
+                            </div>
+                        </div>
+                        <div class="activity-card-desktop">
+                            <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                            </div>
+                            <div class="activity-card-content-desktop">
+                                <h3>Умное земледелие и городское огородничество</h3>
+                                <p>Кулинарные мастер-классы и практики устойчивого земледелия в городских условиях.</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="activity-card">
-                        <div class="activity-card-img" style="background-image: url('https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                    
+                    <!-- Слайд 3 - 4 карточки (2x2) -->
+                    <div class="activities-slide">
+                        <div class="activity-card-desktop">
+                            <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                            </div>
+                            <div class="activity-card-content-desktop">
+                                <h3>Создание объектов из переработанного сырья</h3>
+                                <p>Recycle, Reuse, Reduce - практика создания полезных и красивых объектов из вторичных материалов.</p>
+                            </div>
                         </div>
-                        <div class="activity-card-content">
-                            <h3>Интерактивное пространство «Наука и искусство»</h3>
-                            <p>Регулярные экспозиции интерактивных художественных и экологических объектов, и малых архитектурных форм.</p>
+                        <div class="activity-card-desktop">
+                            <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                            </div>
+                            <div class="activity-card-content-desktop">
+                                <h3>Экскурсии по кампусу Герценовского университета</h3>
+                                <p>Знакомство с историей и архитектурой одного из старейших педагогических вузов России.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="activity-card">
-                        <div class="activity-card-img" style="background-image: url('https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                        <div class="activity-card-desktop">
+                            <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                            </div>
+                            <div class="activity-card-content-desktop">
+                                <h3>Экотехническое проектирование</h3>
+                                <p>Разработка энергоэффективных теплиц, работа с датчиками и микроконтроллерами, использование нейронных сетей для поиска механизма плодородия почвы.</p>
+                            </div>
                         </div>
-                        <div class="activity-card-content">
-                            <h3>Инвентаризация насаждений</h3>
-                            <p>Определение возраста деревьев и оценка состояния зеленых насаждений городской среды.</p>
+                        <div class="activity-card-desktop">
+                            <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                            </div>
+                            <div class="activity-card-content-desktop">
+                                <h3>Семейный и детский досуг</h3>
+                                <p>Трек «Всем ребятам-эколятам» - специальная программа для детей и семей с интерактивными играми и занятиями.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Слайд 2 - 4 карточки (2x2) -->
-                <div class="activities-slide">
-                    <div class="activity-card">
-                        <div class="activity-card-img" style="background-image: url('https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
-                        </div>
-                        <div class="activity-card-content">
-                            <h3>Топиарное искусство</h3>
-                            <p>Создание художественных форм из растений и кустарников - искусство фигурной стрижки деревьев и кустов.</p>
-                        </div>
-                    </div>
-                    <div class="activity-card">
-                        <div class="activity-card-img" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
-                        </div>
-                        <div class="activity-card-content">
-                            <h3>Ландшафтный дизайн и архитектура</h3>
-                            <p>Практические занятия по созданию гармоничной и экологичной городской среды.</p>
-                        </div>
-                    </div>
-                    <div class="activity-card">
-                        <div class="activity-card-img" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
-                        </div>
-                        <div class="activity-card-content">
-                            <h3>Компостирование и проект «Отходы в доходы»</h3>
-                            <p>Выращивание микрозелени и пищевых культур на основе переработанных органических отходов.</p>
-                        </div>
-                    </div>
-                    <div class="activity-card">
-                        <div class="activity-card-img" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
-                        </div>
-                        <div class="activity-card-content">
-                            <h3>Умное земледелие и городское огородничество</h3>
-                            <p>Кулинарные мастер-классы и практики устойчивого земледелия в городских условиях.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Слайд 3 - 4 карточки (2x2) -->
-                <div class="activities-slide">
-                    <div class="activity-card">
-                        <div class="activity-card-img" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
-                        </div>
-                        <div class="activity-card-content">
-                            <h3>Создание объектов из переработанного сырья</h3>
-                            <p>Recycle, Reuse, Reduce - практика создания полезных и красивых объектов из вторичных материалов.</p>
-                        </div>
-                    </div>
-                    <div class="activity-card">
-                        <div class="activity-card-img" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
-                        </div>
-                        <div class="activity-card-content">
-                            <h3>Экскурсии по кампусу Герценовского университета</h3>
-                            <p>Знакомство с историей и архитектурой одного из старейших педагогических вузов России.</p>
-                        </div>
-                    </div>
-                    <div class="activity-card">
-                        <div class="activity-card-img" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
-                        </div>
-                        <div class="activity-card-content">
-                            <h3>Экотехническое проектирование</h3>
-                            <p>Разработка энергоэффективных теплиц, работа с датчиками и микроконтроллерами, использование нейронных сетей для поиска механизма плодородия почвы.</p>
-                        </div>
-                    </div>
-                    <div class="activity-card">
-                        <div class="activity-card-img" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
-                        </div>
-                        <div class="activity-card-content">
-                            <h3>Семейный и детский досуг</h3>
-                            <p>Трек «Всем ребятам-эколятам» - специальная программа для детей и семей с интерактивными играми и занятиями.</p>
-                        </div>
-                    </div>
+                <button class="activity-arrow-desktop next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="activity-dots-desktop">
+                    <div class="activity-dot-desktop active" data-slide="0"></div>
+                    <div class="activity-dot-desktop" data-slide="1"></div>
+                    <div class="activity-dot-desktop" data-slide="2"></div>
                 </div>
             </div>
-            <button class="activity-arrow next">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-            <div class="activity-dots">
-                <div class="activity-dot active" data-slide="0"></div>
-                <div class="activity-dot" data-slide="1"></div>
-                <div class="activity-dot" data-slide="2"></div>
+        </div>
+        
+        <!-- Мобильная версия (одна карточка в ряд) -->
+        <div class="activities-mobile">
+            <div class="activities-slider-container">
+                <button class="activity-arrow-mobile prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="activities-slider">
+                    <!-- Слайд 1 -->
+                    <div class="activities-slide">
+                        <div class="activity-card-mobile">
+                            <div class="activity-card-img-mobile" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                            </div>
+                            <div class="activity-card-content-mobile">
+                                <h3>Естественно-научная проектная школа</h3>
+                                <p>Интенсив «Life Science School» - проекты участников направлены на решение прикладных экотехнических и архитектурных задач и улучшение качества жизни жителей города.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Слайд 2 -->
+                    <div class="activities-slide">
+                        <div class="activity-card-mobile">
+                            <div class="activity-card-img-mobile" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                            </div>
+                            <div class="activity-card-content-mobile">
+                                <h3>Лекторий и экспертный клуб</h3>
+                                <p>Лекции и мастер-классы от ведущих экспертов в области экологии, науки и устойчивого развития.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Слайд 3 -->
+                    <div class="activities-slide">
+                        <div class="activity-card-mobile">
+                            <div class="activity-card-img-mobile" style="background-image: url('https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                            </div>
+                            <div class="activity-card-content-mobile">
+                                <h3>Интерактивное пространство «Наука и искусство»</h3>
+                                <p>Регулярные экспозиции интерактивных художественных и экологических объектов, и малых архитектурных форм.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Слайд 4 -->
+                    <div class="activities-slide">
+                        <div class="activity-card-mobile">
+                            <div class="activity-card-img-mobile" style="background-image: url('https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                            </div>
+                            <div class="activity-card-content-mobile">
+                                <h3>Инвентаризация насаждений</h3>
+                                <p>Определение возраста деревьев и оценка состояния зеленых насаждений городской среды.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="activity-arrow-mobile next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="activity-dots-mobile">
+                    <div class="activity-dot-mobile active" data-slide="0"></div>
+                    <div class="activity-dot-mobile" data-slide="1"></div>
+                    <div class="activity-dot-mobile" data-slide="2"></div>
+                    <div class="activity-dot-mobile" data-slide="3"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -1216,8 +1444,8 @@
                     <div class="past-events-content">
                         <h3>Проектная школа "Среда Обитания"</h3>
                         <p>В рамках проектной школы участники разрабатывали и реализовывали эколого-технические прототипы. Программа включала экскурсию, мастер-классы и работу с научными руководителями.</p>
-                        <p><strong>Дата проведения:</strong> 27-31 октября 2025</p>
-                        <p><strong>Участники:</strong> школьники Санкт-Петербург</p>
+                        <p class="event-detail">Дата проведения: 27-31 октября 2025</p>
+                        <p class="event-detail">Участники: школьники Санкт-Петербург</p>
                     </div>
                 </div>
                 <div class="past-events-slide">
@@ -1226,8 +1454,8 @@
                     <div class="past-events-content">
                         <h3>Цикл лекций "Садово-парковое искусство"</h3>
                         <p>Серия лекций и дискуссий о садово-парковом искусстве, ландшафтном дизайне и создании гармоничной городской среды, проходивших в уникальной атмосфере открытого лектория.</p>
-                        <p><strong>Дата проведения:</strong> ноябрь 2025</p>
-                        <p><strong>Темы:</strong> Садово-парковое искусство, ландшафтный дизайн, городская экология</p>
+                        <p class="event-detail">Дата проведения: ноябрь 2025</p>
+                        <p class="event-detail">Темы: Садово-парковое искусство, ландшафтный дизайн, городская экология</p>
                     </div>
                 </div>
             </div>
@@ -1358,7 +1586,7 @@
         const stagePrevArrow = document.querySelector('.stage-arrow.prev');
         const stageNextArrow = document.querySelector('.stage-arrow.next');
         let currentStageSlide = 0;
-        const stageCardWidth = 300; // ширина карточки + gap
+        const stageCardWidth = 280; // ширина карточки + gap
         
         function updateStageCardsPerView() {
             const stageContainer = document.querySelector('.stages-slider-container');
@@ -1382,59 +1610,121 @@
             stageNextArrow.addEventListener('click', () => showStageSlide(1));
         }
 
-        // Activities Slider
-        const activitiesSlider = document.querySelector('.activities-slider');
-        const activitySlides = document.querySelectorAll('.activities-slide');
-        const activityDots = document.querySelectorAll('.activity-dot');
-        const activityPrevArrow = document.querySelector('.activity-arrow.prev');
-        const activityNextArrow = document.querySelector('.activity-arrow.next');
-        let currentActivitySlide = 0;
-        let activityInterval;
+        // Activities Slider - Десктопная версия
+        const activitiesDesktopSlider = document.querySelector('.activities-desktop .activities-slider');
+        const activitiesDesktopSlides = document.querySelectorAll('.activities-desktop .activities-slide');
+        const activityDesktopDots = document.querySelectorAll('.activity-dot-desktop');
+        const activityDesktopPrevArrow = document.querySelector('.activity-arrow-desktop.prev');
+        const activityDesktopNextArrow = document.querySelector('.activity-arrow-desktop.next');
+        let currentDesktopActivitySlide = 0;
+        let desktopActivityInterval;
 
-        function showActivitySlide(n) {
-            currentActivitySlide = (n + activitySlides.length) % activitySlides.length;
-            activitiesSlider.style.transform = `translateX(-${currentActivitySlide * 100}%)`;
+        function showDesktopActivitySlide(n) {
+            if (!activitiesDesktopSlider || activitiesDesktopSlides.length === 0) return;
             
-            activityDots.forEach(dot => dot.classList.remove('active'));
-            if (activityDots[currentActivitySlide]) {
-                activityDots[currentActivitySlide].classList.add('active');
+            currentDesktopActivitySlide = (n + activitiesDesktopSlides.length) % activitiesDesktopSlides.length;
+            activitiesDesktopSlider.style.transform = `translateX(-${currentDesktopActivitySlide * 100}%)`;
+            
+            activityDesktopDots.forEach(dot => dot.classList.remove('active'));
+            if (activityDesktopDots[currentDesktopActivitySlide]) {
+                activityDesktopDots[currentDesktopActivitySlide].classList.add('active');
             }
         }
 
-        function startActivityAutoSlide() {
-            activityInterval = setInterval(() => {
-                showActivitySlide(currentActivitySlide + 1);
-            }, 5000); // Автопереключение каждые 5 секунд
+        function startDesktopActivityAutoSlide() {
+            desktopActivityInterval = setInterval(() => {
+                showDesktopActivitySlide(currentDesktopActivitySlide + 1);
+            }, 5000);
         }
 
-        function resetActivityAutoSlide() {
-            clearInterval(activityInterval);
-            startActivityAutoSlide();
+        function resetDesktopActivityAutoSlide() {
+            clearInterval(desktopActivityInterval);
+            startDesktopActivityAutoSlide();
         }
 
-        if (activityDots.length > 0) {
-            activityDots.forEach((dot, index) => {
+        if (activityDesktopDots.length > 0) {
+            activityDesktopDots.forEach((dot, index) => {
                 dot.addEventListener('click', () => {
-                    showActivitySlide(index);
-                    resetActivityAutoSlide();
+                    showDesktopActivitySlide(index);
+                    resetDesktopActivityAutoSlide();
                 });
             });
         }
 
-        if (activityPrevArrow && activityNextArrow) {
-            activityPrevArrow.addEventListener('click', () => {
-                showActivitySlide(currentActivitySlide - 1);
-                resetActivityAutoSlide();
+        if (activityDesktopPrevArrow && activityDesktopNextArrow) {
+            activityDesktopPrevArrow.addEventListener('click', () => {
+                showDesktopActivitySlide(currentDesktopActivitySlide - 1);
+                resetDesktopActivityAutoSlide();
             });
 
-            activityNextArrow.addEventListener('click', () => {
-                showActivitySlide(currentActivitySlide + 1);
-                resetActivityAutoSlide();
+            activityDesktopNextArrow.addEventListener('click', () => {
+                showDesktopActivitySlide(currentDesktopActivitySlide + 1);
+                resetDesktopActivityAutoSlide();
             });
         }
 
-        // Запускаем автопереключение для активностей
-        startActivityAutoSlide();
+        // Запускаем автопереключение для десктопной версии
+        if (window.innerWidth > 768) {
+            startDesktopActivityAutoSlide();
+        }
+
+        // Activities Slider - Мобильная версия
+        const activitiesMobileSlider = document.querySelector('.activities-mobile .activities-slider');
+        const activitiesMobileSlides = document.querySelectorAll('.activities-mobile .activities-slide');
+        const activityMobileDots = document.querySelectorAll('.activity-dot-mobile');
+        const activityMobilePrevArrow = document.querySelector('.activity-arrow-mobile.prev');
+        const activityMobileNextArrow = document.querySelector('.activity-arrow-mobile.next');
+        let currentMobileActivitySlide = 0;
+        let mobileActivityInterval;
+
+        function showMobileActivitySlide(n) {
+            if (!activitiesMobileSlider || activitiesMobileSlides.length === 0) return;
+            
+            currentMobileActivitySlide = (n + activitiesMobileSlides.length) % activitiesMobileSlides.length;
+            activitiesMobileSlider.style.transform = `translateX(-${currentMobileActivitySlide * 100}%)`;
+            
+            activityMobileDots.forEach(dot => dot.classList.remove('active'));
+            if (activityMobileDots[currentMobileActivitySlide]) {
+                activityMobileDots[currentMobileActivitySlide].classList.add('active');
+            }
+        }
+
+        function startMobileActivityAutoSlide() {
+            mobileActivityInterval = setInterval(() => {
+                showMobileActivitySlide(currentMobileActivitySlide + 1);
+            }, 5000);
+        }
+
+        function resetMobileActivityAutoSlide() {
+            clearInterval(mobileActivityInterval);
+            startMobileActivityAutoSlide();
+        }
+
+        if (activityMobileDots.length > 0) {
+            activityMobileDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    showMobileActivitySlide(index);
+                    resetMobileActivityAutoSlide();
+                });
+            });
+        }
+
+        if (activityMobilePrevArrow && activityMobileNextArrow) {
+            activityMobilePrevArrow.addEventListener('click', () => {
+                showMobileActivitySlide(currentMobileActivitySlide - 1);
+                resetMobileActivityAutoSlide();
+            });
+
+            activityMobileNextArrow.addEventListener('click', () => {
+                showMobileActivitySlide(currentMobileActivitySlide + 1);
+                resetMobileActivityAutoSlide();
+            });
+        }
+
+        // Запускаем автопереключение для мобильной версии
+        if (window.innerWidth <= 768) {
+            startMobileActivityAutoSlide();
+        }
 
         // Past Events Slider
         const pastEventsSlides = document.querySelector('.past-events-slides');
@@ -1555,7 +1845,7 @@
             });
         }
 
-        // Адаптация слайдера этапов при изменении размера окна
+        // Адаптация слайдеров при изменении размера окна
         window.addEventListener('resize', () => {
             // Сброс слайдера этапов
             currentStageSlide = 0;
@@ -1563,18 +1853,50 @@
                 stagesSlider.style.transform = `translateX(0)`;
             }
             
-            // Перезапуск автопереключения при ресайзе
-            resetActivityAutoSlide();
+            // Перезапуск автопереключения в зависимости от устройства
+            if (window.innerWidth > 768) {
+                // Десктопная версия
+                if (desktopActivityInterval) clearInterval(desktopActivityInterval);
+                if (mobileActivityInterval) clearInterval(mobileActivityInterval);
+                startDesktopActivityAutoSlide();
+                // Показываем нужную версию
+                document.querySelector('.activities-desktop').style.display = 'block';
+                document.querySelector('.activities-mobile').style.display = 'none';
+            } else {
+                // Мобильная версия
+                if (desktopActivityInterval) clearInterval(desktopActivityInterval);
+                if (mobileActivityInterval) clearInterval(mobileActivityInterval);
+                startMobileActivityAutoSlide();
+                // Показываем нужную версию
+                document.querySelector('.activities-desktop').style.display = 'none';
+                document.querySelector('.activities-mobile').style.display = 'block';
+            }
         });
 
-        // Останавливаем автопереключение при наведении на слайдер активностей
-        if (activitiesSlider) {
-            activitiesSlider.addEventListener('mouseenter', () => {
-                clearInterval(activityInterval);
+        // Останавливаем автопереключение при наведении на слайдеры
+        if (activitiesDesktopSlider) {
+            activitiesDesktopSlider.addEventListener('mouseenter', () => {
+                clearInterval(desktopActivityInterval);
             });
 
-            activitiesSlider.addEventListener('mouseleave', () => {
-                startActivityAutoSlide();
+            activitiesDesktopSlider.addEventListener('mouseleave', () => {
+                if (window.innerWidth > 768) {
+                    startDesktopActivityAutoSlide();
+                }
+            });
+        }
+
+        if (activitiesMobileSlider) {
+            activitiesMobileSlider.addEventListener('touchstart', () => {
+                clearInterval(mobileActivityInterval);
+            });
+
+            activitiesMobileSlider.addEventListener('touchend', () => {
+                if (window.innerWidth <= 768) {
+                    setTimeout(() => {
+                        startMobileActivityAutoSlide();
+                    }, 3000);
+                }
             });
         }
     </script>
