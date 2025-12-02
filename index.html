@@ -27,11 +27,78 @@
             line-height: 1.6;
             font-weight: 300;
             font-size: 15px;
+            overflow-x: hidden;
         }
 
         h1, h2, h3, h4 {
             font-weight: 400;
             color: var(--dark-gray);
+        }
+
+        /* Анимации */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         header {
@@ -43,6 +110,7 @@
             z-index: 1000;
             box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
             border-bottom: 1px solid #eee;
+            animation: fadeIn 0.8s ease-out;
         }
 
         nav {
@@ -57,27 +125,50 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            animation: slideInFromLeft 0.8s ease-out;
         }
 
         .logo img {
             height: 60px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
         }
 
         .nav-links {
             display: flex;
             gap: 2rem;
+            animation: slideInFromRight 0.8s ease-out;
         }
 
         .nav-links a {
             color: var(--gray);
             text-decoration: none;
             font-weight: 400;
-            transition: color 0.3s;
+            transition: all 0.3s;
             font-size: 0.9rem;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--yellow);
+            transition: width 0.3s ease;
         }
 
         .nav-links a:hover {
             color: var(--dark-gray);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .burger-menu {
@@ -105,31 +196,45 @@
             padding: 0 1.5rem 80px;
             margin-top: 90px;
             position: relative;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to top, rgba(255,255,255,1), rgba(255,255,255,0));
         }
 
         .btn {
             display: inline-block;
             background-color: transparent;
             color: white;
-            padding: 0.5rem 1.2rem;
+            padding: 0.8rem 1.8rem;
             border-radius: 30px;
             text-decoration: none;
-            font-weight: 400;
-            transition: all 0.3s;
+            font-weight: 500;
+            transition: all 0.4s;
             border: 2px solid white;
             cursor: pointer;
-            font-size: 0.8rem;
-            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
             position: absolute;
-            bottom: 40px;
+            bottom: 60px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
+            animation: fadeInUp 1s ease-out 0.5s both;
         }
 
         .btn:hover {
             background-color: white;
             color: var(--dark-gray);
+            transform: translateX(-50%) translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
         section {
@@ -142,27 +247,31 @@
             text-align: center;
             margin-bottom: 3rem;
             color: var(--dark-gray);
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: 400;
             position: relative;
+            animation: fadeInUp 0.8s ease-out;
         }
 
         .section-title:after {
             content: '';
             display: block;
-            width: 60px;
-            height: 2px;
+            width: 80px;
+            height: 3px;
             background-color: var(--yellow);
-            margin: 1rem auto;
+            margin: 1.5rem auto;
+            border-radius: 2px;
+            animation: pulse 2s infinite;
         }
 
         .mission-text {
             text-align: center;
             max-width: 900px;
             margin: 0 auto 3rem;
-            font-size: 1rem;
-            line-height: 1.6;
+            font-size: 1.1rem;
+            line-height: 1.7;
             color: var(--gray);
+            animation: fadeInUp 0.8s ease-out 0.2s both;
         }
 
         /* Стили для информации о фестивале (даты и локация в один ряд) */
@@ -171,43 +280,57 @@
             justify-content: center;
             gap: 3rem;
             margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
         }
 
         .festival-info-item {
             display: flex;
             align-items: center;
             gap: 1.5rem;
-            padding: 1.5rem;
-            background-color: var(--light-gray);
-            border-radius: 16px;
+            padding: 1.8rem;
+            background-color: white;
+            border-radius: 20px;
             max-width: 450px;
             width: 100%;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .festival-info-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
         }
 
         .festival-info-icon {
-            width: 70px;
-            height: 70px;
+            width: 80px;
+            height: 80px;
             background-color: var(--yellow);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: var(--dark-gray);
             flex-shrink: 0;
+            transition: all 0.4s ease;
+        }
+
+        .festival-info-item:hover .festival-info-icon {
+            transform: rotate(15deg) scale(1.1);
         }
 
         .festival-info-content h3 {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             color: var(--dark-gray);
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 500;
         }
 
         .festival-info-content p {
             color: var(--gray);
             font-size: 1rem;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         /* Мобильная версия информации о фестивале */
@@ -218,58 +341,74 @@
         /* Стили для секции этапов */
         .stages-section {
             background-color: #f9f9f9;
-            border-radius: 20px;
-            padding: 3rem 2rem;
-            margin: 2rem auto;
+            border-radius: 25px;
+            padding: 4rem 2rem;
+            margin: 3rem auto;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
         }
 
         .stages-slider-container {
             position: relative;
             overflow: hidden;
-            margin: 1.5rem 0;
-            padding: 0 3rem;
+            margin: 2rem 0;
+            padding: 0 4rem;
         }
 
         .stages-slider {
             display: flex;
-            transition: transform 0.5s ease;
-            gap: 1.5rem;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            gap: 2rem;
         }
 
         .stage-card {
-            min-width: 280px;
+            min-width: 300px;
             background: var(--yellow);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(255, 225, 125, 0.3);
-            transition: all 0.3s;
+            border-radius: 25px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 35px rgba(255, 225, 125, 0.3);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             text-align: center;
             border: 2px solid var(--yellow);
             color: var(--dark-gray);
         }
 
         .stage-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(255, 225, 125, 0.4);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(255, 225, 125, 0.4);
         }
 
         .stage-number {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: bold;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             color: var(--dark-gray);
+            transition: transform 0.4s ease;
+        }
+
+        .stage-card:hover .stage-number {
+            transform: scale(1.2);
         }
 
         .stage-card h3 {
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             color: var(--dark-gray);
-            font-size: 1.3rem;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .stage-card:hover h3 {
+            color: #222;
         }
 
         .stage-card p {
             color: var(--dark-gray);
-            font-size: 0.95rem;
-            line-height: 1.6;
+            font-size: 1rem;
+            line-height: 1.7;
+            transition: transform 0.4s ease;
+        }
+
+        .stage-card:hover p {
+            transform: translateY(-3px);
         }
 
         .stage-arrow {
@@ -278,31 +417,34 @@
             transform: translateY(-50%);
             background: white;
             border: none;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
             z-index: 10;
             color: var(--dark-gray);
-            font-size: 1.2rem;
-            transition: all 0.3s;
+            font-size: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .stage-arrow:hover {
             background-color: var(--yellow);
-            transform: translateY(-50%) scale(1.1);
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
         }
 
         .stage-arrow.prev {
             left: 0;
+            animation: slideInFromLeft 0.8s ease-out;
         }
 
         .stage-arrow.next {
             right: 0;
+            animation: slideInFromRight 0.8s ease-out;
         }
 
         /* Стили для слайдера активностей - ДЕСКТОПНАЯ ВЕРСИЯ */
@@ -313,13 +455,13 @@
         .activities-desktop .activities-slider-container {
             position: relative;
             overflow: hidden;
-            margin: 1.5rem 0;
-            padding: 0 4rem;
+            margin: 2rem 0;
+            padding: 0 5rem;
         }
 
         .activities-desktop .activities-slider {
             display: flex;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .activities-desktop .activities-slide {
@@ -327,54 +469,64 @@
             padding: 1rem;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
         .activity-card-desktop {
             background: white;
-            border-radius: 20px;
+            border-radius: 25px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             border: 1px solid #f0f0f0;
-            height: 320px; /* Уменьшенная высота */
+            height: 380px;
             display: flex;
             flex-direction: column;
         }
 
         .activity-card-desktop:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
         }
 
         .activity-card-img-desktop {
-            height: 140px; /* Уменьшенная высота изображения */
+            height: 180px;
             width: 100%;
             background-color: #f9f9f9;
             background-size: cover;
             background-position: center;
             border-bottom: 1px solid #f0f0f0;
             flex-shrink: 0;
+            transition: transform 0.5s ease;
+        }
+
+        .activity-card-desktop:hover .activity-card-img-desktop {
+            transform: scale(1.05);
         }
 
         .activity-card-content-desktop {
-            padding: 1.2rem;
+            padding: 1.8rem;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
 
         .activity-card-desktop h3 {
-            margin-bottom: 0.6rem;
+            margin-bottom: 1rem;
             color: var(--dark-gray);
-            font-size: 1rem;
+            font-size: 1.2rem;
             font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .activity-card-desktop:hover h3 {
+            color: var(--yellow);
         }
 
         .activity-card-desktop p {
             color: var(--gray);
-            font-size: 0.85rem;
-            line-height: 1.5;
+            font-size: 0.95rem;
+            line-height: 1.6;
             flex-grow: 1;
         }
 
@@ -384,51 +536,59 @@
             transform: translateY(-50%);
             background: white;
             border: none;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
             z-index: 10;
             color: var(--dark-gray);
-            font-size: 1.2rem;
-            transition: all 0.3s;
+            font-size: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .activity-arrow-desktop:hover {
             background-color: var(--yellow);
-            transform: translateY(-50%) scale(1.1);
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
         }
 
         .activity-arrow-desktop.prev {
             left: 0;
+            animation: slideInFromLeft 0.8s ease-out;
         }
 
         .activity-arrow-desktop.next {
             right: 0;
+            animation: slideInFromRight 0.8s ease-out;
         }
 
         .activity-dots-desktop {
             display: flex;
             justify-content: center;
-            margin-top: 2rem;
-            gap: 0.5rem;
+            margin-top: 3rem;
+            gap: 0.8rem;
         }
 
         .activity-dot-desktop {
-            width: 12px;
-            height: 12px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
             background-color: #e0e0e0;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.4s ease;
+        }
+
+        .activity-dot-desktop:hover {
+            transform: scale(1.3);
         }
 
         .activity-dot-desktop.active {
             background-color: var(--yellow);
+            transform: scale(1.3);
         }
 
         /* Стили для слайдера активностей - МОБИЛЬНАЯ ВЕРСИЯ */
@@ -439,13 +599,13 @@
         .activities-mobile .activities-slider-container {
             position: relative;
             overflow: hidden;
-            margin: 1.5rem 0;
+            margin: 2rem 0;
             padding: 0 4rem;
         }
 
         .activities-mobile .activities-slider {
             display: flex;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .activities-mobile .activities-slide {
@@ -457,51 +617,61 @@
 
         .activity-card-mobile {
             background: white;
-            border-radius: 20px;
+            border-radius: 25px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             border: 1px solid #f0f0f0;
             max-width: 400px;
             width: 100%;
-            height: 320px;
+            height: 380px;
             display: flex;
             flex-direction: column;
         }
 
         .activity-card-mobile:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
         }
 
         .activity-card-img-mobile {
-            height: 140px;
+            height: 180px;
             width: 100%;
             background-color: #f9f9f9;
             background-size: cover;
             background-position: center;
             border-bottom: 1px solid #f0f0f0;
             flex-shrink: 0;
+            transition: transform 0.5s ease;
+        }
+
+        .activity-card-mobile:hover .activity-card-img-mobile {
+            transform: scale(1.05);
         }
 
         .activity-card-content-mobile {
-            padding: 1.2rem;
+            padding: 1.8rem;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
 
         .activity-card-mobile h3 {
-            margin-bottom: 0.6rem;
+            margin-bottom: 1rem;
             color: var(--dark-gray);
-            font-size: 1rem;
+            font-size: 1.2rem;
             font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .activity-card-mobile:hover h3 {
+            color: var(--yellow);
         }
 
         .activity-card-mobile p {
             color: var(--gray);
-            font-size: 0.85rem;
-            line-height: 1.5;
+            font-size: 0.95rem;
+            line-height: 1.6;
             flex-grow: 1;
         }
 
@@ -511,173 +681,224 @@
             transform: translateY(-50%);
             background: white;
             border: none;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
             z-index: 10;
             color: var(--dark-gray);
-            font-size: 1rem;
-            transition: all 0.3s;
+            font-size: 1.2rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .activity-arrow-mobile:hover {
             background-color: var(--yellow);
-            transform: translateY(-50%) scale(1.1);
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
         .activity-arrow-mobile.prev {
             left: 0;
+            animation: slideInFromLeft 0.8s ease-out;
         }
 
         .activity-arrow-mobile.next {
             right: 0;
+            animation: slideInFromRight 0.8s ease-out;
         }
 
         .activity-dots-mobile {
             display: flex;
             justify-content: center;
             margin-top: 2rem;
-            gap: 0.5rem;
+            gap: 0.8rem;
         }
 
         .activity-dot-mobile {
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             background-color: #e0e0e0;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.4s ease;
+        }
+
+        .activity-dot-mobile:hover {
+            transform: scale(1.3);
         }
 
         .activity-dot-mobile.active {
             background-color: var(--yellow);
+            transform: scale(1.3);
         }
 
-      /* Стили для слайдера прошедших мероприятий */
-.past-events-slider {
-    position: relative;
-    overflow: hidden;
-    border-radius: 16px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    background: white;
-    border: 1px solid #f0f0f0;
-    min-height: 400px;
-    padding: 20px; /* Добавляем внутренние отступы */
-}
+        /* Стили для слайдера прошедших мероприятий */
+        .past-events-slider {
+            position: relative;
+            overflow: hidden;
+            border-radius: 25px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+            background: white;
+            border: 1px solid #f0f0f0;
+            min-height: 450px;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
 
-.past-events-slides {
-    display: flex;
-    transition: transform 0.5s ease;
-    height: 100%;
-}
+        .past-events-slides {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
 
-.past-events-slide {
-    min-width: 100%;
-    display: flex;
-    min-height: 360px; /* Уменьшаем высоту с учетом padding */
-    gap: 30px; /* Добавляем отступ между фото и текстом */
-}
+        .past-events-slide {
+            min-width: 100%;
+            display: flex;
+            min-height: 450px;
+        }
 
-.past-events-img {
-    flex: 1;
-    min-width: 45%; /* Уменьшаем ширину фото */
-    background-color: #f9f9f9;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: 16px; /* Скругляем углы фото */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Добавляем тень для глубины */
-    overflow: hidden;
-    position: relative;
-}
+        .past-events-img {
+            flex: 1;
+            min-width: 45%;
+            background-color: #f9f9f9;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 25px 0 0 25px;
+            position: relative;
+            overflow: hidden;
+        }
 
-.past-events-img::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.02), rgba(0,0,0,0.05)); /* Легкий градиент */
-}
+        .past-events-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,225,125,0.1) 0%, rgba(255,225,125,0) 100%);
+            transition: opacity 0.5s ease;
+        }
 
-.past-events-content {
-    flex: 1;
-    min-width: 45%;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-radius: 16px; /* Скругляем углы текстового блока */
-    background-color: #fafafa; /* Легкий фон для текстового блока */
-}
+        .past-events-slide:hover .past-events-img::before {
+            opacity: 0.5;
+        }
 
-@media (max-width: 768px) {
-    .past-events-slider {
-        padding: 15px;
-    }
-    
-    .past-events-slide {
-        flex-direction: column;
-        min-height: auto;
-        gap: 20px;
-    }
-    
-    .past-events-img {
-        border-radius: 12px;
-        height: 220px;
-        min-width: 100%;
-        flex: none;
-    }
-    
-    .past-events-content {
-        border-radius: 12px;
-        flex: none;
-        width: 100%;
-        min-width: 100%;
-        padding: 1.5rem;
-    }
-}
+        .past-events-content {
+            flex: 1;
+            min-width: 55%;
+            padding: 3.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: white;
+        }
 
-@media (max-width: 480px) {
-    .past-events-slider {
-        padding: 10px;
-    }
-    
-    .past-events-img {
-        height: 180px;
-        border-radius: 10px;
-    }
-    
-    .past-events-content {
-        padding: 1.2rem;
-        border-radius: 10px;
-    }
-}
+        .past-events-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.8rem;
+            color: var(--dark-gray);
+            font-weight: 500;
+            line-height: 1.3;
+            transition: color 0.3s ease;
+        }
+
+        .past-events-slide:hover .past-events-content h3 {
+            color: var(--yellow);
+        }
+
+        .past-events-content p {
+            margin-bottom: 1.2rem;
+            color: var(--gray);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            transition: transform 0.4s ease;
+        }
+
+        .past-events-slide:hover .past-events-content p {
+            transform: translateX(5px);
+        }
+
+        .past-events-content .event-detail {
+            margin-bottom: 1rem;
+            color: var(--gray);
+            font-size: 1rem;
+            line-height: 1.6;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .past-events-content .event-detail::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--yellow);
+            font-size: 1.5rem;
+        }
+
+        .events-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            z-index: 10;
+            color: var(--dark-gray);
+            font-size: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .events-arrow:hover {
+            background-color: var(--yellow);
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            animation: pulse 1s infinite;
+        }
+
+        .events-arrow.prev {
+            left: 20px;
+            animation: slideInFromLeft 0.8s ease-out;
+        }
+
+        .events-arrow.next {
+            right: 20px;
+            animation: slideInFromRight 0.8s ease-out;
+        }
 
         .past-events-dots {
             display: flex;
             justify-content: center;
-            margin-top: 2.5rem;
-            gap: 0.5rem;
+            margin-top: 2rem;
+            gap: 0.8rem;
         }
 
         .past-events-dot {
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             background-color: #e0e0e0;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.4s ease;
+        }
+
+        .past-events-dot:hover {
+            transform: scale(1.3);
         }
 
         .past-events-dot.active {
             background-color: var(--yellow);
+            transform: scale(1.3);
+            box-shadow: 0 0 10px rgba(255, 225, 125, 0.5);
         }
 
         /* Стили для кнопок перед FAQ */
@@ -685,74 +906,115 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 1.5rem;
-            margin: 3rem 0;
-            padding: 2rem;
-            background-color: #f9f9f9;
-            border-radius: 16px;
+            gap: 2rem;
+            margin: 4rem 0;
+            padding: 3rem;
+            background: linear-gradient(135deg, #f9f9f9 0%, #f5f5f5 100%);
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 0.8s ease-out 1s both;
         }
 
         .action-btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
             background-color: var(--yellow);
             color: var(--dark-gray);
-            padding: 1rem 2rem;
-            border-radius: 30px;
+            padding: 1.2rem 2.5rem;
+            border-radius: 35px;
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
+            font-weight: 600;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             border: 2px solid var(--yellow);
             text-align: center;
-            min-width: 200px;
+            min-width: 250px;
+            box-shadow: 0 8px 25px rgba(255, 225, 125, 0.3);
         }
 
         .action-btn:hover {
             background-color: transparent;
             color: var(--dark-gray);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            animation: pulse 1s infinite;
+        }
+
+        .action-btn i {
+            font-size: 1.3rem;
+            transition: transform 0.4s ease;
+        }
+
+        .action-btn:hover i {
+            transform: rotate(15deg) scale(1.2);
         }
 
         .contact-info {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+            animation: fadeInUp 0.8s ease-out 1.2s both;
         }
 
         .contact-card {
             background: white;
-            padding: 1.8rem;
-            border-radius: 16px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
             text-align: center;
             border: 1px solid #f0f0f0;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
         }
 
         .contact-card i {
-            font-size: 1.6rem;
-            color: var(--dark-gray);
-            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            color: var(--yellow);
+            margin-bottom: 1.5rem;
+            transition: transform 0.5s ease;
+        }
+
+        .contact-card:hover i {
+            transform: rotate(15deg) scale(1.2);
         }
 
         .contact-card h3 {
-            margin-bottom: 0.7rem;
+            margin-bottom: 1rem;
             color: var(--dark-gray);
             font-weight: 500;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
+        }
+
+        .contact-card p {
+            color: var(--gray);
+            font-size: 1.05rem;
+            line-height: 1.6;
         }
 
         .faq-item {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             background: white;
-            border-radius: 16px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
             border: 1px solid #f0f0f0;
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.8s ease-out 1.4s both;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
         }
 
         .faq-question {
-            padding: 1.2rem;
+            padding: 1.8rem;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
@@ -760,31 +1022,40 @@
             font-weight: 500;
             background-color: white;
             color: var(--dark-gray);
-            transition: background-color 0.3s;
-            font-size: 0.95rem;
+            transition: all 0.3s;
+            font-size: 1.05rem;
         }
 
         .faq-question:hover {
-            background-color: #f9f9f9;
+            background-color: #fafafa;
+        }
+
+        .faq-question i {
+            transition: transform 0.4s ease;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
         }
 
         .faq-answer {
-            padding: 0 1.2rem;
+            padding: 0 1.8rem;
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
+            transition: max-height 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.6s ease;
         }
 
         .faq-item.active .faq-answer {
-            padding: 1.2rem;
+            padding: 1.8rem;
             max-height: 500px;
         }
 
         .partners {
             background-color: white;
-            padding: 3rem 0;
+            padding: 4rem 0;
             text-align: center;
             width: 100%;
+            animation: fadeInUp 0.8s ease-out 1.6s both;
         }
 
         .partners-container {
@@ -797,8 +1068,8 @@
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            gap: 2rem;
-            margin-top: 1.5rem;
+            gap: 3rem;
+            margin-top: 2rem;
             width: 100%;
         }
 
@@ -818,19 +1089,20 @@
         }
 
         footer {
-            background-color: var(--gray);
+            background: linear-gradient(135deg, var(--gray) 0%, #666 100%);
             color: white;
-            padding: 3rem 1.5rem;
+            padding: 4rem 1.5rem;
             text-align: left;
+            animation: fadeIn 1s ease-out;
         }
 
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
 
         .footer-section {
@@ -838,65 +1110,82 @@
         }
 
         .footer-section h3 {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             color: var(--yellow);
             font-weight: 500;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--yellow);
+            border-radius: 2px;
         }
 
         .social-links {
             display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
         }
 
         .social-links a {
             color: white;
-            font-size: 1.3rem;
-            transition: color 0.3s;
+            font-size: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background-color: rgba(255, 255, 255, 0.1);
-            transition: all 0.3s;
         }
 
         .social-links a:hover {
             color: var(--yellow);
             background-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
 
         .back-to-top {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 40px;
+            right: 40px;
             background-color: var(--yellow);
             color: var(--dark-gray);
-            width: 45px;
-            height: 45px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             z-index: 100;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .back-to-top.show {
             opacity: 1;
             visibility: visible;
+            animation: fadeIn 0.5s ease-out;
         }
 
         .back-to-top:hover {
-            background-color: #f5d465;
+            background-color: #ffd95e;
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+            animation: pulse 1s infinite;
         }
 
         @media (max-width: 768px) {
@@ -908,9 +1197,10 @@
                 width: 100%;
                 background-color: white;
                 flex-direction: column;
-                padding: 1rem;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 1.5rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
                 z-index: 1000;
+                animation: fadeInUp 0.5s ease-out;
             }
 
             .nav-links.active {
@@ -932,7 +1222,7 @@
             }
 
             .section-title {
-                font-size: 1.6rem;
+                font-size: 1.8rem;
             }
             
             .past-events-slide {
@@ -941,9 +1231,8 @@
             }
             
             .past-events-img {
-                border-right: none;
-                border-bottom: 1px solid #f0f0f0;
-                height: 250px;
+                border-radius: 25px 25px 0 0;
+                height: 280px;
                 min-width: 100%;
                 flex: none;
             }
@@ -952,11 +1241,12 @@
                 flex: none;
                 width: 100%;
                 min-width: 100%;
-                padding: 2rem;
+                padding: 2.5rem;
+                border-radius: 0 0 25px 25px;
             }
             
             .past-events-content h3 {
-                font-size: 1.4rem;
+                font-size: 1.6rem;
             }
             
             /* Мобильная версия информации о фестивале */
@@ -967,21 +1257,22 @@
             .festival-info-mobile {
                 display: flex;
                 flex-direction: column;
-                gap: 1.5rem;
+                gap: 2rem;
                 margin-bottom: 3rem;
+                animation: fadeInUp 0.8s ease-out 0.4s both;
             }
             
             .festival-info-mobile .festival-info-item {
                 flex-direction: column;
                 text-align: center;
-                gap: 1rem;
-                padding: 1.5rem;
+                gap: 1.5rem;
+                padding: 2rem;
             }
             
             .festival-info-mobile .festival-info-icon {
-                width: 70px;
-                height: 70px;
-                font-size: 1.8rem;
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
             }
             
             .activities-desktop {
@@ -998,11 +1289,11 @@
             
             .activity-card-mobile {
                 max-width: 100%;
-                height: 300px;
+                height: 350px;
             }
             
             .activity-card-img-mobile {
-                height: 130px;
+                height: 160px;
             }
             
             .stages-slider-container {
@@ -1010,15 +1301,16 @@
             }
             
             .stage-card {
-                min-width: 260px;
+                min-width: 280px;
+                padding: 2rem;
             }
             
             .stage-arrow,
             .activity-arrow-mobile,
             .events-arrow {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
             }
             
             .stage-arrow.prev,
@@ -1032,21 +1324,24 @@
             }
             
             .events-arrow.prev {
-                left: 10px;
+                left: 15px;
             }
             
             .events-arrow.next {
-                right: 10px;
+                right: 15px;
             }
 
             .action-buttons {
                 flex-direction: column;
                 align-items: center;
+                padding: 2rem;
+                gap: 1.5rem;
             }
             
             .action-btn {
                 width: 100%;
                 max-width: 300px;
+                padding: 1rem 2rem;
             }
 
             .footer-content {
@@ -1062,7 +1357,7 @@
             }
 
             .partners-logos {
-                gap: 1rem;
+                gap: 2rem;
             }
 
             .partner-logo {
@@ -1070,19 +1365,26 @@
             }
 
             .btn {
-                bottom: 35px;
-                padding: 0.4rem 1rem;
-                font-size: 0.75rem;
+                bottom: 40px;
+                padding: 0.7rem 1.5rem;
+                font-size: 0.85rem;
+            }
+            
+            .back-to-top {
+                bottom: 25px;
+                right: 25px;
+                width: 50px;
+                height: 50px;
             }
         }
 
         @media (max-width: 480px) {
             .past-events-img {
-                height: 200px;
+                height: 220px;
             }
             
             .past-events-content {
-                padding: 1.5rem;
+                padding: 2rem;
             }
             
             .activities-mobile .activities-slider-container {
@@ -1090,11 +1392,11 @@
             }
             
             .activity-card-mobile {
-                height: 280px;
+                height: 320px;
             }
             
             .activity-card-img-mobile {
-                height: 120px;
+                height: 140px;
             }
             
             .stages-slider-container {
@@ -1102,14 +1404,14 @@
             }
             
             .stage-card {
-                min-width: 240px;
-                padding: 1.5rem;
+                min-width: 250px;
+                padding: 1.8rem;
             }
             
             .stage-arrow,
             .activity-arrow-mobile {
-                width: 35px;
-                height: 35px;
+                width: 45px;
+                height: 45px;
             }
             
             .stage-arrow.prev,
@@ -1123,17 +1425,17 @@
             }
             
             .events-arrow {
-                width: 35px;
-                height: 35px;
-                font-size: 0.9rem;
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
             }
             
             .events-arrow.prev {
-                left: 5px;
+                left: 10px;
             }
             
             .events-arrow.next {
-                right: 5px;
+                right: 10px;
             }
             
             .logo img {
@@ -1151,6 +1453,14 @@
 
             .btn {
                 bottom: 30px;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .mission-text {
+                font-size: 1rem;
             }
         }
     </style>
@@ -1182,11 +1492,11 @@
     </section>
 
     <section id="about">
-        <h2 class="section-title">О фестивале</h2>
-        <p class="mission-text">Фестиваль «Зеленый пеликан» позволит сформировать особую городскую среду для решения образовательных, экологических и архитектурных задач. Мероприятие приурочено ко Дню города и направлено на развитие экологической культуры, популяризацию естественно-научных знаний и практик, создание площадки для взаимодействия учащихся, студентов и экспертов.</p>
+        <h2 class="section-title animate-on-scroll">О фестивале</h2>
+        <p class="mission-text animate-on-scroll">Фестиваль «Зеленый пеликан» позволит сформировать особую городскую среду для решения образовательных, экологических и архитектурных задач. Мероприятие приурочено ко Дню города и направлено на развитие экологической культуры, популяризацию естественно-научных знаний и практик, создание площадки для взаимодействия учащихся, студентов и экспертов.</p>
         
         <!-- Десктопная версия - в один ряд -->
-        <div class="festival-info-desktop">
+        <div class="festival-info-desktop animate-on-scroll">
             <div class="festival-info-item">
                 <div class="festival-info-icon">
                     <i class="far fa-calendar-alt"></i>
@@ -1208,7 +1518,7 @@
         </div>
         
         <!-- Мобильная версия - в колонку -->
-        <div class="festival-info-mobile">
+        <div class="festival-info-mobile animate-on-scroll">
             <div class="festival-info-item">
                 <div class="festival-info-icon">
                     <i class="far fa-calendar-alt"></i>
@@ -1232,38 +1542,38 @@
 
     <!-- Новая секция: Этапы фестиваля -->
     <section id="stages" class="stages-section">
-        <h2 class="section-title">Этапы фестиваля</h2>
+        <h2 class="section-title animate-on-scroll">Этапы фестиваля</h2>
         <div class="stages-slider-container">
             <button class="stage-arrow prev">
                 <i class="fas fa-chevron-left"></i>
             </button>
             <div class="stages-slider">
-                <div class="stage-card">
+                <div class="stage-card animate-on-scroll">
                     <div class="stage-number">1</div>
                     <h3>Подготовительный этап</h3>
                     <p>Формирование программы, привлечение партнеров и участников, разработка концепции мероприятий.</p>
                 </div>
-                <div class="stage-card">
+                <div class="stage-card animate-on-scroll">
                     <div class="stage-number">2</div>
                     <h3>Проектная школа</h3>
                     <p>Проведение интенсивной проектной школы для школьников и студентов с разработкой эко-проектов.</p>
                 </div>
-                <div class="stage-card">
+                <div class="stage-card animate-on-scroll">
                     <div class="stage-number">3</div>
                     <h3>Основные мероприятия</h3>
                     <p>Проведение лекций, мастер-классов, экскурсий и интерактивных выставок в течение фестиваля.</p>
                 </div>
-                <div class="stage-card">
+                <div class="stage-card animate-on-scroll">
                     <div class="stage-number">4</div>
                     <h3>Заключительный этап</h3>
                     <p>Подведение итогов, награждение победителей, презентация результатов проектов.</p>
                 </div>
-                <div class="stage-card">
+                <div class="stage-card animate-on-scroll">
                     <div class="stage-number">5</div>
                     <h3>Экспертная оценка</h3>
                     <p>Оценка проектов участников жюри из ведущих экспертов в области экологии и устойчивого развития.</p>
                 </div>
-                <div class="stage-card">
+                <div class="stage-card animate-on-scroll">
                     <div class="stage-number">6</div>
                     <h3>Публикация результатов</h3>
                     <p>Размещение лучших проектов на платформе фестиваля и в специализированных изданиях.</p>
@@ -1276,7 +1586,7 @@
     </section>
 
     <section id="activities">
-        <h2 class="section-title">Активности фестиваля</h2>
+        <h2 class="section-title animate-on-scroll">Активности фестиваля</h2>
         
         <!-- Десктопная версия (4 карточки в слайде) -->
         <div class="activities-desktop">
@@ -1287,7 +1597,7 @@
                 <div class="activities-slider">
                     <!-- Слайд 1 - 4 карточки (2x2) -->
                     <div class="activities-slide">
-                        <div class="activity-card-desktop">
+                        <div class="activity-card-desktop animate-on-scroll">
                             <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1295,7 +1605,7 @@
                                 <p>Интенсив «Life Science School» - проекты участников направлены на решение прикладных экотехнических и архитектурных задач и улучшение качества жизни жителей города.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop">
+                        <div class="activity-card-desktop animate-on-scroll">
                             <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1303,7 +1613,7 @@
                                 <p>Лекции и мастер-классы от ведущих экспертов в области экологии, науки и устойчивого развития.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop">
+                        <div class="activity-card-desktop animate-on-scroll">
                             <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1311,7 +1621,7 @@
                                 <p>Регулярные экспозиции интерактивных художественных и экологических объектов, и малых архитектурных форм.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop">
+                        <div class="activity-card-desktop animate-on-scroll">
                             <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1323,7 +1633,7 @@
                     
                     <!-- Слайд 2 - 4 карточки (2x2) -->
                     <div class="activities-slide">
-                        <div class="activity-card-desktop">
+                        <div class="activity-card-desktop animate-on-scroll">
                             <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1331,7 +1641,7 @@
                                 <p>Создание художественных форм из растений и кустарников - искусство фигурной стрижки деревьев и кустов.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop">
+                        <div class="activity-card-desktop animate-on-scroll">
                             <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1339,7 +1649,7 @@
                                 <p>Практические занятия по созданию гармоничной и экологичной городской среды.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop">
+                        <div class="activity-card-desktop animate-on-scroll">
                             <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1347,7 +1657,7 @@
                                 <p>Выращивание микрозелени и пищевых культур на основе переработанных органических отходов.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop">
+                        <div class="activity-card-desktop animate-on-scroll">
                             <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1359,7 +1669,7 @@
                     
                     <!-- Слайд 3 - 4 карточки (2x2) -->
                     <div class="activities-slide">
-                        <div class="activity-card-desktop">
+                        <div class="activity-card-desktop animate-on-scroll">
                             <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1367,7 +1677,7 @@
                                 <p>Recycle, Reuse, Reduce - практика создания полезных и красивых объектов из вторичных материалов.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop">
+                        <div class="activity-card-desktop animate-on-scroll">
                             <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1375,7 +1685,7 @@
                                 <p>Знакомство с историей и архитектурой одного из старейших педагогических вузов России.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop">
+                        <div class="activity-card-desktop animate-on-scroll">
                             <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1383,7 +1693,7 @@
                                 <p>Разработка энергоэффективных теплиц, работа с датчиками и микроконтроллерами, использование нейронных сетей для поиска механизма плодородия почвы.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop">
+                        <div class="activity-card-desktop animate-on-scroll">
                             <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1413,7 +1723,7 @@
                 <div class="activities-slider">
                     <!-- Слайд 1 -->
                     <div class="activities-slide">
-                        <div class="activity-card-mobile">
+                        <div class="activity-card-mobile animate-on-scroll">
                             <div class="activity-card-img-mobile" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-mobile">
@@ -1424,7 +1734,7 @@
                     </div>
                     <!-- Слайд 2 -->
                     <div class="activities-slide">
-                        <div class="activity-card-mobile">
+                        <div class="activity-card-mobile animate-on-scroll">
                             <div class="activity-card-img-mobile" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-mobile">
@@ -1435,7 +1745,7 @@
                     </div>
                     <!-- Слайд 3 -->
                     <div class="activities-slide">
-                        <div class="activity-card-mobile">
+                        <div class="activity-card-mobile animate-on-scroll">
                             <div class="activity-card-img-mobile" style="background-image: url('https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-mobile">
@@ -1446,7 +1756,7 @@
                     </div>
                     <!-- Слайд 4 -->
                     <div class="activities-slide">
-                        <div class="activity-card-mobile">
+                        <div class="activity-card-mobile animate-on-scroll">
                             <div class="activity-card-img-mobile" style="background-image: url('https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-mobile">
@@ -1470,8 +1780,8 @@
     </section>
 
     <section id="past-events">
-        <h2 class="section-title">Прошедшие мероприятия</h2>
-        <div class="past-events-slider">
+        <h2 class="section-title animate-on-scroll">Прошедшие мероприятия</h2>
+        <div class="past-events-slider animate-on-scroll">
             <button class="events-arrow prev">
                 <i class="fas fa-chevron-left"></i>
             </button>
@@ -1509,7 +1819,7 @@
 
     <!-- Секция партнеров -->
     <section class="partners">
-        <h2 class="section-title">Партнеры</h2>
+        <h2 class="section-title animate-on-scroll">Партнеры</h2>
         <div class="partners-container">
             <div class="partners-logos">
                 <div class="partner-logo" style="background-image: url('snimok');">
@@ -1519,14 +1829,14 @@
     </section>
 
     <section id="contacts">
-        <h2 class="section-title">Контакты</h2>
+        <h2 class="section-title animate-on-scroll">Контакты</h2>
         <div class="contact-info">
-            <div class="contact-card">
+            <div class="contact-card animate-on-scroll">
                 <i class="fas fa-map-marker-alt"></i>
                 <h3>Адрес</h3>
                 <p>РГПУ им. А.И. Герцена и Воронихинский сквер</p>
             </div>
-            <div class="contact-card">
+            <div class="contact-card animate-on-scroll">
                 <i class="fas fa-envelope"></i>
                 <h3>Email</h3>
                 <p>terraherz-spb@yandex.ru</p>
@@ -1535,7 +1845,7 @@
     </section>
 
     <!-- Кнопки действий перед FAQ -->
-    <div class="action-buttons">
+    <div class="action-buttons animate-on-scroll">
         <a href="положение_о_фестивале.pdf" class="action-btn" target="_blank">
             <i class="fas fa-file-pdf"></i> Положение о фестивале (PDF)
         </a>
@@ -1548,9 +1858,9 @@
     </div>
 
     <section id="faq">
-        <h2 class="section-title">Часто задаваемые вопросы</h2>
+        <h2 class="section-title animate-on-scroll">Часто задаваемые вопросы</h2>
         <div class="faq-list">
-            <div class="faq-item">
+            <div class="faq-item animate-on-scroll">
                 <div class="faq-question">
                     <span>Нужно ли покупать билеты на фестиваль?</span>
                     <i class="fas fa-chevron-down"></i>
@@ -1559,7 +1869,7 @@
                     <p>Вход на фестиваль бесплатный для всех посетителей. Однако для участия в некоторых мастер-классах и воркшопах может потребоваться предварительная регистрация из-за ограниченного количества мест.</p>
                 </div>
             </div>
-            <div class="faq-item">
+            <div class="faq-item animate-on-scroll">
                 <div class="faq-question">
                     <span>Можно ли прийти с детьми?</span>
                     <i class="fas fa-chevron-down"></i>
@@ -1568,7 +1878,7 @@
                     <p>Да, фестиваль является семейным мероприятием. Для детей организована специальная программа "Всем ребятам-эколятам" с играми, творческими занятиями и образовательными программами, адаптированными для разных возрастных групп.</p>
                 </div>
             </div>
-            <div class="faq-item">
+            <div class="faq-item animate-on-scroll">
                 <div class="faq-question">
                     <span>Как принять участие в проектной школе?</span>
                     <i class="fas fa-chevron-down"></i>
@@ -1577,7 +1887,7 @@
                     <p>Для участия в естественно-научной проектной школе "Life Science School" необходимо заполнить заявку на сайте технопарка РГПУ. Заявки принимаются до 1 марта 2026 года.</p>
                 </div>
             </div>
-            <div class="faq-item">
+            <div class="faq-item animate-on-scroll">
                 <div class="faq-question">
                     <span>Как добраться до места проведения?</span>
                     <i class="fas fa-chevron-down"></i>
@@ -1619,12 +1929,30 @@
     </div>
 
     <script>
+        // Анимация появления элементов при скролле
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animated');
+                }
+            });
+        };
+
+        // Инициализация анимации при загрузке и скролле
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+
         // Stages Slider
         const stagesSlider = document.querySelector('.stages-slider');
         const stagePrevArrow = document.querySelector('.stage-arrow.prev');
         const stageNextArrow = document.querySelector('.stage-arrow.next');
         let currentStageSlide = 0;
-        const stageCardWidth = 280; // ширина карточки + gap
+        const stageCardWidth = 300; // ширина карточки + gap
         
         function updateStageCardsPerView() {
             const stageContainer = document.querySelector('.stages-slider-container');
@@ -1908,6 +2236,9 @@
                 if (mobileActivityInterval) clearInterval(mobileActivityInterval);
                 startMobileActivityAutoSlide();
             }
+            
+            // Обновление анимаций при скролле
+            animateOnScroll();
         });
 
         // Останавливаем автопереключение при наведении на слайдеры
@@ -1936,6 +2267,11 @@
                 }
             });
         }
+
+        // Добавляем небольшую задержку для запуска анимаций после загрузки
+        setTimeout(() => {
+            animateOnScroll();
+        }, 100);
     </script>
 </body>
 </html>
