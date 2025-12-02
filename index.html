@@ -165,52 +165,54 @@
             color: var(--gray);
         }
 
-        /* Новый дизайн для информации о датах и локации */
-        .festival-info {
+        /* Стили для информации о фестивале (даты и локация в один ряд) */
+        .festival-info-desktop {
             display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            max-width: 800px;
-            margin: 0 auto 3rem;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
 
-        .info-item {
+        .festival-info-item {
             display: flex;
             align-items: center;
             gap: 1.5rem;
-            padding: 1rem;
+            padding: 1.5rem;
             background-color: var(--light-gray);
-            border-radius: 12px;
+            border-radius: 16px;
+            max-width: 450px;
+            width: 100%;
         }
 
-        .info-icon {
-            width: 60px;
-            height: 60px;
+        .festival-info-icon {
+            width: 70px;
+            height: 70px;
             background-color: var(--yellow);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--dark-gray);
             flex-shrink: 0;
         }
 
-        .info-content {
-            flex-grow: 1;
-        }
-
-        .info-content h3 {
+        .festival-info-content h3 {
             margin-bottom: 0.5rem;
             color: var(--dark-gray);
             font-size: 1.2rem;
             font-weight: 500;
         }
 
-        .info-content p {
+        .festival-info-content p {
             color: var(--gray);
             font-size: 1rem;
             line-height: 1.5;
+        }
+
+        /* Мобильная версия информации о фестивале */
+        .festival-info-mobile {
+            display: none;
         }
 
         /* Стили для секции этапов */
@@ -335,7 +337,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
             border: 1px solid #f0f0f0;
-            height: 380px; /* Уменьшенная высота */
+            height: 320px; /* Уменьшенная высота */
             display: flex;
             flex-direction: column;
         }
@@ -346,7 +348,7 @@
         }
 
         .activity-card-img-desktop {
-            height: 150px; /* Уменьшенная высота изображения */
+            height: 140px; /* Уменьшенная высота изображения */
             width: 100%;
             background-color: #f9f9f9;
             background-size: cover;
@@ -356,22 +358,22 @@
         }
 
         .activity-card-content-desktop {
-            padding: 1.5rem;
+            padding: 1.2rem;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
 
         .activity-card-desktop h3 {
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.6rem;
             color: var(--dark-gray);
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 500;
         }
 
         .activity-card-desktop p {
             color: var(--gray);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             line-height: 1.5;
             flex-grow: 1;
         }
@@ -462,7 +464,7 @@
             border: 1px solid #f0f0f0;
             max-width: 400px;
             width: 100%;
-            height: 380px;
+            height: 320px;
             display: flex;
             flex-direction: column;
         }
@@ -473,7 +475,7 @@
         }
 
         .activity-card-img-mobile {
-            height: 150px;
+            height: 140px;
             width: 100%;
             background-color: #f9f9f9;
             background-size: cover;
@@ -483,22 +485,22 @@
         }
 
         .activity-card-content-mobile {
-            padding: 1.5rem;
+            padding: 1.2rem;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
 
         .activity-card-mobile h3 {
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.6rem;
             color: var(--dark-gray);
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 500;
         }
 
         .activity-card-mobile p {
             color: var(--gray);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             line-height: 1.5;
             flex-grow: 1;
         }
@@ -556,7 +558,7 @@
             background-color: var(--yellow);
         }
 
-        /* Стили для слайдера прошедших мероприятий */
+        /* Стили для слайдера прошедших мероприятий (исправленная верстка) */
         .past-events-slider {
             position: relative;
             overflow: hidden;
@@ -582,13 +584,11 @@
             flex: 1;
             min-width: 50%;
             background-color: #f9f9f9;
-            background-size: contain; /* Изменено с cover на contain */
+            background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
             border-right: 1px solid #f0f0f0;
             position: relative;
             overflow: hidden;
-            background-color: #f5f5f5; /* Фон для пустых областей */
         }
 
         .past-events-content {
@@ -955,6 +955,31 @@
                 font-size: 1.4rem;
             }
             
+            /* Мобильная версия информации о фестивале */
+            .festival-info-desktop {
+                display: none;
+            }
+            
+            .festival-info-mobile {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+                margin-bottom: 3rem;
+            }
+            
+            .festival-info-mobile .festival-info-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .festival-info-mobile .festival-info-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 1.8rem;
+            }
+            
             .activities-desktop {
                 display: none;
             }
@@ -969,11 +994,11 @@
             
             .activity-card-mobile {
                 max-width: 100%;
-                height: 350px;
+                height: 300px;
             }
             
             .activity-card-img-mobile {
-                height: 140px;
+                height: 130px;
             }
             
             .stages-slider-container {
@@ -1045,19 +1070,6 @@
                 padding: 0.4rem 1rem;
                 font-size: 0.75rem;
             }
-            
-            .info-item {
-                flex-direction: column;
-                text-align: center;
-                gap: 1rem;
-                padding: 1.5rem;
-            }
-            
-            .info-icon {
-                width: 70px;
-                height: 70px;
-                font-size: 1.8rem;
-            }
         }
 
         @media (max-width: 480px) {
@@ -1074,11 +1086,11 @@
             }
             
             .activity-card-mobile {
-                height: 330px;
+                height: 280px;
             }
             
             .activity-card-img-mobile {
-                height: 130px;
+                height: 120px;
             }
             
             .stages-slider-container {
@@ -1169,22 +1181,44 @@
         <h2 class="section-title">О фестивале</h2>
         <p class="mission-text">Фестиваль «Зеленый пеликан» позволит сформировать особую городскую среду для решения образовательных, экологических и архитектурных задач. Мероприятие приурочено ко Дню города и направлено на развитие экологической культуры, популяризацию естественно-научных знаний и практик, создание площадки для взаимодействия учащихся, студентов и экспертов.</p>
         
-        <!-- Новая верстка для дат и локации -->
-        <div class="festival-info">
-            <div class="info-item">
-                <div class="info-icon">
+        <!-- Десктопная версия - в один ряд -->
+        <div class="festival-info-desktop">
+            <div class="festival-info-item">
+                <div class="festival-info-icon">
                     <i class="far fa-calendar-alt"></i>
                 </div>
-                <div class="info-content">
+                <div class="festival-info-content">
                     <h3>Даты проведения</h3>
                     <p>Весна 2026 года. Фестиваль пройдет в рамках празднования Дня города.</p>
                 </div>
             </div>
-            <div class="info-item">
-                <div class="info-icon">
+            <div class="festival-info-item">
+                <div class="festival-info-icon">
                     <i class="fas fa-map-marker-alt"></i>
                 </div>
-                <div class="info-content">
+                <div class="festival-info-content">
+                    <h3>Локация</h3>
+                    <p>РГПУ им. А.И. Герцена и Воронихинский сквер. Историческое место в центре города с уникальной атмосферой.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Мобильная версия - в колонку -->
+        <div class="festival-info-mobile">
+            <div class="festival-info-item">
+                <div class="festival-info-icon">
+                    <i class="far fa-calendar-alt"></i>
+                </div>
+                <div class="festival-info-content">
+                    <h3>Даты проведения</h3>
+                    <p>Весна 2026 года. Фестиваль пройдет в рамках празднования Дня города.</p>
+                </div>
+            </div>
+            <div class="festival-info-item">
+                <div class="festival-info-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="festival-info-content">
                     <h3>Локация</h3>
                     <p>РГПУ им. А.И. Герцена и Воронихинский сквер. Историческое место в центре города с уникальной атмосферой.</p>
                 </div>
@@ -1602,7 +1636,9 @@
             if (currentStageSlide < 0) currentStageSlide = 0;
             if (currentStageSlide > maxSlide) currentStageSlide = maxSlide;
             
-            stagesSlider.style.transform = `translateX(-${currentStageSlide * stageCardWidth}px)`;
+            if (stagesSlider) {
+                stagesSlider.style.transform = `translateX(-${currentStageSlide * stageCardWidth}px)`;
+            }
         }
 
         if (stagePrevArrow && stageNextArrow) {
@@ -1664,7 +1700,7 @@
         }
 
         // Запускаем автопереключение для десктопной версии
-        if (window.innerWidth > 768) {
+        if (window.innerWidth > 768 && activitiesDesktopSlider) {
             startDesktopActivityAutoSlide();
         }
 
@@ -1722,7 +1758,7 @@
         }
 
         // Запускаем автопереключение для мобильной версии
-        if (window.innerWidth <= 768) {
+        if (window.innerWidth <= 768 && activitiesMobileSlider) {
             startMobileActivityAutoSlide();
         }
 
@@ -1734,6 +1770,8 @@
         let currentPastEventsSlide = 0;
 
         function showPastEventsSlide(n) {
+            if (!pastEventsSlides) return;
+            
             currentPastEventsSlide = (n + 2) % 2;
             pastEventsSlides.style.transform = `translateX(-${currentPastEventsSlide * 100}%)`;
             
@@ -1798,7 +1836,8 @@
                 
                 // Закрываем бургер-меню после клика на мобильных устройствах
                 if (window.innerWidth <= 768) {
-                    document.querySelector('.nav-links').classList.remove('active');
+                    const navLinks = document.querySelector('.nav-links');
+                    if (navLinks) navLinks.classList.remove('active');
                 }
             });
         });
@@ -1859,17 +1898,11 @@
                 if (desktopActivityInterval) clearInterval(desktopActivityInterval);
                 if (mobileActivityInterval) clearInterval(mobileActivityInterval);
                 startDesktopActivityAutoSlide();
-                // Показываем нужную версию
-                document.querySelector('.activities-desktop').style.display = 'block';
-                document.querySelector('.activities-mobile').style.display = 'none';
             } else {
                 // Мобильная версия
                 if (desktopActivityInterval) clearInterval(desktopActivityInterval);
                 if (mobileActivityInterval) clearInterval(mobileActivityInterval);
                 startMobileActivityAutoSlide();
-                // Показываем нужную версию
-                document.querySelector('.activities-desktop').style.display = 'none';
-                document.querySelector('.activities-mobile').style.display = 'block';
             }
         });
 
