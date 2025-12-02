@@ -558,70 +558,91 @@
             background-color: var(--yellow);
         }
 
-        /* Стили для слайдера прошедших мероприятий (исправленная верстка) */
-        .past-events-slider {
-            position: relative;
-            overflow: hidden;
-            border-radius: 16px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            background: white;
-            border: 1px solid #f0f0f0;
-            min-height: 400px;
-        }
+      /* Стили для слайдера прошедших мероприятий */
+.past-events-slider {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    background: white;
+    border: 1px solid #f0f0f0;
+    min-height: 450px; /* Увеличена высота */
+}
 
-        .past-events-slides {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
+.past-events-slides {
+    display: flex;
+    transition: transform 0.5s ease;
+}
 
-        .past-events-slide {
-            min-width: 100%;
-            display: flex;
-            min-height: 400px;
-        }
+.past-events-slide {
+    min-width: 100%;
+    display: flex;
+    min-height: 450px; /* Увеличена высота */
+}
 
-        .past-events-img {
-            flex: 1;
-            min-width: 50%;
-            background-color: #f9f9f9;
-            background-size: cover;
-            background-position: center;
-            border-right: 1px solid #f0f0f0;
-            position: relative;
-            overflow: hidden;
-        }
+.past-events-img {
+    flex: 1.5; /* Увеличена пропорция для фото */
+    min-width: 60%; /* Фото занимает 60% */
+    background-color: #f9f9f9;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-right: 1px solid #f0f0f0;
+    position: relative;
+    overflow: hidden;
+}
 
-        .past-events-content {
-            flex: 1;
-            min-width: 50%;
-            padding: 3rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+.past-events-img::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.03); /* Легкая затемненная подложка */
+}
 
-        .past-events-content h3 {
-            font-size: 1.6rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark-gray);
-            font-weight: 500;
-            line-height: 1.3;
-        }
+.past-events-content {
+    flex: 1;
+    min-width: 40%; /* Контент занимает 40% */
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
-        .past-events-content p {
-            margin-bottom: 1rem;
-            color: var(--gray);
-            font-size: 1rem;
-            line-height: 1.6;
-        }
+/* ... остальной CSS остается без изменений ... */
 
-        /* Убрано жирное написание */
-        .past-events-content .event-detail {
-            margin-bottom: 0.8rem;
-            color: var(--gray);
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
+@media (max-width: 768px) {
+    .past-events-slide {
+        flex-direction: column;
+        min-height: auto;
+    }
+    
+    .past-events-img {
+        border-right: none;
+        border-bottom: 1px solid #f0f0f0;
+        height: 300px; /* Увеличена высота на мобильных */
+        min-width: 100%;
+        flex: none;
+    }
+    
+    .past-events-content {
+        flex: none;
+        width: 100%;
+        min-width: 100%;
+        padding: 2rem;
+    }
+    
+    /* ... остальные медиазапросы ... */
+}
+
+@media (max-width: 480px) {
+    .past-events-img {
+        height: 250px; /* Увеличена высота на маленьких экранах */
+    }
+    /* ... остальные медиазапросы ... */
+}
 
         .events-arrow {
             position: absolute;
