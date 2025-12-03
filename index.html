@@ -35,16 +35,6 @@
             color: var(--dark-gray);
         }
 
-        /* Убраны лишние анимации, оставлены только базовые */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
         header {
             background-color: white;
             padding: 1.5rem 1.2rem;
@@ -138,8 +128,6 @@
             position: relative;
         }
 
-        /* УДАЛЕНО: градиентное размытие .hero::after */
-
         /* ОБНОВЛЕННАЯ КНОПКА - внизу по центру */
         .hero .btn {
             display: inline-block;
@@ -201,7 +189,7 @@
             color: var(--gray);
         }
 
-        /* Стили для информации о фестивале (даты и локация в один ряд) */
+        /* ОБНОВЛЕННЫЕ СТИЛИ ДЛЯ ИНФОРМАЦИИ О ФЕСТИВАЛЕ - желтые иконки на белом фоне */
         .festival-info-desktop {
             display: flex;
             justify-content: center;
@@ -228,22 +216,26 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
         }
 
+        /* Обновленные иконки - желтые на белом фоне */
         .festival-info-icon {
             width: 80px;
             height: 80px;
-            background-color: var(--yellow);
+            background-color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            color: var(--dark-gray);
+            font-size: 2.5rem;
+            color: var(--yellow);
             flex-shrink: 0;
             transition: all 0.4s ease;
+            border: 2px solid var(--yellow);
         }
 
         .festival-info-item:hover .festival-info-icon {
             transform: rotate(15deg) scale(1.1);
+            background-color: var(--yellow);
+            color: white;
         }
 
         .festival-info-content h3 {
@@ -390,6 +382,7 @@
             height: 380px;
             display: flex;
             flex-direction: column;
+            cursor: pointer;
         }
 
         .activity-card-desktop:hover {
@@ -527,6 +520,7 @@
             height: 380px;
             display: flex;
             flex-direction: column;
+            cursor: pointer;
         }
 
         .activity-card-mobile:hover {
@@ -628,7 +622,7 @@
             transform: scale(1.3);
         }
 
-        /* Стили для слайдера прошедших мероприятий */
+        /* ОБНОВЛЕННЫЕ СТИЛИ ДЛЯ ПРОШЕДШИХ МЕРОПРИЯТИЙ - без анимации и желтых точек */
         .past-events-slider {
             position: relative;
             overflow: hidden;
@@ -662,21 +656,6 @@
             overflow: hidden;
         }
 
-        .past-events-img::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255,225,125,0.1) 0%, rgba(255,225,125,0) 100%);
-            transition: opacity 0.5s ease;
-        }
-
-        .past-events-slide:hover .past-events-img::before {
-            opacity: 0.5;
-        }
-
         .past-events-content {
             flex: 1;
             min-width: 55%;
@@ -695,10 +674,6 @@
             line-height: 1.3;
         }
 
-        .past-events-slide:hover .past-events-content h3 {
-            color: var(--yellow);
-        }
-
         .past-events-content p {
             margin-bottom: 1.2rem;
             color: var(--gray);
@@ -706,22 +681,16 @@
             line-height: 1.7;
         }
 
+        /* Убраны желтые точки в event-detail */
         .past-events-content .event-detail {
             margin-bottom: 1rem;
             color: var(--gray);
             font-size: 1rem;
             line-height: 1.6;
-            padding-left: 1.5rem;
-            position: relative;
+            padding-left: 0; /* Убрали отступ */
         }
 
-        .past-events-content .event-detail::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: var(--yellow);
-            font-size: 1.5rem;
-        }
+        /* УДАЛЕНО: .past-events-content .event-detail::before */
 
         .events-arrow {
             position: absolute;
@@ -782,7 +751,7 @@
             transform: scale(1.3);
         }
 
-        /* Стили для кнопок перед FAQ */
+        /* ОБНОВЛЕННЫЕ СТИЛИ ДЛЯ КНОПОК - желтые с белыми иконками */
         .action-buttons {
             display: flex;
             justify-content: center;
@@ -814,19 +783,22 @@
         }
 
         .action-btn:hover {
-            background-color: transparent;
+            background-color: white;
             color: var(--dark-gray);
             transform: translateY(-8px);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
 
+        /* Белые иконки на желтых кнопках */
         .action-btn i {
             font-size: 1.3rem;
             transition: transform 0.4s ease;
+            color: white; /* Белые иконки */
         }
 
         .action-btn:hover i {
             transform: rotate(15deg);
+            color: var(--dark-gray); /* При наведении иконки становятся темными */
         }
 
         .contact-info {
@@ -1060,6 +1032,99 @@
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
         }
 
+        /* СТИЛИ ДЛЯ МОДАЛЬНОГО ОКНА */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background-color: white;
+            border-radius: 25px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            transform: translateY(30px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            padding: 2rem 2rem 1rem;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            color: var(--dark-gray);
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gray);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background-color: #f5f5f5;
+            color: var(--dark-gray);
+        }
+
+        .modal-content {
+            padding: 2rem;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 300px;
+            background-color: #f9f9f9;
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-description {
+            color: var(--gray);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -1142,7 +1207,10 @@
             .festival-info-mobile .festival-info-icon {
                 width: 80px;
                 height: 80px;
-                font-size: 2rem;
+                font-size: 2.5rem;
+                background-color: white;
+                color: var(--yellow);
+                border: 2px solid var(--yellow);
             }
             
             .activities-desktop {
@@ -1247,6 +1315,20 @@
                 width: 50px;
                 height: 50px;
             }
+
+            /* Мобильная версия модального окна */
+            .modal {
+                width: 95%;
+                max-height: 85vh;
+            }
+
+            .modal-header h3 {
+                font-size: 1.5rem;
+            }
+
+            .modal-image {
+                height: 200px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1334,6 +1416,15 @@
             .mission-text {
                 font-size: 1rem;
             }
+
+            /* Мобильная версия модального окна для очень маленьких экранов */
+            .modal-header h3 {
+                font-size: 1.3rem;
+            }
+
+            .modal-image {
+                height: 150px;
+            }
         }
     </style>
 </head>
@@ -1363,7 +1454,6 @@
         <a href="#about" class="btn">Узнать больше</a>
     </section>
 
-    <!-- Остальной код без изменений -->
     <section id="about">
         <h2 class="section-title">О фестивале</h2>
         <p class="mission-text">Фестиваль «Зеленый пеликан» позволит сформировать особую городскую среду для решения образовательных, экологических и архитектурных задач. Мероприятие приурочено ко Дню города и направлено на развитие экологической культуры, популяризацию естественно-научных знаний и практик, создание площадки для взаимодействия учащихся, студентов и экспертов.</p>
@@ -1470,15 +1560,15 @@
                 <div class="activities-slider">
                     <!-- Слайд 1 - 4 карточки (2x2) -->
                     <div class="activities-slide">
-                        <div class="activity-card-desktop">
+                        <div class="activity-card-desktop" data-modal="activity1">
                             <div class="activity-card-img-desktop" style="background-image: url('green.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
                                 <h3>Естественно-научная проектная школа</h3>
-                                <p>Интенсив «Life Science School» - проекты участников направлены на решение прикладных экотехнических и архитектурных задач и улучшение качества жизни жителей города.</p>
+                                <p>Интенсив «Life Science School» - проекты участников направлены на решение прикладных экотехнических и архитектурных задач...</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop">
+                        <div class="activity-card-desktop" data-modal="activity2">
                             <div class="activity-card-img-desktop" style="background-image: url('skver.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1486,7 +1576,7 @@
                                 <p>Лекции и мастер-классы от ведущих экспертов в области экологии, науки и устойчивого развития.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop">
+                        <div class="activity-card-desktop" data-modal="activity3">
                             <div class="activity-card-img-desktop" style="background-image: url('museum.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1494,7 +1584,7 @@
                                 <p>Регулярные экспозиции интерактивных художественных и экологических объектов, и малых архитектурных форм.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop">
+                        <div class="activity-card-desktop" data-modal="activity4">
                             <div class="activity-card-img-desktop" style="background-image: url('skver.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1506,7 +1596,7 @@
                     
                     <!-- Слайд 2 - 4 карточки (2x2) -->
                     <div class="activities-slide">
-                        <div class="activity-card-desktop">
+                        <div class="activity-card-desktop" data-modal="activity5">
                             <div class="activity-card-img-desktop" style="background-image: url('child1.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1514,7 +1604,7 @@
                                 <p>Создание художественных форм из растений и кустарников - искусство фигурной стрижки деревьев и кустов.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop">
+                        <div class="activity-card-desktop" data-modal="activity6">
                             <div class="activity-card-img-desktop" style="background-image: url('student.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1522,7 +1612,7 @@
                                 <p>Практические занятия по созданию гармоничной и экологичной городской среды.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop">
+                        <div class="activity-card-desktop" data-modal="activity7">
                             <div class="activity-card-img-desktop" style="background-image: url('green.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1530,7 +1620,7 @@
                                 <p>Выращивание микрозелени и пищевых культур на основе переработанных органических отходов.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop">
+                        <div class="activity-card-desktop" data-modal="activity8">
                             <div class="activity-card-img-desktop" style="background-image: url('takva.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1542,7 +1632,7 @@
                     
                     <!-- Слайд 3 - 4 карточки (2x2) -->
                     <div class="activities-slide">
-                        <div class="activity-card-desktop">
+                        <div class="activity-card-desktop" data-modal="activity9">
                             <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1550,7 +1640,7 @@
                                 <p>Recycle, Reuse, Reduce - практика создания полезных и красивых объектов из вторичных материалов.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop">
+                        <div class="activity-card-desktop" data-modal="activity10">
                             <div class="activity-card-img-desktop" style="background-image: url('skver.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1558,7 +1648,7 @@
                                 <p>Знакомство с историей и архитектурой одного из старейших педагогических вузов России.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop">
+                        <div class="activity-card-desktop" data-modal="activity11">
                             <div class="activity-card-img-desktop" style="background-image: url('takva.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1566,7 +1656,7 @@
                                 <p>Разработка энергоэффективных теплиц, работа с датчиками и микроконтроллерами, использование нейронных сетей для поиска механизма плодородия почвы.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop">
+                        <div class="activity-card-desktop" data-modal="activity12">
                             <div class="activity-card-img-desktop" style="background-image: url('child2.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1596,18 +1686,18 @@
                 <div class="activities-slider">
                     <!-- Слайд 1 -->
                     <div class="activities-slide">
-                        <div class="activity-card-mobile">
+                        <div class="activity-card-mobile" data-modal="activity1">
                             <div class="activity-card-img-mobile" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-mobile">
                                 <h3>Естественно-научная проектная школа</h3>
-                                <p>Интенсив «Life Science School» - проекты участников направлены на решение прикладных экотехнических и архитектурных задач и улучшение качества жизни жителей города.</p>
+                                <p>Интенсив «Life Science School» - проекты участников направлены на решение прикладных экотехнических и архитектурных задач...</p>
                             </div>
                         </div>
                     </div>
                     <!-- Слайд 2 -->
                     <div class="activities-slide">
-                        <div class="activity-card-mobile">
+                        <div class="activity-card-mobile" data-modal="activity2">
                             <div class="activity-card-img-mobile" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-mobile">
@@ -1618,7 +1708,7 @@
                     </div>
                     <!-- Слайд 3 -->
                     <div class="activities-slide">
-                        <div class="activity-card-mobile">
+                        <div class="activity-card-mobile" data-modal="activity3">
                             <div class="activity-card-img-mobile" style="background-image: url('https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-mobile">
@@ -1629,7 +1719,7 @@
                     </div>
                     <!-- Слайд 4 -->
                     <div class="activities-slide">
-                        <div class="activity-card-mobile">
+                        <div class="activity-card-mobile" data-modal="activity4">
                             <div class="activity-card-img-mobile" style="background-image: url('https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-mobile">
@@ -1653,7 +1743,7 @@
     </section>
 
     <section id="past-events">
-        <h2 class="section-title">Мероприятия состоявшиеся в рамках фестиваля</h2>
+        <h2 class="section-title">Прошедшие мероприятия</h2>
         <div class="past-events-slider">
             <button class="events-arrow prev">
                 <i class="fas fa-chevron-left"></i>
@@ -1801,7 +1891,24 @@
         <i class="fas fa-chevron-up"></i>
     </div>
 
-    <!-- JavaScript остается без изменений -->
+    <!-- Модальное окно для активностей -->
+    <div class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Название активности</h3>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-content">
+                <div class="modal-image"></div>
+                <div class="modal-description">
+                    <p>Полное описание активности появится здесь...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Stages Slider
         const stagesSlider = document.querySelector('.stages-slider');
@@ -2120,6 +2227,117 @@
                 }
             });
         }
+
+        // МОДАЛЬНОЕ ОКНО ДЛЯ АКТИВНОСТЕЙ
+        const modalOverlay = document.querySelector('.modal-overlay');
+        const modal = document.querySelector('.modal');
+        const modalClose = document.querySelector('.modal-close');
+        const modalTitle = document.querySelector('.modal-header h3');
+        const modalImage = document.querySelector('.modal-image');
+        const modalDescription = document.querySelector('.modal-description');
+
+        // Данные для модального окна
+        const activityData = {
+            activity1: {
+                title: "Естественно-научная проектная школа",
+                image: "green.JPG",
+                description: "Интенсив «Life Science School» - проекты участников направлены на решение прикладных экотехнических и архитектурных задач и улучшение качества жизни жителей города. Участники получат возможность разработать собственные проекты под руководством опытных наставников, презентовать их на заключительном этапе фестиваля и получить обратную связь от экспертов."
+            },
+            activity2: {
+                title: "Лекторий и экспертный клуб",
+                image: "skver.JPG",
+                description: "Лекции и мастер-классы от ведущих экспертов в области экологии, науки и устойчивого развития. В программе: выступления ученых, практиков, архитекторов и дизайнеров, которые поделятся своим опытом и знаниями о современных тенденциях в области устойчивого развития."
+            },
+            activity3: {
+                title: "Интерактивное пространство «Наука и искусство»",
+                image: "museum.JPG",
+                description: "Регулярные экспозиции интерактивных художественных и экологических объектов, и малых архитектурных форм. Пространство объединяет науку и искусство, позволяя посетителям не только увидеть, но и взаимодействовать с инсталляциями, созданными из экологичных материалов."
+            },
+            activity4: {
+                title: "Инвентаризация насаждений",
+                image: "skver.JPG",
+                description: "Определение возраста деревьев и оценка состояния зеленых насаждений городской среды. Участники научатся использовать специальное оборудование для оценки здоровья деревьев, определять их возраст и разрабатывать рекомендации по уходу за городскими зелеными зонами."
+            },
+            activity5: {
+                title: "Топиарное искусство",
+                image: "child1.JPG",
+                description: "Создание художественных форм из растений и кустарников - искусство фигурной стрижки деревьев и кустов. Мастер-классы от профессиональных топиаристов, которые покажут основные приемы создания зеленых скульптур и научат участников основам этого древнего искусства."
+            },
+            activity6: {
+                title: "Ландшафтный дизайн и архитектура",
+                image: "student.JPG",
+                description: "Практические занятия по созданию гармоничной и экологичной городской среды. Участники познакомятся с принципами устойчивого ландшафтного дизайна, научатся создавать проекты зеленых зон и малых архитектурных форм, учитывающих экологические аспекты."
+            },
+            activity7: {
+                title: "Компостирование и проект «Отходы в доходы»",
+                image: "green.JPG",
+                description: "Выращивание микрозелени и пищевых культур на основе переработанных органических отходов. Практические мастер-классы по созданию домашних компостеров и использованию полученного удобрения для выращивания растений в городских условиях."
+            },
+            activity8: {
+                title: "Умное земледелие и городское огородничество",
+                image: "takva.JPG",
+                description: "Кулинарные мастер-классы и практики устойчивого земледелия в городских условиях. Участники узнают, как создавать огороды на балконах и в небольших пространствах, познакомятся с технологиями умного земледелия и получат рецепты блюд из выращенных своими руками продуктов."
+            },
+            activity9: {
+                title: "Создание объектов из переработанного сырья",
+                image: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                description: "Recycle, Reuse, Reduce - практика создания полезных и красивых объектов из вторичных материалов. Мастер-классы по переработке пластика, бумаги и других материалов в предметы искусства и бытовые изделия."
+            },
+            activity10: {
+                title: "Экскурсии по кампусу Герценовского университета",
+                image: "skver.JPG",
+                description: "Знакомство с историей и архитектурой одного из старейших педагогических вузов России. Экскурсии включают посещение исторических зданий, ботанического сада и других достопримечательностей кампуса."
+            },
+            activity11: {
+                title: "Экотехническое проектирование",
+                image: "takva.JPG",
+                description: "Разработка энергоэффективных теплиц, работа с датчиками и микроконтроллерами, использование нейронных сетей для поиска механизма плодородия почвы. Участники познакомятся с современными технологиями в сельском хозяйстве и экологическом мониторинге."
+            },
+            activity12: {
+                title: "Семейный и детский досуг",
+                image: "child2.JPG",
+                description: "Трек «Всем ребятам-эколятам» - специальная программа для детей и семей с интерактивными играми и занятиями. Включает творческие мастерские, экологические квесты, научные шоу и другие активности, адаптированные для разных возрастных групп."
+            }
+        };
+
+        // Обработчики кликов на карточки активностей
+        document.querySelectorAll('.activity-card-desktop, .activity-card-mobile').forEach(card => {
+            card.addEventListener('click', () => {
+                const activityId = card.getAttribute('data-modal');
+                const activity = activityData[activityId];
+                
+                if (activity) {
+                    modalTitle.textContent = activity.title;
+                    modalImage.style.backgroundImage = `url('${activity.image}')`;
+                    modalDescription.innerHTML = `<p>${activity.description}</p>`;
+                    
+                    modalOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Блокируем скролл страницы
+                }
+            });
+        });
+
+        // Закрытие модального окна
+        modalClose.addEventListener('click', () => {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Разблокируем скролл страницы
+        });
+
+        // Закрытие модального окна при клике на оверлей
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto'; // Разблокируем скролл страницы
+            }
+        });
+
+        // Закрытие модального окна при нажатии Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto'; // Разблокируем скролл страницы
+            }
+        });
     </script>
 </body>
 </html>
