@@ -35,18 +35,7 @@
             color: var(--dark-gray);
         }
 
-        /* Анимации */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
+        /* Убраны лишние анимации, оставлены только базовые */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -54,51 +43,6 @@
             to {
                 opacity: 1;
             }
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        @keyframes slideInFromLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInFromRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .animate-on-scroll.animated {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         header {
@@ -110,7 +54,6 @@
             z-index: 1000;
             box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
             border-bottom: 1px solid #eee;
-            animation: fadeIn 0.8s ease-out;
         }
 
         nav {
@@ -125,7 +68,6 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            animation: slideInFromLeft 0.8s ease-out;
         }
 
         .logo img {
@@ -140,7 +82,6 @@
         .nav-links {
             display: flex;
             gap: 2rem;
-            animation: slideInFromRight 0.8s ease-out;
         }
 
         .nav-links a {
@@ -190,13 +131,10 @@
             background: url('pelican.png') no-repeat center center;
             background-size: cover;
             display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
+            justify-content: center;
             align-items: center;
-            padding: 0 1.5rem 80px;
             margin-top: 90px;
             position: relative;
-            animation: fadeIn 1s ease-out;
         }
 
         .hero::after {
@@ -209,7 +147,8 @@
             background: linear-gradient(to top, rgba(255,255,255,1), rgba(255,255,255,0));
         }
 
-        .btn {
+        /* Исправленная кнопка - теперь по центру баннера */
+        .hero .btn {
             display: inline-block;
             background-color: transparent;
             color: white;
@@ -223,17 +162,15 @@
             font-size: 0.9rem;
             letter-spacing: 1px;
             position: absolute;
-            bottom: 60px;
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translate(-50%, -50%);
             z-index: 2;
-            animation: fadeInUp 1s ease-out 0.5s both;
         }
 
-        .btn:hover {
+        .hero .btn:hover {
             background-color: white;
             color: var(--dark-gray);
-            transform: translateX(-50%) translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
@@ -250,7 +187,6 @@
             font-size: 2.2rem;
             font-weight: 400;
             position: relative;
-            animation: fadeInUp 0.8s ease-out;
         }
 
         .section-title:after {
@@ -261,7 +197,6 @@
             background-color: var(--yellow);
             margin: 1.5rem auto;
             border-radius: 2px;
-            animation: pulse 2s infinite;
         }
 
         .mission-text {
@@ -271,7 +206,6 @@
             font-size: 1.1rem;
             line-height: 1.7;
             color: var(--gray);
-            animation: fadeInUp 0.8s ease-out 0.2s both;
         }
 
         /* Стили для информации о фестивале (даты и локация в один ряд) */
@@ -280,7 +214,6 @@
             justify-content: center;
             gap: 3rem;
             margin-bottom: 3rem;
-            animation: fadeInUp 0.8s ease-out 0.4s both;
         }
 
         .festival-info-item {
@@ -344,7 +277,6 @@
             border-radius: 25px;
             padding: 4rem 2rem;
             margin: 3rem auto;
-            animation: fadeInUp 0.8s ease-out 0.6s both;
         }
 
         .stages-slider-container {
@@ -356,7 +288,7 @@
 
         .stages-slider {
             display: flex;
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: transform 0.6s ease;
             gap: 2rem;
         }
 
@@ -366,14 +298,14 @@
             border-radius: 25px;
             padding: 2.5rem;
             box-shadow: 0 15px 35px rgba(255, 225, 125, 0.3);
-            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.5s ease;
             text-align: center;
             border: 2px solid var(--yellow);
             color: var(--dark-gray);
         }
 
         .stage-card:hover {
-            transform: translateY(-15px) scale(1.02);
+            transform: translateY(-15px);
             box-shadow: 0 25px 50px rgba(255, 225, 125, 0.4);
         }
 
@@ -382,33 +314,18 @@
             font-weight: bold;
             margin-bottom: 1.2rem;
             color: var(--dark-gray);
-            transition: transform 0.4s ease;
-        }
-
-        .stage-card:hover .stage-number {
-            transform: scale(1.2);
         }
 
         .stage-card h3 {
             margin-bottom: 1.2rem;
             color: var(--dark-gray);
             font-size: 1.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .stage-card:hover h3 {
-            color: #222;
         }
 
         .stage-card p {
             color: var(--dark-gray);
             font-size: 1rem;
             line-height: 1.7;
-            transition: transform 0.4s ease;
-        }
-
-        .stage-card:hover p {
-            transform: translateY(-3px);
         }
 
         .stage-arrow {
@@ -428,23 +345,21 @@
             z-index: 10;
             color: var(--dark-gray);
             font-size: 1.5rem;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.4s ease;
         }
 
         .stage-arrow:hover {
             background-color: var(--yellow);
-            transform: translateY(-50%) scale(1.15);
+            transform: translateY(-50%) scale(1.1);
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
         }
 
         .stage-arrow.prev {
             left: 0;
-            animation: slideInFromLeft 0.8s ease-out;
         }
 
         .stage-arrow.next {
             right: 0;
-            animation: slideInFromRight 0.8s ease-out;
         }
 
         /* Стили для слайдера активностей - ДЕСКТОПНАЯ ВЕРСИЯ */
@@ -461,7 +376,7 @@
 
         .activities-desktop .activities-slider {
             display: flex;
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: transform 0.6s ease;
         }
 
         .activities-desktop .activities-slide {
@@ -477,7 +392,7 @@
             border-radius: 25px;
             overflow: hidden;
             box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
-            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.5s ease;
             border: 1px solid #f0f0f0;
             height: 380px;
             display: flex;
@@ -485,7 +400,7 @@
         }
 
         .activity-card-desktop:hover {
-            transform: translateY(-12px) scale(1.02);
+            transform: translateY(-12px);
             box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
         }
 
@@ -497,11 +412,6 @@
             background-position: center;
             border-bottom: 1px solid #f0f0f0;
             flex-shrink: 0;
-            transition: transform 0.5s ease;
-        }
-
-        .activity-card-desktop:hover .activity-card-img-desktop {
-            transform: scale(1.05);
         }
 
         .activity-card-content-desktop {
@@ -516,7 +426,6 @@
             color: var(--dark-gray);
             font-size: 1.2rem;
             font-weight: 500;
-            transition: color 0.3s ease;
         }
 
         .activity-card-desktop:hover h3 {
@@ -547,23 +456,21 @@
             z-index: 10;
             color: var(--dark-gray);
             font-size: 1.5rem;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.4s ease;
         }
 
         .activity-arrow-desktop:hover {
             background-color: var(--yellow);
-            transform: translateY(-50%) scale(1.15);
+            transform: translateY(-50%) scale(1.1);
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
         }
 
         .activity-arrow-desktop.prev {
             left: 0;
-            animation: slideInFromLeft 0.8s ease-out;
         }
 
         .activity-arrow-desktop.next {
             right: 0;
-            animation: slideInFromRight 0.8s ease-out;
         }
 
         .activity-dots-desktop {
@@ -605,7 +512,7 @@
 
         .activities-mobile .activities-slider {
             display: flex;
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: transform 0.6s ease;
         }
 
         .activities-mobile .activities-slide {
@@ -620,7 +527,7 @@
             border-radius: 25px;
             overflow: hidden;
             box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
-            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.5s ease;
             border: 1px solid #f0f0f0;
             max-width: 400px;
             width: 100%;
@@ -630,7 +537,7 @@
         }
 
         .activity-card-mobile:hover {
-            transform: translateY(-12px) scale(1.02);
+            transform: translateY(-12px);
             box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
         }
 
@@ -642,11 +549,6 @@
             background-position: center;
             border-bottom: 1px solid #f0f0f0;
             flex-shrink: 0;
-            transition: transform 0.5s ease;
-        }
-
-        .activity-card-mobile:hover .activity-card-img-mobile {
-            transform: scale(1.05);
         }
 
         .activity-card-content-mobile {
@@ -661,7 +563,6 @@
             color: var(--dark-gray);
             font-size: 1.2rem;
             font-weight: 500;
-            transition: color 0.3s ease;
         }
 
         .activity-card-mobile:hover h3 {
@@ -692,23 +593,21 @@
             z-index: 10;
             color: var(--dark-gray);
             font-size: 1.2rem;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.4s ease;
         }
 
         .activity-arrow-mobile:hover {
             background-color: var(--yellow);
-            transform: translateY(-50%) scale(1.15);
+            transform: translateY(-50%) scale(1.1);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
         .activity-arrow-mobile.prev {
             left: 0;
-            animation: slideInFromLeft 0.8s ease-out;
         }
 
         .activity-arrow-mobile.next {
             right: 0;
-            animation: slideInFromRight 0.8s ease-out;
         }
 
         .activity-dots-mobile {
@@ -745,12 +644,11 @@
             background: white;
             border: 1px solid #f0f0f0;
             min-height: 450px;
-            animation: fadeInUp 0.8s ease-out 0.8s both;
         }
 
         .past-events-slides {
             display: flex;
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: transform 0.6s ease;
         }
 
         .past-events-slide {
@@ -802,7 +700,6 @@
             color: var(--dark-gray);
             font-weight: 500;
             line-height: 1.3;
-            transition: color 0.3s ease;
         }
 
         .past-events-slide:hover .past-events-content h3 {
@@ -814,11 +711,6 @@
             color: var(--gray);
             font-size: 1.05rem;
             line-height: 1.7;
-            transition: transform 0.4s ease;
-        }
-
-        .past-events-slide:hover .past-events-content p {
-            transform: translateX(5px);
         }
 
         .past-events-content .event-detail {
@@ -855,24 +747,21 @@
             z-index: 10;
             color: var(--dark-gray);
             font-size: 1.5rem;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.4s ease;
         }
 
         .events-arrow:hover {
             background-color: var(--yellow);
-            transform: translateY(-50%) scale(1.15);
+            transform: translateY(-50%) scale(1.1);
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-            animation: pulse 1s infinite;
         }
 
         .events-arrow.prev {
             left: 20px;
-            animation: slideInFromLeft 0.8s ease-out;
         }
 
         .events-arrow.next {
             right: 20px;
-            animation: slideInFromRight 0.8s ease-out;
         }
 
         .past-events-dots {
@@ -898,7 +787,6 @@
         .past-events-dot.active {
             background-color: var(--yellow);
             transform: scale(1.3);
-            box-shadow: 0 0 10px rgba(255, 225, 125, 0.5);
         }
 
         /* Стили для кнопок перед FAQ */
@@ -912,7 +800,6 @@
             background: linear-gradient(135deg, #f9f9f9 0%, #f5f5f5 100%);
             border-radius: 25px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            animation: fadeInUp 0.8s ease-out 1s both;
         }
 
         .action-btn {
@@ -926,7 +813,7 @@
             border-radius: 35px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.5s ease;
             border: 2px solid var(--yellow);
             text-align: center;
             min-width: 250px;
@@ -936,9 +823,8 @@
         .action-btn:hover {
             background-color: transparent;
             color: var(--dark-gray);
-            transform: translateY(-8px) scale(1.05);
+            transform: translateY(-8px);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-            animation: pulse 1s infinite;
         }
 
         .action-btn i {
@@ -947,7 +833,7 @@
         }
 
         .action-btn:hover i {
-            transform: rotate(15deg) scale(1.2);
+            transform: rotate(15deg);
         }
 
         .contact-info {
@@ -955,7 +841,6 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2.5rem;
             margin-top: 2rem;
-            animation: fadeInUp 0.8s ease-out 1.2s both;
         }
 
         .contact-card {
@@ -965,7 +850,7 @@
             box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
             text-align: center;
             border: 1px solid #f0f0f0;
-            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.5s ease;
         }
 
         .contact-card:hover {
@@ -981,7 +866,7 @@
         }
 
         .contact-card:hover i {
-            transform: rotate(15deg) scale(1.2);
+            transform: rotate(15deg);
         }
 
         .contact-card h3 {
@@ -1005,7 +890,6 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
             border: 1px solid #f0f0f0;
             transition: all 0.4s ease;
-            animation: fadeInUp 0.8s ease-out 1.4s both;
         }
 
         .faq-item:hover {
@@ -1042,7 +926,7 @@
             padding: 0 1.8rem;
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.6s ease;
+            transition: max-height 0.6s ease, padding 0.6s ease;
         }
 
         .faq-item.active .faq-answer {
@@ -1055,7 +939,6 @@
             padding: 4rem 0;
             text-align: center;
             width: 100%;
-            animation: fadeInUp 0.8s ease-out 1.6s both;
         }
 
         .partners-container {
@@ -1093,7 +976,6 @@
             color: white;
             padding: 4rem 1.5rem;
             text-align: left;
-            animation: fadeIn 1s ease-out;
         }
 
         .footer-content {
@@ -1138,7 +1020,7 @@
         .social-links a {
             color: white;
             font-size: 1.5rem;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.4s ease;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1151,8 +1033,7 @@
         .social-links a:hover {
             color: var(--yellow);
             background-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
         }
 
         .back-to-top {
@@ -1172,20 +1053,18 @@
             z-index: 100;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.4s ease;
         }
 
         .back-to-top.show {
             opacity: 1;
             visibility: visible;
-            animation: fadeIn 0.5s ease-out;
         }
 
         .back-to-top:hover {
             background-color: #ffd95e;
-            transform: translateY(-5px) scale(1.1);
+            transform: translateY(-5px);
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-            animation: pulse 1s infinite;
         }
 
         @media (max-width: 768px) {
@@ -1200,7 +1079,6 @@
                 padding: 1.5rem;
                 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
                 z-index: 1000;
-                animation: fadeInUp 0.5s ease-out;
             }
 
             .nav-links.active {
@@ -1259,7 +1137,6 @@
                 flex-direction: column;
                 gap: 2rem;
                 margin-bottom: 3rem;
-                animation: fadeInUp 0.8s ease-out 0.4s both;
             }
             
             .festival-info-mobile .festival-info-item {
@@ -1364,8 +1241,9 @@
                 height: 400px;
             }
 
-            .btn {
-                bottom: 40px;
+            .hero .btn {
+                bottom: auto;
+                top: 50%;
                 padding: 0.7rem 1.5rem;
                 font-size: 0.85rem;
             }
@@ -1451,10 +1329,6 @@
                 padding-bottom: 60px;
             }
 
-            .btn {
-                bottom: 30px;
-            }
-            
             .section-title {
                 font-size: 1.6rem;
             }
@@ -1492,11 +1366,11 @@
     </section>
 
     <section id="about">
-        <h2 class="section-title animate-on-scroll">О фестивале</h2>
-        <p class="mission-text animate-on-scroll">Фестиваль «Зеленый пеликан» позволит сформировать особую городскую среду для решения образовательных, экологических и архитектурных задач. Мероприятие приурочено ко Дню города и направлено на развитие экологической культуры, популяризацию естественно-научных знаний и практик, создание площадки для взаимодействия учащихся, студентов и экспертов.</p>
+        <h2 class="section-title">О фестивале</h2>
+        <p class="mission-text">Фестиваль «Зеленый пеликан» позволит сформировать особую городскую среду для решения образовательных, экологических и архитектурных задач. Мероприятие приурочено ко Дню города и направлено на развитие экологической культуры, популяризацию естественно-научных знаний и практик, создание площадки для взаимодействия учащихся, студентов и экспертов.</p>
         
         <!-- Десктопная версия - в один ряд -->
-        <div class="festival-info-desktop animate-on-scroll">
+        <div class="festival-info-desktop">
             <div class="festival-info-item">
                 <div class="festival-info-icon">
                     <i class="far fa-calendar-alt"></i>
@@ -1518,7 +1392,7 @@
         </div>
         
         <!-- Мобильная версия - в колонку -->
-        <div class="festival-info-mobile animate-on-scroll">
+        <div class="festival-info-mobile">
             <div class="festival-info-item">
                 <div class="festival-info-icon">
                     <i class="far fa-calendar-alt"></i>
@@ -1542,38 +1416,38 @@
 
     <!-- Новая секция: Этапы фестиваля -->
     <section id="stages" class="stages-section">
-        <h2 class="section-title animate-on-scroll">Этапы фестиваля</h2>
+        <h2 class="section-title">Этапы фестиваля</h2>
         <div class="stages-slider-container">
             <button class="stage-arrow prev">
                 <i class="fas fa-chevron-left"></i>
             </button>
             <div class="stages-slider">
-                <div class="stage-card animate-on-scroll">
+                <div class="stage-card">
                     <div class="stage-number">1</div>
                     <h3>Подготовительный этап</h3>
                     <p>Формирование программы, привлечение партнеров и участников, разработка концепции мероприятий.</p>
                 </div>
-                <div class="stage-card animate-on-scroll">
+                <div class="stage-card">
                     <div class="stage-number">2</div>
                     <h3>Проектная школа</h3>
                     <p>Проведение интенсивной проектной школы для школьников и студентов с разработкой эко-проектов.</p>
                 </div>
-                <div class="stage-card animate-on-scroll">
+                <div class="stage-card">
                     <div class="stage-number">3</div>
                     <h3>Основные мероприятия</h3>
                     <p>Проведение лекций, мастер-классов, экскурсий и интерактивных выставок в течение фестиваля.</p>
                 </div>
-                <div class="stage-card animate-on-scroll">
+                <div class="stage-card">
                     <div class="stage-number">4</div>
                     <h3>Заключительный этап</h3>
                     <p>Подведение итогов, награждение победителей, презентация результатов проектов.</p>
                 </div>
-                <div class="stage-card animate-on-scroll">
+                <div class="stage-card">
                     <div class="stage-number">5</div>
                     <h3>Экспертная оценка</h3>
                     <p>Оценка проектов участников жюри из ведущих экспертов в области экологии и устойчивого развития.</p>
                 </div>
-                <div class="stage-card animate-on-scroll">
+                <div class="stage-card">
                     <div class="stage-number">6</div>
                     <h3>Публикация результатов</h3>
                     <p>Размещение лучших проектов на платформе фестиваля и в специализированных изданиях.</p>
@@ -1586,7 +1460,7 @@
     </section>
 
     <section id="activities">
-        <h2 class="section-title animate-on-scroll">Активности фестиваля</h2>
+        <h2 class="section-title">Активности фестиваля</h2>
         
         <!-- Десктопная версия (4 карточки в слайде) -->
         <div class="activities-desktop">
@@ -1597,7 +1471,7 @@
                 <div class="activities-slider">
                     <!-- Слайд 1 - 4 карточки (2x2) -->
                     <div class="activities-slide">
-                        <div class="activity-card-desktop animate-on-scroll">
+                        <div class="activity-card-desktop">
                             <div class="activity-card-img-desktop" style="background-image: url('green.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1605,7 +1479,7 @@
                                 <p>Интенсив «Life Science School» - проекты участников направлены на решение прикладных экотехнических и архитектурных задач и улучшение качества жизни жителей города.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop animate-on-scroll">
+                        <div class="activity-card-desktop">
                             <div class="activity-card-img-desktop" style="background-image: url('skver.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1613,7 +1487,7 @@
                                 <p>Лекции и мастер-классы от ведущих экспертов в области экологии, науки и устойчивого развития.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop animate-on-scroll">
+                        <div class="activity-card-desktop">
                             <div class="activity-card-img-desktop" style="background-image: url('museum.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1621,7 +1495,7 @@
                                 <p>Регулярные экспозиции интерактивных художественных и экологических объектов, и малых архитектурных форм.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop animate-on-scroll">
+                        <div class="activity-card-desktop">
                             <div class="activity-card-img-desktop" style="background-image: url('skver.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1633,7 +1507,7 @@
                     
                     <!-- Слайд 2 - 4 карточки (2x2) -->
                     <div class="activities-slide">
-                        <div class="activity-card-desktop animate-on-scroll">
+                        <div class="activity-card-desktop">
                             <div class="activity-card-img-desktop" style="background-image: url('child1.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1641,7 +1515,7 @@
                                 <p>Создание художественных форм из растений и кустарников - искусство фигурной стрижки деревьев и кустов.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop animate-on-scroll">
+                        <div class="activity-card-desktop">
                             <div class="activity-card-img-desktop" style="background-image: url('student.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1649,7 +1523,7 @@
                                 <p>Практические занятия по созданию гармоничной и экологичной городской среды.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop animate-on-scroll">
+                        <div class="activity-card-desktop">
                             <div class="activity-card-img-desktop" style="background-image: url('green.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1657,7 +1531,7 @@
                                 <p>Выращивание микрозелени и пищевых культур на основе переработанных органических отходов.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop animate-on-scroll">
+                        <div class="activity-card-desktop">
                             <div class="activity-card-img-desktop" style="background-image: url('takva.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1669,7 +1543,7 @@
                     
                     <!-- Слайд 3 - 4 карточки (2x2) -->
                     <div class="activities-slide">
-                        <div class="activity-card-desktop animate-on-scroll">
+                        <div class="activity-card-desktop">
                             <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1677,7 +1551,7 @@
                                 <p>Recycle, Reuse, Reduce - практика создания полезных и красивых объектов из вторичных материалов.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop animate-on-scroll">
+                        <div class="activity-card-desktop">
                             <div class="activity-card-img-desktop" style="background-image: url('skver.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1685,7 +1559,7 @@
                                 <p>Знакомство с историей и архитектурой одного из старейших педагогических вузов России.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop animate-on-scroll">
+                        <div class="activity-card-desktop">
                             <div class="activity-card-img-desktop" style="background-image: url('takva.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1693,7 +1567,7 @@
                                 <p>Разработка энергоэффективных теплиц, работа с датчиками и микроконтроллерами, использование нейронных сетей для поиска механизма плодородия почвы.</p>
                             </div>
                         </div>
-                        <div class="activity-card-desktop animate-on-scroll">
+                        <div class="activity-card-desktop">
                             <div class="activity-card-img-desktop" style="background-image: url('child2.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
@@ -1723,7 +1597,7 @@
                 <div class="activities-slider">
                     <!-- Слайд 1 -->
                     <div class="activities-slide">
-                        <div class="activity-card-mobile animate-on-scroll">
+                        <div class="activity-card-mobile">
                             <div class="activity-card-img-mobile" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-mobile">
@@ -1734,7 +1608,7 @@
                     </div>
                     <!-- Слайд 2 -->
                     <div class="activities-slide">
-                        <div class="activity-card-mobile animate-on-scroll">
+                        <div class="activity-card-mobile">
                             <div class="activity-card-img-mobile" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-mobile">
@@ -1745,7 +1619,7 @@
                     </div>
                     <!-- Слайд 3 -->
                     <div class="activities-slide">
-                        <div class="activity-card-mobile animate-on-scroll">
+                        <div class="activity-card-mobile">
                             <div class="activity-card-img-mobile" style="background-image: url('https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-mobile">
@@ -1756,7 +1630,7 @@
                     </div>
                     <!-- Слайд 4 -->
                     <div class="activities-slide">
-                        <div class="activity-card-mobile animate-on-scroll">
+                        <div class="activity-card-mobile">
                             <div class="activity-card-img-mobile" style="background-image: url('https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-mobile">
@@ -1780,8 +1654,8 @@
     </section>
 
     <section id="past-events">
-        <h2 class="section-title animate-on-scroll">Прошедшие мероприятия</h2>
-        <div class="past-events-slider animate-on-scroll">
+        <h2 class="section-title">Прошедшие мероприятия</h2>
+        <div class="past-events-slider">
             <button class="events-arrow prev">
                 <i class="fas fa-chevron-left"></i>
             </button>
@@ -1819,7 +1693,7 @@
 
     <!-- Секция партнеров -->
     <section class="partners">
-        <h2 class="section-title animate-on-scroll">Партнеры</h2>
+        <h2 class="section-title">Партнеры</h2>
         <div class="partners-container">
             <div class="partners-logos">
                 <div class="partner-logo" style="background-image: url('snimok');">
@@ -1829,14 +1703,14 @@
     </section>
 
     <section id="contacts">
-        <h2 class="section-title animate-on-scroll">Контакты</h2>
+        <h2 class="section-title">Контакты</h2>
         <div class="contact-info">
-            <div class="contact-card animate-on-scroll">
+            <div class="contact-card">
                 <i class="fas fa-map-marker-alt"></i>
                 <h3>Адрес</h3>
                 <p>РГПУ им. А.И. Герцена и Воронихинский сквер</p>
             </div>
-            <div class="contact-card animate-on-scroll">
+            <div class="contact-card">
                 <i class="fas fa-envelope"></i>
                 <h3>Email</h3>
                 <p>terraherz-spb@yandex.ru</p>
@@ -1845,7 +1719,7 @@
     </section>
 
     <!-- Кнопки действий перед FAQ -->
-    <div class="action-buttons animate-on-scroll">
+    <div class="action-buttons">
         <a href="положение_о_фестивале.pdf" class="action-btn" target="_blank">
             <i class="fas fa-file-pdf"></i> Положение о фестивале (PDF)
         </a>
@@ -1858,9 +1732,9 @@
     </div>
 
     <section id="faq">
-        <h2 class="section-title animate-on-scroll">Часто задаваемые вопросы</h2>
+        <h2 class="section-title">Часто задаваемые вопросы</h2>
         <div class="faq-list">
-            <div class="faq-item animate-on-scroll">
+            <div class="faq-item">
                 <div class="faq-question">
                     <span>Нужно ли покупать билеты на фестиваль?</span>
                     <i class="fas fa-chevron-down"></i>
@@ -1869,7 +1743,7 @@
                     <p>Вход на фестиваль бесплатный для всех посетителей. Однако для участия в некоторых мастер-классах и воркшопах может потребоваться предварительная регистрация из-за ограниченного количества мест.</p>
                 </div>
             </div>
-            <div class="faq-item animate-on-scroll">
+            <div class="faq-item">
                 <div class="faq-question">
                     <span>Можно ли прийти с детьми?</span>
                     <i class="fas fa-chevron-down"></i>
@@ -1878,7 +1752,7 @@
                     <p>Да, фестиваль является семейным мероприятием. Для детей организована специальная программа "Всем ребятам-эколятам" с играми, творческими занятиями и образовательными программами, адаптированными для разных возрастных групп.</p>
                 </div>
             </div>
-            <div class="faq-item animate-on-scroll">
+            <div class="faq-item">
                 <div class="faq-question">
                     <span>Как принять участие в проектной школе?</span>
                     <i class="fas fa-chevron-down"></i>
@@ -1887,7 +1761,7 @@
                     <p>Для участия в естественно-научной проектной школе "Life Science School" необходимо заполнить заявку на сайте технопарка РГПУ. Заявки принимаются до 1 марта 2026 года.</p>
                 </div>
             </div>
-            <div class="faq-item animate-on-scroll">
+            <div class="faq-item">
                 <div class="faq-question">
                     <span>Как добраться до места проведения?</span>
                     <i class="fas fa-chevron-down"></i>
@@ -1929,24 +1803,6 @@
     </div>
 
     <script>
-        // Анимация появления элементов при скролле
-        const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.animate-on-scroll');
-            
-            elements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.2;
-                
-                if (elementPosition < screenPosition) {
-                    element.classList.add('animated');
-                }
-            });
-        };
-
-        // Инициализация анимации при загрузке и скролле
-        window.addEventListener('load', animateOnScroll);
-        window.addEventListener('scroll', animateOnScroll);
-
         // Stages Slider
         const stagesSlider = document.querySelector('.stages-slider');
         const stagePrevArrow = document.querySelector('.stage-arrow.prev');
@@ -2236,9 +2092,6 @@
                 if (mobileActivityInterval) clearInterval(mobileActivityInterval);
                 startMobileActivityAutoSlide();
             }
-            
-            // Обновление анимаций при скролле
-            animateOnScroll();
         });
 
         // Останавливаем автопереключение при наведении на слайдеры
@@ -2267,11 +2120,6 @@
                 }
             });
         }
-
-        // Добавляем небольшую задержку для запуска анимаций после загрузки
-        setTimeout(() => {
-            animateOnScroll();
-        }, 100);
     </script>
 </body>
 </html>
