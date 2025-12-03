@@ -126,28 +126,21 @@
             transition: 0.3s;
         }
 
+        /* ОБНОВЛЕННЫЙ БАННЕР - без размытия */
         .hero {
             height: 85vh;
             background: url('pelican.png') no-repeat center center;
             background-size: cover;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-end; /* Выравниваем по низу */
             margin-top: 90px;
             position: relative;
         }
 
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background: linear-gradient(to top, rgba(255,255,255,1), rgba(255,255,255,0));
-        }
+        /* УДАЛЕНО: градиентное размытие .hero::after */
 
-        /* Исправленная кнопка - теперь по центру баннера */
+        /* ОБНОВЛЕННАЯ КНОПКА - внизу по центру */
         .hero .btn {
             display: inline-block;
             background-color: transparent;
@@ -162,9 +155,9 @@
             font-size: 0.9rem;
             letter-spacing: 1px;
             position: absolute;
-            top: 50%;
+            bottom: 60px; /* Позиционируем внизу */
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translateX(-50%); /* Центрируем по горизонтали */
             z-index: 2;
         }
 
@@ -1241,9 +1234,9 @@
                 height: 400px;
             }
 
+            /* Мобильная версия кнопки на баннере */
             .hero .btn {
-                bottom: auto;
-                top: 50%;
+                bottom: 40px; /* На мобильных немного ближе к низу */
                 padding: 0.7rem 1.5rem;
                 font-size: 0.85rem;
             }
@@ -1329,6 +1322,11 @@
                 padding-bottom: 60px;
             }
 
+            /* Мобильная версия кнопки на баннере для очень маленьких экранов */
+            .hero .btn {
+                bottom: 30px;
+            }
+            
             .section-title {
                 font-size: 1.6rem;
             }
@@ -1365,6 +1363,7 @@
         <a href="#about" class="btn">Узнать больше</a>
     </section>
 
+    <!-- Остальной код без изменений -->
     <section id="about">
         <h2 class="section-title">О фестивале</h2>
         <p class="mission-text">Фестиваль «Зеленый пеликан» позволит сформировать особую городскую среду для решения образовательных, экологических и архитектурных задач. Мероприятие приурочено ко Дню города и направлено на развитие экологической культуры, популяризацию естественно-научных знаний и практик, создание площадки для взаимодействия учащихся, студентов и экспертов.</p>
@@ -1802,6 +1801,7 @@
         <i class="fas fa-chevron-up"></i>
     </div>
 
+    <!-- JavaScript остается без изменений -->
     <script>
         // Stages Slider
         const stagesSlider = document.querySelector('.stages-slider');
