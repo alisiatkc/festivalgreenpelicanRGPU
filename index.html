@@ -69,9 +69,91 @@
             transform: scale(1.05);
         }
 
+        /* Кнопка переключения языка */
+        .language-switcher {
+            position: relative;
+            margin-left: 1rem;
+        }
+
+        .lang-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            background: transparent;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .lang-btn:hover {
+            border-color: var(--gray);
+            background: #f9f9f9;
+        }
+
+        .lang-flag {
+            font-size: 1.1rem;
+        }
+
+        .lang-text {
+            font-weight: 500;
+        }
+
+        /* Выпадающее меню языков */
+        .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            min-width: 120px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            padding: 0.5rem 0;
+        }
+
+        .language-switcher:hover .lang-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            padding: 10px 15px;
+            text-align: left;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+
+        .lang-option:hover {
+            background: #f5f5f5;
+        }
+
+        .lang-option.active {
+            color: var(--dark-gray);
+            font-weight: 600;
+            background: #f9f9f9;
+        }
+
         .nav-links {
             display: flex;
             gap: 2rem;
+            align-items: center;
         }
 
         .nav-links a {
@@ -107,6 +189,7 @@
             flex-direction: column;
             cursor: pointer;
             gap: 4px;
+            margin-left: 1rem;
         }
 
         .burger-menu span {
@@ -256,7 +339,7 @@
             display: none;
         }
 
-        /* Стили для секции этапов */
+        /* ОБНОВЛЕННЫЕ СТИЛИ ДЛЯ ЭТАПОВ - СЕРЫЙ ЦВЕТ + СВАЙП */
         .stages-section {
             background-color: #f9f9f9;
             border-radius: 25px;
@@ -268,49 +351,65 @@
             position: relative;
             overflow: hidden;
             margin: 2rem 0;
-            padding: 0 4rem;
         }
 
         .stages-slider {
             display: flex;
-            transition: transform 0.6s ease;
-            gap: 2rem;
+            transition: transform 0.4s ease;
+            gap: 1.5rem;
+            padding: 10px 0;
+            cursor: grab;
         }
 
+        .stages-slider:active {
+            cursor: grabbing;
+        }
+
+        /* Серые карточки этапов */
         .stage-card {
-            min-width: 300px;
-            background: var(--yellow);
-            border-radius: 25px;
-            padding: 2.5rem;
-            box-shadow: 0 15px 35px rgba(255, 225, 125, 0.3);
-            transition: all 0.5s ease;
+            flex: 0 0 320px;
+            background: #f0f0f0; /* Серый фон */
+            border-radius: 20px;
+            padding: 2.2rem;
+            transition: all 0.4s ease;
             text-align: center;
-            border: 2px solid var(--yellow);
+            border: 1px solid #e0e0e0;
             color: var(--dark-gray);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            user-select: none;
         }
 
         .stage-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 25px 50px rgba(255, 225, 125, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            background: #e8e8e8;
         }
 
         .stage-number {
-            font-size: 3.5rem;
+            width: 50px;
+            height: 50px;
+            background: #666;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
             font-weight: bold;
-            margin-bottom: 1.2rem;
-            color: var(--dark-gray);
+            margin: 0 auto 1.5rem;
         }
 
         .stage-card h3 {
             margin-bottom: 1.2rem;
             color: var(--dark-gray);
-            font-size: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 500;
         }
 
         .stage-card p {
-            color: var(--dark-gray);
-            font-size: 1rem;
-            line-height: 1.7;
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         .stage-arrow {
@@ -319,32 +418,78 @@
             transform: translateY(-50%);
             background: white;
             border: none;
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             z-index: 10;
             color: var(--dark-gray);
-            font-size: 1.5rem;
-            transition: all 0.4s ease;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
         }
 
         .stage-arrow:hover {
             background-color: var(--yellow);
             transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
         .stage-arrow.prev {
-            left: 0;
+            left: -25px;
         }
 
         .stage-arrow.next {
-            right: 0;
+            right: -25px;
+        }
+
+        /* Стили для мобильной версии - свайп */
+        @media (max-width: 768px) {
+            .stages-slider-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
+                scrollbar-width: none; /* Firefox */
+                padding: 0 10px;
+                margin: 2rem -10px;
+            }
+            
+            .stages-slider-container::-webkit-scrollbar {
+                display: none; /* Chrome, Safari */
+            }
+            
+            .stages-slider {
+                flex-wrap: nowrap;
+                padding: 10px;
+                cursor: grab;
+                scroll-snap-type: x mandatory;
+            }
+            
+            .stage-card {
+                flex: 0 0 85%; /* Карточка занимает 85% ширины экрана */
+                min-width: 85%;
+                scroll-snap-align: start;
+                margin-right: 15px;
+                padding: 1.8rem;
+            }
+            
+            /* Скрываем стрелки на мобильных */
+            .stage-arrow {
+                display: none;
+            }
+        }
+
+        /* Для десктопа показываем стрелки */
+        @media (min-width: 769px) {
+            .stage-arrow {
+                display: flex;
+            }
+            
+            .stages-slider-container {
+                padding: 0 4rem;
+            }
         }
 
         /* Стили для слайдера активностей - ДЕСКТОПНАЯ ВЕРСИЯ */
@@ -689,8 +834,6 @@
             line-height: 1.6;
             padding-left: 0; /* Убрали отступ */
         }
-
-        /* УДАЛЕНО: .past-events-content .event-detail::before */
 
         .events-arrow {
             position: absolute;
@@ -1137,6 +1280,7 @@
                 padding: 1.5rem;
                 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
                 z-index: 1000;
+                gap: 1rem;
             }
 
             .nav-links.active {
@@ -1145,6 +1289,15 @@
 
             .burger-menu {
                 display: flex;
+            }
+            
+            .language-switcher {
+                margin-left: auto;
+            }
+            
+            .lang-dropdown {
+                right: 0;
+                left: auto;
             }
 
             .hero {
@@ -1234,13 +1387,8 @@
                 height: 160px;
             }
             
-            .stages-slider-container {
-                padding: 0 2.5rem;
-            }
-            
             .stage-card {
-                min-width: 280px;
-                padding: 2rem;
+                padding: 1.8rem;
             }
             
             .stage-arrow,
@@ -1352,13 +1500,8 @@
                 height: 140px;
             }
             
-            .stages-slider-container {
-                padding: 0 1.5rem;
-            }
-            
             .stage-card {
-                min-width: 250px;
-                padding: 1.8rem;
+                padding: 1.5rem;
             }
             
             .stage-arrow,
@@ -1441,6 +1584,26 @@
                 <a href="#past-events">Прошедшие мероприятия</a>
                 <a href="#contacts">Контакты</a>
                 <a href="#faq">FAQ</a>
+                
+                <!-- Кнопка переключения языка -->
+                <div class="language-switcher">
+                    <button class="lang-btn">
+                        <span class="lang-flag">🇷🇺</span>
+                        <span class="lang-text">RU</span>
+                        <i class="fas fa-chevron-down" style="font-size: 0.8rem;"></i>
+                    </button>
+                    <div class="lang-dropdown">
+                        <button class="lang-option active" data-lang="ru">
+                            <span>🇷🇺</span> Русский
+                        </button>
+                        <button class="lang-option" data-lang="en">
+                            <span>🇺🇸</span> English
+                        </button>
+                        <button class="lang-option" data-lang="es">
+                            <span>🇪🇸</span> Español
+                        </button>
+                    </div>
+                </div>
             </div>
             <div class="burger-menu">
                 <span></span>
@@ -1451,12 +1614,12 @@
     </header>
 
     <section class="hero">
-        <a href="#about" class="btn">Узнать больше</a>
+        <a href="#about" class="btn" data-lang-key="hero.button">Узнать больше</a>
     </section>
 
     <section id="about">
-        <h2 class="section-title">О фестивале</h2>
-        <p class="mission-text">Фестиваль «Зеленый пеликан» позволит сформировать особую городскую среду для решения образовательных, экологических и архитектурных задач. Мероприятие приурочено ко Дню города и направлено на развитие экологической культуры, популяризацию естественно-научных знаний и практик, создание площадки для взаимодействия учащихся, студентов и экспертов.</p>
+        <h2 class="section-title" data-lang-key="about.title">О фестивале</h2>
+        <p class="mission-text" data-lang-key="about.description">Фестиваль «Зеленый пеликан» позволит сформировать особую городскую среду для решения образовательных, экологических и архитектурных задач. Мероприятие приурочено ко Дню города и направлено на развитие экологической культуры, популяризацию естественно-научных знаний и практик, создание площадки для взаимодействия учащихся, студентов и экспертов.</p>
         
         <!-- Десктопная версия - в один ряд -->
         <div class="festival-info-desktop">
@@ -1465,8 +1628,8 @@
                     <i class="far fa-calendar-alt"></i>
                 </div>
                 <div class="festival-info-content">
-                    <h3>Даты проведения</h3>
-                    <p>Весна 2026 года. Фестиваль пройдет в рамках празднования Дня города.</p>
+                    <h3 data-lang-key="about.dates.title">Даты проведения</h3>
+                    <p data-lang-key="about.dates.description">Весна 2026 года. Фестиваль пройдет в рамках празднования Дня города.</p>
                 </div>
             </div>
             <div class="festival-info-item">
@@ -1474,8 +1637,8 @@
                     <i class="fas fa-map-marker-alt"></i>
                 </div>
                 <div class="festival-info-content">
-                    <h3>Локация</h3>
-                    <p>РГПУ им. А.И. Герцена и Воронихинский сквер. Историческое место в центре города с уникальной атмосферой.</p>
+                    <h3 data-lang-key="about.location.title">Локация</h3>
+                    <p data-lang-key="about.location.description">РГПУ им. А.И. Герцена и Воронихинский сквер. Историческое место в центре города с уникальной атмосферой.</p>
                 </div>
             </div>
         </div>
@@ -1487,8 +1650,8 @@
                     <i class="far fa-calendar-alt"></i>
                 </div>
                 <div class="festival-info-content">
-                    <h3>Даты проведения</h3>
-                    <p>Весна 2026 года. Фестиваль пройдет в рамках празднования Дня города.</p>
+                    <h3 data-lang-key="about.dates.title">Даты проведения</h3>
+                    <p data-lang-key="about.dates.description">Весна 2026 года. Фестиваль пройдет в рамках празднования Дня города.</p>
                 </div>
             </div>
             <div class="festival-info-item">
@@ -1496,8 +1659,8 @@
                     <i class="fas fa-map-marker-alt"></i>
                 </div>
                 <div class="festival-info-content">
-                    <h3>Локация</h3>
-                    <p>РГПУ им. А.И. Герцена и Воронихинский сквер. Историческое место в центре города с уникальной атмосферой.</p>
+                    <h3 data-lang-key="about.location.title">Локация</h3>
+                    <p data-lang-key="about.location.description">РГПУ им. А.И. Герцена и Воронихинский сквер. Историческое место в центре города с уникальной атмосферой.</p>
                 </div>
             </div>
         </div>
@@ -1505,7 +1668,7 @@
 
     <!-- Новая секция: Этапы фестиваля -->
     <section id="stages" class="stages-section">
-        <h2 class="section-title">Этапы фестиваля</h2>
+        <h2 class="section-title" data-lang-key="stages.title">Этапы фестиваля</h2>
         <div class="stages-slider-container">
             <button class="stage-arrow prev">
                 <i class="fas fa-chevron-left"></i>
@@ -1513,33 +1676,33 @@
             <div class="stages-slider">
                 <div class="stage-card">
                     <div class="stage-number">1</div>
-                    <h3>Подготовительный этап</h3>
-                    <p>Формирование программы, привлечение партнеров и участников, разработка концепции мероприятий.</p>
+                    <h3 data-lang-key="stages.1.title">Подготовительный этап</h3>
+                    <p data-lang-key="stages.1.description">Формирование программы, привлечение партнеров и участников, разработка концепции мероприятий.</p>
                 </div>
                 <div class="stage-card">
                     <div class="stage-number">2</div>
-                    <h3>Проектная школа</h3>
-                    <p>Проведение интенсивной проектной школы для школьников и студентов с разработкой эко-проектов.</p>
+                    <h3 data-lang-key="stages.2.title">Проектная школа</h3>
+                    <p data-lang-key="stages.2.description">Проведение интенсивной проектной школы для школьников и студентов с разработкой эко-проектов.</p>
                 </div>
                 <div class="stage-card">
                     <div class="stage-number">3</div>
-                    <h3>Основные мероприятия</h3>
-                    <p>Проведение лекций, мастер-классов, экскурсий и интерактивных выставок в течение фестиваля.</p>
+                    <h3 data-lang-key="stages.3.title">Основные мероприятия</h3>
+                    <p data-lang-key="stages.3.description">Проведение лекций, мастер-классов, экскурсий и интерактивных выставок в течение фестиваля.</p>
                 </div>
                 <div class="stage-card">
                     <div class="stage-number">4</div>
-                    <h3>Заключительный этап</h3>
-                    <p>Подведение итогов, награждение победителей, презентация результатов проектов.</p>
+                    <h3 data-lang-key="stages.4.title">Заключительный этап</h3>
+                    <p data-lang-key="stages.4.description">Подведение итогов, награждение победителей, презентация результатов проектов.</p>
                 </div>
                 <div class="stage-card">
                     <div class="stage-number">5</div>
-                    <h3>Экспертная оценка</h3>
-                    <p>Оценка проектов участников жюри из ведущих экспертов в области экологии и устойчивого развития.</p>
+                    <h3 data-lang-key="stages.5.title">Экспертная оценка</h3>
+                    <p data-lang-key="stages.5.description">Оценка проектов участников жюри из ведущих экспертов в области экологии и устойчивого развития.</p>
                 </div>
                 <div class="stage-card">
                     <div class="stage-number">6</div>
-                    <h3>Публикация результатов</h3>
-                    <p>Размещение лучших проектов на платформе фестиваля и в специализированных изданиях.</p>
+                    <h3 data-lang-key="stages.6.title">Публикация результатов</h3>
+                    <p data-lang-key="stages.6.description">Размещение лучших проектов на платформе фестиваля и в специализированных изданиях.</p>
                 </div>
             </div>
             <button class="stage-arrow next">
@@ -1549,7 +1712,7 @@
     </section>
 
     <section id="activities">
-        <h2 class="section-title">Активности фестиваля</h2>
+        <h2 class="section-title" data-lang-key="activities.title">Активности фестиваля</h2>
         
         <!-- Десктопная версия (4 карточки в слайде) -->
         <div class="activities-desktop">
@@ -1564,32 +1727,32 @@
                             <div class="activity-card-img-desktop" style="background-image: url('green.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
-                                <h3>Естественно-научная проектная школа</h3>
-                                <p>Интенсив «Life Science School» - проекты участников направлены на решение прикладных экотехнических и архитектурных задач...</p>
+                                <h3 data-lang-key="activities.1.title">Естественно-научная проектная школа</h3>
+                                <p data-lang-key="activities.1.description">Интенсив «Life Science School» - проекты участников направлены на решение прикладных экотехнических и архитектурных задач...</p>
                             </div>
                         </div>
                         <div class="activity-card-desktop" data-modal="activity2">
                             <div class="activity-card-img-desktop" style="background-image: url('skver.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
-                                <h3>Лекторий и экспертный клуб</h3>
-                                <p>Лекции и мастер-классы от ведущих экспертов в области экологии, науки и устойчивого развития.</p>
+                                <h3 data-lang-key="activities.2.title">Лекторий и экспертный клуб</h3>
+                                <p data-lang-key="activities.2.description">Лекции и мастер-классы от ведущих экспертов в области экологии, науки и устойчивого развития.</p>
                             </div>
                         </div>
                         <div class="activity-card-desktop" data-modal="activity3">
                             <div class="activity-card-img-desktop" style="background-image: url('museum.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
-                                <h3>Интерактивное пространство «Наука и искусство»</h3>
-                                <p>Регулярные экспозиции интерактивных художественных и экологических объектов, и малых архитектурных форм.</p>
+                                <h3 data-lang-key="activities.3.title">Интерактивное пространство «Наука и искусство»</h3>
+                                <p data-lang-key="activities.3.description">Регулярные экспозиции интерактивных художественных и экологических объектов, и малых архитектурных форм.</p>
                             </div>
                         </div>
                         <div class="activity-card-desktop" data-modal="activity4">
                             <div class="activity-card-img-desktop" style="background-image: url('skver.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
-                                <h3>Инвентаризация насаждений</h3>
-                                <p>Определение возраста деревьев и оценка состояния зеленых насаждений городской среды.</p>
+                                <h3 data-lang-key="activities.4.title">Инвентаризация насаждений</h3>
+                                <p data-lang-key="activities.4.description">Определение возраста деревьев и оценка состояния зеленых насаждений городской среды.</p>
                             </div>
                         </div>
                     </div>
@@ -1600,32 +1763,32 @@
                             <div class="activity-card-img-desktop" style="background-image: url('child1.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
-                                <h3>Топиарное искусство</h3>
-                                <p>Создание художественных форм из растений и кустарников - искусство фигурной стрижки деревьев и кустов.</p>
+                                <h3 data-lang-key="activities.5.title">Топиарное искусство</h3>
+                                <p data-lang-key="activities.5.description">Создание художественных форм из растений и кустарников - искусство фигурной стрижки деревьев и кустов.</p>
                             </div>
                         </div>
                         <div class="activity-card-desktop" data-modal="activity6">
                             <div class="activity-card-img-desktop" style="background-image: url('student.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
-                                <h3>Ландшафтный дизайн и архитектура</h3>
-                                <p>Практические занятия по созданию гармоничной и экологичной городской среды.</p>
+                                <h3 data-lang-key="activities.6.title">Ландшафтный дизайн и архитектура</h3>
+                                <p data-lang-key="activities.6.description">Практические занятия по созданию гармоничной и экологичной городской среды.</p>
                             </div>
                         </div>
                         <div class="activity-card-desktop" data-modal="activity7">
                             <div class="activity-card-img-desktop" style="background-image: url('green.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
-                                <h3>Компостирование и проект «Отходы в доходы»</h3>
-                                <p>Выращивание микрозелени и пищевых культур на основе переработанных органических отходов.</p>
+                                <h3 data-lang-key="activities.7.title">Компостирование и проект «Отходы в доходы»</h3>
+                                <p data-lang-key="activities.7.description">Выращивание микрозелени и пищевых культур на основе переработанных органических отходов.</p>
                             </div>
                         </div>
                         <div class="activity-card-desktop" data-modal="activity8">
                             <div class="activity-card-img-desktop" style="background-image: url('takva.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
-                                <h3>Умное земледелие и городское огородничество</h3>
-                                <p>Кулинарные мастер-классы и практики устойчивого земледелия в городских условиях.</p>
+                                <h3 data-lang-key="activities.8.title">Умное земледелие и городское огородничество</h3>
+                                <p data-lang-key="activities.8.description">Кулинарные мастер-классы и практики устойчивого земледелия в городских условиях.</p>
                             </div>
                         </div>
                     </div>
@@ -1636,32 +1799,32 @@
                             <div class="activity-card-img-desktop" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-desktop">
-                                <h3>Создание объектов из переработанного сырья</h3>
-                                <p>Recycle, Reuse, Reduce - практика создания полезных и красивых объектов из вторичных материалов.</p>
+                                <h3 data-lang-key="activities.9.title">Создание объектов из переработанного сырья</h3>
+                                <p data-lang-key="activities.9.description">Recycle, Reuse, Reduce - практика создания полезных и красивых объектов из вторичных материалов.</p>
                             </div>
                         </div>
                         <div class="activity-card-desktop" data-modal="activity10">
                             <div class="activity-card-img-desktop" style="background-image: url('skver.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
-                                <h3>Экскурсии по кампусу Герценовского университета</h3>
-                                <p>Знакомство с историей и архитектурой одного из старейших педагогических вузов России.</p>
+                                <h3 data-lang-key="activities.10.title">Экскурсии по кампусу Герценовского университета</h3>
+                                <p data-lang-key="activities.10.description">Знакомство с историей и архитектурой одного из старейших педагогических вузов России.</p>
                             </div>
                         </div>
                         <div class="activity-card-desktop" data-modal="activity11">
                             <div class="activity-card-img-desktop" style="background-image: url('takva.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
-                                <h3>Экотехническое проектирование</h3>
-                                <p>Разработка энергоэффективных теплиц, работа с датчиками и микроконтроллерами, использование нейронных сетей для поиска механизма плодородия почвы.</p>
+                                <h3 data-lang-key="activities.11.title">Экотехническое проектирование</h3>
+                                <p data-lang-key="activities.11.description">Разработка энергоэффективных теплиц, работа с датчиками и микроконтроллерами, использование нейронных сетей для поиска механизма плодородия почвы.</p>
                             </div>
                         </div>
                         <div class="activity-card-desktop" data-modal="activity12">
                             <div class="activity-card-img-desktop" style="background-image: url('child2.JPG');">
                             </div>
                             <div class="activity-card-content-desktop">
-                                <h3>Семейный и детский досуг</h3>
-                                <p>Трек «Всем ребятам-эколятам» - специальная программа для детей и семей с интерактивными играми и занятиями.</p>
+                                <h3 data-lang-key="activities.12.title">Семейный и детский досуг</h3>
+                                <p data-lang-key="activities.12.description">Трек «Всем ребятам-эколятам» - специальная программа для детей и семей с интерактивными играми и занятиями.</p>
                             </div>
                         </div>
                     </div>
@@ -1690,8 +1853,8 @@
                             <div class="activity-card-img-mobile" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-mobile">
-                                <h3>Естественно-научная проектная школа</h3>
-                                <p>Интенсив «Life Science School» - проекты участников направлены на решение прикладных экотехнических и архитектурных задач...</p>
+                                <h3 data-lang-key="activities.1.title">Естественно-научная проектная школа</h3>
+                                <p data-lang-key="activities.1.description">Интенсив «Life Science School» - проекты участников направлены на решение прикладных экотехнических и архитектурных задач...</p>
                             </div>
                         </div>
                     </div>
@@ -1701,8 +1864,8 @@
                             <div class="activity-card-img-mobile" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-mobile">
-                                <h3>Лекторий и экспертный клуб</h3>
-                                <p>Лекции и мастер-классы от ведущих экспертов в области экологии, науки и устойчивого развития.</p>
+                                <h3 data-lang-key="activities.2.title">Лекторий и экспертный клуб</h3>
+                                <p data-lang-key="activities.2.description">Лекции и мастер-классы от ведущих экспертов в области экологии, науки и устойчивого развития.</p>
                             </div>
                         </div>
                     </div>
@@ -1712,8 +1875,8 @@
                             <div class="activity-card-img-mobile" style="background-image: url('https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-mobile">
-                                <h3>Интерактивное пространство «Наука и искусство»</h3>
-                                <p>Регулярные экспозиции интерактивных художественных и экологических объектов, и малых архитектурных форм.</p>
+                                <h3 data-lang-key="activities.3.title">Интерактивное пространство «Наука и искусство»</h3>
+                                <p data-lang-key="activities.3.description">Регулярные экспозиции интерактивных художественных и экологических объектов, и малых архитектурных форм.</p>
                             </div>
                         </div>
                     </div>
@@ -1723,8 +1886,8 @@
                             <div class="activity-card-img-mobile" style="background-image: url('https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
                             </div>
                             <div class="activity-card-content-mobile">
-                                <h3>Инвентаризация насаждений</h3>
-                                <p>Определение возраста деревьев и оценка состояния зеленых насаждений городской среды.</p>
+                                <h3 data-lang-key="activities.4.title">Инвентаризация насаждений</h3>
+                                <p data-lang-key="activities.4.description">Определение возраста деревьев и оценка состояния зеленых насаждений городской среды.</p>
                             </div>
                         </div>
                     </div>
@@ -1743,7 +1906,7 @@
     </section>
 
     <section id="past-events">
-        <h2 class="section-title">Прошедшие мероприятия</h2>
+        <h2 class="section-title" data-lang-key="pastEvents.title">Прошедшие мероприятия</h2>
         <div class="past-events-slider">
             <button class="events-arrow prev">
                 <i class="fas fa-chevron-left"></i>
@@ -1753,20 +1916,20 @@
                     <div class="past-events-img" style="background-image: url('school.png');">
                     </div>
                     <div class="past-events-content">
-                        <h3>Проектная школа "Среда Обитания"</h3>
-                        <p>В рамках проектной школы участники разрабатывали и реализовывали эколого-технические прототипы. Программа включала экскурсию, мастер-классы и работу с научными руководителями.</p>
-                        <p class="event-detail">Дата проведения: 27-31 октября 2025</p>
-                        <p class="event-detail">Участники: школьники Санкт-Петербург</p>
+                        <h3 data-lang-key="pastEvents.1.title">Проектная школа "Среда Обитания"</h3>
+                        <p data-lang-key="pastEvents.1.description">В рамках проектной школы участники разрабатывали и реализовывали эколого-технические прототипы. Программа включала экскурсию, мастер-классы и работу с научными руководителями.</p>
+                        <p class="event-detail" data-lang-key="pastEvents.1.date">Дата проведения: 27-31 октября 2025</p>
+                        <p class="event-detail" data-lang-key="pastEvents.1.participants">Участники: школьники Санкт-Петербург</p>
                     </div>
                 </div>
                 <div class="past-events-slide">
                     <div class="past-events-img" style="background-image: url('lector.png');">
                     </div>
                     <div class="past-events-content">
-                        <h3>Цикл лекций "Садово-парковое искусство"</h3>
-                        <p>Серия лекций и дискуссий о садово-парковом искусстве, ландшафтном дизайне и создании гармоничной городской среды, проходивших в уникальной атмосфере открытого лектория.</p>
-                        <p class="event-detail">Дата проведения: ноябрь 2025</p>
-                        <p class="event-detail">Темы: Садово-парковое искусство, ландшафтный дизайн, городская экология</p>
+                        <h3 data-lang-key="pastEvents.2.title">Цикл лекций "Садово-парковое искусство"</h3>
+                        <p data-lang-key="pastEvents.2.description">Серия лекций и дискуссий о садово-парковом искусстве, ландшафтном дизайне и создании гармоничной городской среды, проходивших в уникальной атмосфере открытого лектория.</p>
+                        <p class="event-detail" data-lang-key="pastEvents.2.date">Дата проведения: ноябрь 2025</p>
+                        <p class="event-detail" data-lang-key="pastEvents.2.topics">Темы: Садово-парковое искусство, ландшафтный дизайн, городская экология</p>
                     </div>
                 </div>
             </div>
@@ -1782,7 +1945,7 @@
 
     <!-- Секция партнеров -->
     <section class="partners">
-        <h2 class="section-title">Партнеры</h2>
+        <h2 class="section-title" data-lang-key="partners.title">Партнеры</h2>
         <div class="partners-container">
             <div class="partners-logos">
                 <div class="partner-logo" style="background-image: url('snimok');">
@@ -1792,17 +1955,17 @@
     </section>
 
     <section id="contacts">
-        <h2 class="section-title">Контакты</h2>
+        <h2 class="section-title" data-lang-key="contacts.title">Контакты</h2>
         <div class="contact-info">
             <div class="contact-card">
                 <i class="fas fa-map-marker-alt"></i>
-                <h3>Адрес</h3>
-                <p>РГПУ им. А.И. Герцена и Воронихинский сквер</p>
+                <h3 data-lang-key="contacts.address.title">Адрес</h3>
+                <p data-lang-key="contacts.address.value">РГПУ им. А.И. Герцена и Воронихинский сквер</p>
             </div>
             <div class="contact-card">
                 <i class="fas fa-envelope"></i>
-                <h3>Email</h3>
-                <p>terraherz-spb@yandex.ru</p>
+                <h3 data-lang-key="contacts.email.title">Email</h3>
+                <p data-lang-key="contacts.email.value">terraherz-spb@yandex.ru</p>
             </div>
         </div>
     </section>
@@ -1810,53 +1973,53 @@
     <!-- Кнопки действий перед FAQ -->
     <div class="action-buttons">
         <a href="положение_о_фестивале.pdf" class="action-btn" target="_blank">
-            <i class="fas fa-file-pdf"></i> Положение о фестивале (PDF)
+            <i class="fas fa-file-pdf"></i> <span data-lang-key="buttons.regulation">Положение о фестивале (PDF)</span>
         </a>
         <a href="#register" class="action-btn">
-            <i class="fas fa-user-plus"></i> Зарегистрироваться на активности фестиваля
+            <i class="fas fa-user-plus"></i> <span data-lang-key="buttons.register">Зарегистрироваться на активности фестиваля</span>
         </a>
         <a href="https://technopark.herzen.spb.ru" class="action-btn" target="_blank">
-            <i class="fas fa-graduation-cap"></i> Зарегистрироваться на проектную школу
+            <i class="fas fa-graduation-cap"></i> <span data-lang-key="buttons.school">Зарегистрироваться на проектную школу</span>
         </a>
     </div>
 
     <section id="faq">
-        <h2 class="section-title">Часто задаваемые вопросы</h2>
+        <h2 class="section-title" data-lang-key="faq.title">Часто задаваемые вопросы</h2>
         <div class="faq-list">
             <div class="faq-item">
                 <div class="faq-question">
-                    <span>Нужно ли покупать билеты на фестиваль?</span>
+                    <span data-lang-key="faq.1.question">Нужно ли покупать билеты на фестиваль?</span>
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    <p>Вход на фестиваль бесплатный для всех посетителей. Однако для участия в некоторых мастер-классах и воркшопах может потребоваться предварительная регистрация из-за ограниченного количества мест.</p>
+                    <p data-lang-key="faq.1.answer">Вход на фестиваль бесплатный для всех посетителей. Однако для участия в некоторых мастер-классах и воркшопах может потребоваться предварительная регистрация из-за ограниченного количества мест.</p>
                 </div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">
-                    <span>Можно ли прийти с детьми?</span>
+                    <span data-lang-key="faq.2.question">Можно ли прийти с детьми?</span>
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    <p>Да, фестиваль является семейным мероприятием. Для детей организована специальная программа "Всем ребятам-эколятам" с играми, творческими занятиями и образовательными программами, адаптированными для разных возрастных групп.</p>
+                    <p data-lang-key="faq.2.answer">Да, фестиваль является семейным мероприятием. Для детей организована специальная программа "Всем ребятам-эколятам" с играми, творческими занятиями и образовательными программами, адаптированными для разных возрастных групп.</p>
                 </div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">
-                    <span>Как принять участие в проектной школе?</span>
+                    <span data-lang-key="faq.3.question">Как принять участие в проектной школе?</span>
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    <p>Для участия в естественно-научной проектной школе "Life Science School" необходимо заполнить заявку на сайте технопарка РГПУ. Заявки принимаются до 1 марта 2026 года.</p>
+                    <p data-lang-key="faq.3.answer">Для участия в естественно-научной проектной школе "Life Science School" необходимо заполнить заявку на сайте технопарка РГПУ. Заявки принимаются до 1 марта 2026 года.</p>
                 </div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">
-                    <span>Как добраться до места проведения?</span>
+                    <span data-lang-key="faq.4.question">Как добраться до места проведения?</span>
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    <p>До РГПУ им. А.И. Герцена и Воронихинского сквера можно добраться на общественном транспорте: станция метро "Невский проспект", "Адмиралтейская" далее 10 минут пешком.</p>
+                    <p data-lang-key="faq.4.answer">До РГПУ им. А.И. Герцена и Воронихинского сквера можно добраться на общественном транспорте: станция метро "Невский проспект", "Адмиралтейская" далее 10 минут пешком.</p>
                 </div>
             </div>
         </div>
@@ -1865,16 +2028,16 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h3>Зеленый пеликан</h3>
-                <p>Формируем особую городскую среду для решения образовательных, экологических и архитектурных задач</p>
+                <h3 data-lang-key="footer.title">Зеленый пеликан</h3>
+                <p data-lang-key="footer.description">Формируем особую городскую среду для решения образовательных, экологических и архитектурных задач</p>
             </div>
             <div class="footer-section">
-                <p><a href="#about" style="color: white;">О фестивале</a></p>
-                <p><a href="#stages" style="color: white;">Этапы</a></p>
-                <p><a href="#activities" style="color: white;">Активности</a></p>
-                <p><a href="#past-events" style="color: white;">Прошедшие мероприятия</a></p>
-                <p><a href="#contacts" style="color: white;">Контакты</a></p>
-                <p><a href="#faq" style="color: white;">FAQ</a></p>
+                <p><a href="#about" style="color: white;" data-lang-key="nav.about">О фестивале</a></p>
+                <p><a href="#stages" style="color: white;" data-lang-key="nav.stages">Этапы</a></p>
+                <p><a href="#activities" style="color: white;" data-lang-key="nav.activities">Активности</a></p>
+                <p><a href="#past-events" style="color: white;" data-lang-key="nav.pastEvents">Прошедшие мероприятия</a></p>
+                <p><a href="#contacts" style="color: white;" data-lang-key="nav.contacts">Контакты</a></p>
+                <p><a href="#faq" style="color: white;" data-lang-key="nav.faq">FAQ</a></p>
             </div>
             <div class="footer-section">
                 <div class="social-links">
@@ -1883,7 +2046,7 @@
                 </div>
             </div>
         </div>
-        <p style="text-align: center; margin-top: 2rem;">&copy; 2026 Фестиваль "Зеленый пеликан". Все права защищены.</p>
+        <p style="text-align: center; margin-top: 2rem;">&copy; 2026 <span data-lang-key="footer.copyright">Фестиваль "Зеленый пеликан". Все права защищены.</span></p>
     </footer>
 
     <!-- Кнопка "Наверх" -->
@@ -1910,12 +2073,478 @@
     </div>
 
     <script>
+        // КЛАСС ДЛЯ ПЕРЕКЛЮЧЕНИЯ ЯЗЫКА
+        class LanguageSwitcher {
+            constructor() {
+                this.currentLang = 'ru';
+                this.translations = {
+                    ru: {
+                        // Навигация
+                        'nav.about': 'О фестивале',
+                        'nav.stages': 'Этапы',
+                        'nav.activities': 'Активности',
+                        'nav.pastEvents': 'Прошедшие мероприятия',
+                        'nav.contacts': 'Контакты',
+                        'nav.faq': 'FAQ',
+                        
+                        // Герой
+                        'hero.button': 'Узнать больше',
+                        
+                        // О фестивале
+                        'about.title': 'О фестивале',
+                        'about.description': 'Фестиваль «Зеленый пеликан» позволит сформировать особую городскую среду для решения образовательных, экологических и архитектурных задач. Мероприятие приурочено ко Дню города и направлено на развитие экологической культуры, популяризацию естественно-научных знаний и практик, создание площадки для взаимодействия учащихся, студентов и экспертов.',
+                        'about.dates.title': 'Даты проведения',
+                        'about.dates.description': 'Весна 2026 года. Фестиваль пройдет в рамках празднования Дня города.',
+                        'about.location.title': 'Локация',
+                        'about.location.description': 'РГПУ им. А.И. Герцена и Воронихинский сквер. Историческое место в центре города с уникальной атмосферой.',
+                        
+                        // Этапы
+                        'stages.title': 'Этапы фестиваля',
+                        'stages.1.title': 'Подготовительный этап',
+                        'stages.1.description': 'Формирование программы, привлечение партнеров и участников, разработка концепции мероприятий.',
+                        'stages.2.title': 'Проектная школа',
+                        'stages.2.description': 'Проведение интенсивной проектной школы для школьников и студентов с разработкой эко-проектов.',
+                        'stages.3.title': 'Основные мероприятия',
+                        'stages.3.description': 'Проведение лекций, мастер-классов, экскурсий и интерактивных выставок в течение фестиваля.',
+                        'stages.4.title': 'Заключительный этап',
+                        'stages.4.description': 'Подведение итогов, награждение победителей, презентация результатов проектов.',
+                        'stages.5.title': 'Экспертная оценка',
+                        'stages.5.description': 'Оценка проектов участников жюри из ведущих экспертов в области экологии и устойчивого развития.',
+                        'stages.6.title': 'Публикация результатов',
+                        'stages.6.description': 'Размещение лучших проектов на платформе фестиваля и в специализированных изданиях.',
+                        
+                        // Активности
+                        'activities.title': 'Активности фестиваля',
+                        'activities.1.title': 'Естественно-научная проектная школа',
+                        'activities.1.description': 'Интенсив «Life Science School» - проекты участников направлены на решение прикладных экотехнических и архитектурных задач...',
+                        'activities.2.title': 'Лекторий и экспертный клуб',
+                        'activities.2.description': 'Лекции и мастер-классы от ведущих экспертов в области экологии, науки и устойчивого развития.',
+                        'activities.3.title': 'Интерактивное пространство «Наука и искусство»',
+                        'activities.3.description': 'Регулярные экспозиции интерактивных художественных и экологических объектов, и малых архитектурных форм.',
+                        'activities.4.title': 'Инвентаризация насаждений',
+                        'activities.4.description': 'Определение возраста деревьев и оценка состояния зеленых насаждений городской среды.',
+                        'activities.5.title': 'Топиарное искусство',
+                        'activities.5.description': 'Создание художественных форм из растений и кустарников - искусство фигурной стрижки деревьев и кустов.',
+                        'activities.6.title': 'Ландшафтный дизайн и архитектура',
+                        'activities.6.description': 'Практические занятия по созданию гармоничной и экологичной городской среды.',
+                        'activities.7.title': 'Компостирование и проект «Отходы в доходы»',
+                        'activities.7.description': 'Выращивание микрозелени и пищевых культур на основе переработанных органических отходов.',
+                        'activities.8.title': 'Умное земледелие и городское огородничество',
+                        'activities.8.description': 'Кулинарные мастер-классы и практики устойчивого земледелия в городских условиях.',
+                        'activities.9.title': 'Создание объектов из переработанного сырья',
+                        'activities.9.description': 'Recycle, Reuse, Reduce - практика создания полезных и красивых объектов из вторичных материалов.',
+                        'activities.10.title': 'Экскурсии по кампусу Герценовского университета',
+                        'activities.10.description': 'Знакомство с историей и архитектурой одного из старейших педагогических вузов России.',
+                        'activities.11.title': 'Экотехническое проектирование',
+                        'activities.11.description': 'Разработка энергоэффективных теплиц, работа с датчиками и микроконтроллерами, использование нейронных сетей для поиска механизма плодородия почвы.',
+                        'activities.12.title': 'Семейный и детский досуг',
+                        'activities.12.description': 'Трек «Всем ребятам-эколятам» - специальная программа для детей и семей с интерактивными играми и занятиями.',
+                        
+                        // Прошедшие мероприятия
+                        'pastEvents.title': 'Прошедшие мероприятия',
+                        'pastEvents.1.title': 'Проектная школа "Среда Обитания"',
+                        'pastEvents.1.description': 'В рамках проектной школы участники разрабатывали и реализовывали эколого-технические прототипы. Программа включала экскурсию, мастер-классы и работу с научными руководителями.',
+                        'pastEvents.1.date': 'Дата проведения: 27-31 октября 2025',
+                        'pastEvents.1.participants': 'Участники: школьники Санкт-Петербург',
+                        'pastEvents.2.title': 'Цикл лекций "Садово-парковое искусство"',
+                        'pastEvents.2.description': 'Серия лекций и дискуссий о садово-парковом искусстве, ландшафтном дизайне и создании гармоничной городской среды, проходивших в уникальной атмосфере открытого лектория.',
+                        'pastEvents.2.date': 'Дата проведения: ноябрь 2025',
+                        'pastEvents.2.topics': 'Темы: Садово-парковое искусство, ландшафтный дизайн, городская экология',
+                        
+                        // Партнеры
+                        'partners.title': 'Партнеры',
+                        
+                        // Контакты
+                        'contacts.title': 'Контакты',
+                        'contacts.address.title': 'Адрес',
+                        'contacts.address.value': 'РГПУ им. А.И. Герцена и Воронихинский сквер',
+                        'contacts.email.title': 'Email',
+                        'contacts.email.value': 'terraherz-spb@yandex.ru',
+                        
+                        // Кнопки
+                        'buttons.regulation': 'Положение о фестивале (PDF)',
+                        'buttons.register': 'Зарегистрироваться на активности фестиваля',
+                        'buttons.school': 'Зарегистрироваться на проектную школу',
+                        
+                        // FAQ
+                        'faq.title': 'Часто задаваемые вопросы',
+                        'faq.1.question': 'Нужно ли покупать билеты на фестиваль?',
+                        'faq.1.answer': 'Вход на фестиваль бесплатный для всех посетителей. Однако для участия в некоторых мастер-классах и воркшопах может потребоваться предварительная регистрация из-за ограниченного количества мест.',
+                        'faq.2.question': 'Можно ли прийти с детьми?',
+                        'faq.2.answer': 'Да, фестиваль является семейным мероприятием. Для детей организована специальная программа "Всем ребятам-эколятам" с играми, творческими занятиями и образовательными программами, адаптированными для разных возрастных групп.',
+                        'faq.3.question': 'Как принять участие в проектной школе?',
+                        'faq.3.answer': 'Для участия в естественно-научной проектной школе "Life Science School" необходимо заполнить заявку на сайте технопарка РГПУ. Заявки принимаются до 1 марта 2026 года.',
+                        'faq.4.question': 'Как добраться до места проведения?',
+                        'faq.4.answer': 'До РГПУ им. А.И. Герцена и Воронихинского сквера можно добраться на общественном транспорте: станция метро "Невский проспект", "Адмиралтейская" далее 10 минут пешком.',
+                        
+                        // Футер
+                        'footer.title': 'Зеленый пеликан',
+                        'footer.description': 'Формируем особую городскую среду для решения образовательных, экологических и архитектурных задач',
+                        'footer.copyright': 'Фестиваль "Зеленый пеликан". Все права защищены.'
+                    },
+                    en: {
+                        // Навигация
+                        'nav.about': 'About Festival',
+                        'nav.stages': 'Stages',
+                        'nav.activities': 'Activities',
+                        'nav.pastEvents': 'Past Events',
+                        'nav.contacts': 'Contacts',
+                        'nav.faq': 'FAQ',
+                        
+                        // Герой
+                        'hero.button': 'Learn More',
+                        
+                        // О фестивале
+                        'about.title': 'About Festival',
+                        'about.description': 'The "Green Pelican" festival will create a special urban environment for solving educational, environmental and architectural tasks. The event is timed to coincide with the City Day and is aimed at developing ecological culture, popularizing natural science knowledge and practices, creating a platform for interaction between students and experts.',
+                        'about.dates.title': 'Dates',
+                        'about.dates.description': 'Spring 2026. The festival will be held as part of the City Day celebration.',
+                        'about.location.title': 'Location',
+                        'about.location.description': 'Herzen University and Voronikhinsky Garden. A historical place in the city center with a unique atmosphere.',
+                        
+                        // Этапы
+                        'stages.title': 'Festival Stages',
+                        'stages.1.title': 'Preparatory Stage',
+                        'stages.1.description': 'Formation of the program, attraction of partners and participants, development of event concepts.',
+                        'stages.2.title': 'Project School',
+                        'stages.2.description': 'Conducting an intensive project school for schoolchildren and students with the development of eco-projects.',
+                        'stages.3.title': 'Main Events',
+                        'stages.3.description': 'Conducting lectures, master classes, excursions and interactive exhibitions throughout the festival.',
+                        'stages.4.title': 'Final Stage',
+                        'stages.4.description': 'Summing up, awarding winners, presentation of project results.',
+                        'stages.5.title': 'Expert Evaluation',
+                        'stages.5.description': 'Evaluation of participants\' projects by a jury of leading experts in ecology and sustainable development.',
+                        'stages.6.title': 'Publication of Results',
+                        'stages.6.description': 'Posting the best projects on the festival platform and in specialized publications.',
+                        
+                        // Активности
+                        'activities.title': 'Festival Activities',
+                        'activities.1.title': 'Natural Science Project School',
+                        'activities.1.description': 'Intensive "Life Science School" - participants\' projects are aimed at solving applied eco-technical and architectural tasks...',
+                        'activities.2.title': 'Lecture Hall and Expert Club',
+                        'activities.2.description': 'Lectures and master classes from leading experts in ecology, science and sustainable development.',
+                        'activities.3.title': 'Interactive Space "Science and Art"',
+                        'activities.3.description': 'Regular exhibitions of interactive art and environmental objects, and small architectural forms.',
+                        'activities.4.title': 'Inventory of Plantings',
+                        'activities.4.description': 'Determining the age of trees and assessing the condition of urban green spaces.',
+                        'activities.5.title': 'Topiary Art',
+                        'activities.5.description': 'Creating artistic forms from plants and shrubs - the art of figured tree and bush cutting.',
+                        'activities.6.title': 'Landscape Design and Architecture',
+                        'activities.6.description': 'Practical classes on creating harmonious and eco-friendly urban environment.',
+                        'activities.7.title': 'Composting and "Waste to Income" Project',
+                        'activities.7.description': 'Growing microgreens and food crops based on recycled organic waste.',
+                        'activities.8.title': 'Smart Farming and Urban Gardening',
+                        'activities.8.description': 'Culinary master classes and sustainable farming practices in urban conditions.',
+                        'activities.9.title': 'Creating Objects from Recycled Materials',
+                        'activities.9.description': 'Recycle, Reuse, Reduce - practice of creating useful and beautiful objects from secondary materials.',
+                        'activities.10.title': 'Herzen University Campus Tours',
+                        'activities.10.description': 'Introduction to the history and architecture of one of the oldest pedagogical universities in Russia.',
+                        'activities.11.title': 'Eco-technical Design',
+                        'activities.11.description': 'Development of energy-efficient greenhouses, work with sensors and microcontrollers, use of neural networks to find soil fertility mechanisms.',
+                        'activities.12.title': 'Family and Children\'s Leisure',
+                        'activities.12.description': 'Track "For All Eco-Kids" - special program for children and families with interactive games and activities.',
+                        
+                        // Прошедшие мероприятия
+                        'pastEvents.title': 'Past Events',
+                        'pastEvents.1.title': 'Project School "Habitat"',
+                        'pastEvents.1.description': 'Within the project school, participants developed and implemented eco-technical prototypes. The program included an excursion, master classes and work with scientific supervisors.',
+                        'pastEvents.1.date': 'Date: October 27-31, 2025',
+                        'pastEvents.1.participants': 'Participants: schoolchildren of St. Petersburg',
+                        'pastEvents.2.title': 'Lecture Series "Garden and Park Art"',
+                        'pastEvents.2.description': 'Series of lectures and discussions about garden and park art, landscape design and creating a harmonious urban environment, held in the unique atmosphere of an open lecture hall.',
+                        'pastEvents.2.date': 'Date: November 2025',
+                        'pastEvents.2.topics': 'Topics: Garden and park art, landscape design, urban ecology',
+                        
+                        // Партнеры
+                        'partners.title': 'Partners',
+                        
+                        // Контакты
+                        'contacts.title': 'Contacts',
+                        'contacts.address.title': 'Address',
+                        'contacts.address.value': 'Herzen University and Voronikhinsky Garden',
+                        'contacts.email.title': 'Email',
+                        'contacts.email.value': 'terraherz-spb@yandex.ru',
+                        
+                        // Кнопки
+                        'buttons.regulation': 'Festival Regulations (PDF)',
+                        'buttons.register': 'Register for festival activities',
+                        'buttons.school': 'Register for project school',
+                        
+                        // FAQ
+                        'faq.title': 'Frequently Asked Questions',
+                        'faq.1.question': 'Do I need to buy tickets for the festival?',
+                        'faq.1.answer': 'Admission to the festival is free for all visitors. However, some workshops and workshops may require prior registration due to limited spaces.',
+                        'faq.2.question': 'Can I come with children?',
+                        'faq.2.answer': 'Yes, the festival is a family event. A special program "For All Eco-Kids" is organized for children with games, creative activities and educational programs adapted for different age groups.',
+                        'faq.3.question': 'How to participate in the project school?',
+                        'faq.3.answer': 'To participate in the natural science project school "Life Science School", you need to fill out an application on the Herzen University Technopark website. Applications are accepted until March 1, 2026.',
+                        'faq.4.question': 'How to get to the venue?',
+                        'faq.4.answer': 'Herzen University and Voronikhinsky Garden can be reached by public transport: Nevsky Prospekt or Admiralteyskaya metro station, then 10 minutes walk.',
+                        
+                        // Футер
+                        'footer.title': 'Green Pelican',
+                        'footer.description': 'Creating a special urban environment for solving educational, environmental and architectural tasks',
+                        'footer.copyright': 'Festival "Green Pelican". All rights reserved.'
+                    },
+                    es: {
+                        // Навигация
+                        'nav.about': 'Sobre el festival',
+                        'nav.stages': 'Etapas',
+                        'nav.activities': 'Actividades',
+                        'nav.pastEvents': 'Eventos pasados',
+                        'nav.contacts': 'Contactos',
+                        'nav.faq': 'Preguntas frecuentes',
+                        
+                        // Герой
+                        'hero.button': 'Saber más',
+                        
+                        // О фестивале
+                        'about.title': 'Sobre el festival',
+                        'about.description': 'El festival "Pelícano Verde" permitirá formar un entorno urbano especial para resolver tareas educativas, ecológicas y arquitectónicas. El evento está dedicado al Día de la Ciudad y tiene como objetivo desarrollar la cultura ecológica, popularizar los conocimientos y prácticas de ciencias naturales, crear una plataforma para la interacción de estudiantes y expertos.',
+                        'about.dates.title': 'Fechas',
+                        'about.dates.description': 'Primavera 2026. El festival se llevará a cabo como parte de la celebración del Día de la Ciudad.',
+                        'about.location.title': 'Ubicación',
+                        'about.location.description': 'Universidad Herzen y Jardín Voronijinsky. Un lugar histórico en el centro de la ciudad con una atmósfera única.',
+                        
+                        // Этапы
+                        'stages.title': 'Etapas del festival',
+                        'stages.1.title': 'Etapa preparatoria',
+                        'stages.1.description': 'Formación del programa, atracción de socios y participantes, desarrollo de conceptos de eventos.',
+                        'stages.2.title': 'Escuela de proyectos',
+                        'stages.2.description': 'Realización de una escuela de proyectos intensiva para escolares y estudiantes con desarrollo de eco-proyectos.',
+                        'stages.3.title': 'Eventos principales',
+                        'stages.3.description': 'Realización de conferencias, talleres, excursiones y exposiciones interactivas durante el festival.',
+                        'stages.4.title': 'Etapa final',
+                        'stages.4.description': 'Resumen de resultados, premiación de ganadores, presentación de resultados de proyectos.',
+                        'stages.5.title': 'Evaluación de expertos',
+                        'stages.5.description': 'Evaluación de proyectos de participantes por un jurado de expertos líderes en ecología y desarrollo sostenible.',
+                        'stages.6.title': 'Publicación de resultados',
+                        'stages.6.description': 'Publicación de los mejores proyectos en la plataforma del festival y en publicaciones especializadas.',
+                        
+                        // Активности
+                        'activities.title': 'Actividades del festival',
+                        'activities.1.title': 'Escuela de proyectos de ciencias naturales',
+                        'activities.1.description': 'Intensivo "Life Science School" - los proyectos de los participantes están dirigidos a resolver tareas eco-técnicas y arquitectónicas aplicadas...',
+                        'activities.2.title': 'Sala de conferencias y club de expertos',
+                        'activities.2.description': 'Conferencias y talleres de expertos líderes en ecología, ciencia y desarrollo sostenible.',
+                        'activities.3.title': 'Espacio interactivo "Ciencia y arte"',
+                        'activities.3.description': 'Exposiciones regulares de objetos artísticos y ecológicos interactivos, y pequeñas formas arquitectónicas.',
+                        'activities.4.title': 'Inventario de plantaciones',
+                        'activities.4.description': 'Determinación de la edad de los árboles y evaluación del estado de las áreas verdes urbanas.',
+                        'activities.5.title': 'Arte topiario',
+                        'activities.5.description': 'Creación de formas artísticas a partir de plantas y arbustos: el arte del corte figurativo de árboles y arbustos.',
+                        'activities.6.title': 'Diseño paisajístico y arquitectura',
+                        'activities.6.description': 'Clases prácticas sobre creación de un entorno urbano armonioso y ecológico.',
+                        'activities.7.title': 'Compostaje y proyecto "Residuos en ingresos"',
+                        'activities.7.description': 'Cultivo de microverduras y cultivos alimentarios a base de residuos orgánicos reciclados.',
+                        'activities.8.title': 'Agricultura inteligente y jardinería urbana',
+                        'activities.8.description': 'Talleres culinarios y prácticas agrícolas sostenibles en condiciones urbanas.',
+                        'activities.9.title': 'Creación de objetos a partir de materiales reciclados',
+                        'activities.9.description': 'Recycle, Reuse, Reduce - práctica de creación de objetos útiles y hermosos a partir de materiales secundarios.',
+                        'activities.10.title': 'Recorridos por el campus de la Universidad Herzen',
+                        'activities.10.description': 'Introducción a la historia y arquitectura de una de las universidades pedagógicas más antiguas de Rusia.',
+                        'activities.11.title': 'Diseño eco-técnico',
+                        'activities.11.description': 'Desarrollo de invernaderos energéticamente eficientes, trabajo con sensores y microcontroladores, uso de redes neuronales para buscar mecanismos de fertilidad del suelo.',
+                        'activities.12.title': 'Ocio familiar e infantil',
+                        'activities.12.description': 'Pista "Para todos los niños ecológicos": programa especial para niños y familias con juegos interactivos y actividades.',
+                        
+                        // Прошедшие мероприятия
+                        'pastEvents.title': 'Eventos pasados',
+                        'pastEvents.1.title': 'Escuela de proyectos "Medio Ambiente"',
+                        'pastEvents.1.description': 'Dentro de la escuela de proyectos, los participantes desarrollaron e implementaron prototipos eco-técnicos. El programa incluyó una excursión, talleres y trabajo con supervisores científicos.',
+                        'pastEvents.1.date': 'Fecha: 27-31 de octubre de 2025',
+                        'pastEvents.1.participants': 'Participantes: escolares de San Petersburgo',
+                        'pastEvents.2.title': 'Ciclo de conferencias "Arte de jardines y parques"',
+                        'pastEvents.2.description': 'Serie de conferencias y discusiones sobre el arte de jardines y parques, diseño paisajístico y creación de un entorno urbano armonioso, celebradas en la atmósfera única de una sala de conferencias abierta.',
+                        'pastEvents.2.date': 'Fecha: noviembre 2025',
+                        'pastEvents.2.topics': 'Temas: Arte de jardines y parques, diseño paisajístico, ecología urbana',
+                        
+                        // Партнеры
+                        'partners.title': 'Socios',
+                        
+                        // Контакты
+                        'contacts.title': 'Contactos',
+                        'contacts.address.title': 'Dirección',
+                        'contacts.address.value': 'Universidad Herzen y Jardín Voronijinsky',
+                        'contacts.email.title': 'Correo electrónico',
+                        'contacts.email.value': 'terraherz-spb@yandex.ru',
+                        
+                        // Кнопки
+                        'buttons.regulation': 'Reglamento del festival (PDF)',
+                        'buttons.register': 'Registrarse para actividades del festival',
+                        'buttons.school': 'Registrarse para la escuela de proyectos',
+                        
+                        // FAQ
+                        'faq.title': 'Preguntas frecuentes',
+                        'faq.1.question': '¿Es necesario comprar entradas para el festival?',
+                        'faq.1.answer': 'La entrada al festival es gratuita para todos los visitantes. Sin embargo, algunos talleres y seminarios pueden requerir registro previo debido al número limitado de plazas.',
+                        'faq.2.question': '¿Puedo venir con niños?',
+                        'faq.2.answer': 'Sí, el festival es un evento familiar. Se organiza un programa especial "Para todos los niños ecológicos" para niños con juegos, actividades creativas y programas educativos adaptados para diferentes grupos de edad.',
+                        'faq.3.question': '¿Cómo participar en la escuela de proyectos?',
+                        'faq.3.answer': 'Para participar en la escuela de proyectos de ciencias naturales "Life Science School", debe completar una solicitud en el sitio web del Technopark de la Universidad Herzen. Las solicitudes se aceptan hasta el 1 de marzo de 2026.',
+                        'faq.4.question': '¿Cómo llegar al lugar del evento?',
+                        'faq.4.answer': 'La Universidad Herzen y el Jardín Voronijinsky se pueden llegar en transporte público: estación de metro "Nevsky Prospekt" o "Admiralteyskaya", luego 10 minutos a pie.',
+                        
+                        // Футер
+                        'footer.title': 'Pelícano Verde',
+                        'footer.description': 'Formamos un entorno urbano especial para resolver tareas educativas, ecológicas y arquitectónicas',
+                        'footer.copyright': 'Festival "Pelícano Verde". Todos los derechos reservados.'
+                    }
+                };
+                
+                this.init();
+            }
+            
+            init() {
+                // Обработчики для выбора языка из dropdown
+                document.querySelectorAll('.lang-option').forEach(option => {
+                    option.addEventListener('click', (e) => {
+                        const lang = e.target.closest('.lang-option').dataset.lang;
+                        this.switchLanguage(lang);
+                    });
+                });
+                
+                // Загружаем сохраненный язык из localStorage
+                const savedLang = localStorage.getItem('preferredLang');
+                if (savedLang && this.translations[savedLang]) {
+                    this.switchLanguage(savedLang);
+                }
+            }
+            
+            switchLanguage(lang) {
+                if (!this.translations[lang]) return;
+                
+                this.currentLang = lang;
+                
+                // Обновляем язык HTML
+                document.documentElement.lang = lang;
+                
+                // Обновляем все элементы с переводами
+                document.querySelectorAll('[data-lang-key]').forEach(element => {
+                    const key = element.getAttribute('data-lang-key');
+                    if (this.translations[lang][key]) {
+                        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                            element.value = this.translations[lang][key];
+                        } else {
+                            element.textContent = this.translations[lang][key];
+                        }
+                    }
+                });
+                
+                // Обновляем текст на кнопке языка
+                const langBtn = document.querySelector('.lang-text');
+                const langFlag = document.querySelector('.lang-flag');
+                if (langBtn && langFlag) {
+                    if (lang === 'ru') {
+                        langFlag.textContent = '🇷🇺';
+                        langBtn.textContent = 'RU';
+                    } else if (lang === 'en') {
+                        langFlag.textContent = '🇺🇸';
+                        langBtn.textContent = 'EN';
+                    } else if (lang === 'es') {
+                        langFlag.textContent = '🇪🇸';
+                        langBtn.textContent = 'ES';
+                    }
+                }
+                
+                // Обновляем активный пункт в dropdown
+                document.querySelectorAll('.lang-option').forEach(option => {
+                    option.classList.toggle('active', option.dataset.lang === lang);
+                });
+                
+                // Сохраняем выбор в localStorage
+                localStorage.setItem('preferredLang', lang);
+            }
+        }
+
+        // ФУНКЦИОНАЛ СВАЙПА ДЛЯ ЭТАПОВ НА МОБИЛЬНЫХ
+        class SwipeSlider {
+            constructor(container) {
+                this.container = container;
+                this.slider = container.querySelector('.stages-slider');
+                this.isDown = false;
+                this.startX;
+                this.scrollLeft;
+                
+                this.init();
+            }
+            
+            init() {
+                if (!this.slider) return;
+                
+                // Добавляем обработчики для свайпа
+                this.slider.addEventListener('mousedown', (e) => this.handleMouseDown(e));
+                this.slider.addEventListener('touchstart', (e) => this.handleTouchStart(e));
+                
+                this.slider.addEventListener('mouseleave', () => this.handleMouseLeave());
+                this.slider.addEventListener('touchend', () => this.handleMouseLeave());
+                this.slider.addEventListener('touchcancel', () => this.handleMouseLeave());
+                
+                this.slider.addEventListener('mouseup', () => this.handleMouseUp());
+                this.slider.addEventListener('touchend', () => this.handleMouseUp());
+                
+                this.slider.addEventListener('mousemove', (e) => this.handleMouseMove(e));
+                this.slider.addEventListener('touchmove', (e) => this.handleTouchMove(e));
+            }
+            
+            handleMouseDown(e) {
+                this.isDown = true;
+                this.slider.classList.add('grabbing');
+                this.startX = e.pageX - this.slider.offsetLeft;
+                this.scrollLeft = this.slider.scrollLeft;
+            }
+            
+            handleTouchStart(e) {
+                this.isDown = true;
+                this.slider.classList.add('grabbing');
+                this.startX = e.touches[0].pageX - this.slider.offsetLeft;
+                this.scrollLeft = this.slider.scrollLeft;
+            }
+            
+            handleMouseLeave() {
+                this.isDown = false;
+                this.slider.classList.remove('grabbing');
+            }
+            
+            handleMouseUp() {
+                this.isDown = false;
+                this.slider.classList.remove('grabbing');
+            }
+            
+            handleMouseMove(e) {
+                if (!this.isDown) return;
+                e.preventDefault();
+                const x = e.pageX - this.slider.offsetLeft;
+                const walk = (x - this.startX) * 2;
+                this.slider.scrollLeft = this.scrollLeft - walk;
+            }
+            
+            handleTouchMove(e) {
+                if (!this.isDown || !e.touches.length) return;
+                const x = e.touches[0].pageX - this.slider.offsetLeft;
+                const walk = (x - this.startX) * 2;
+                this.slider.scrollLeft = this.scrollLeft - walk;
+            }
+        }
+
+        // ИНИЦИАЛИЗАЦИЯ ПРИ ЗАГРУЗКЕ СТРАНИЦЫ
+        document.addEventListener('DOMContentLoaded', () => {
+            // Инициализация переключателя языка
+            window.languageSwitcher = new LanguageSwitcher();
+            
+            // Инициализация свайпа для этапов на мобильных
+            const stagesContainer = document.querySelector('.stages-slider-container');
+            if (stagesContainer && window.innerWidth <= 768) {
+                new SwipeSlider(stagesContainer);
+            }
+        });
+
         // Stages Slider
         const stagesSlider = document.querySelector('.stages-slider');
         const stagePrevArrow = document.querySelector('.stage-arrow.prev');
         const stageNextArrow = document.querySelector('.stage-arrow.next');
         let currentStageSlide = 0;
-        const stageCardWidth = 300; // ширина карточки + gap
+        const stageCardWidth = 320 + 15; // ширина карточки + gap
         
         function updateStageCardsPerView() {
             const stageContainer = document.querySelector('.stages-slider-container');
@@ -2185,6 +2814,14 @@
             currentStageSlide = 0;
             if (stagesSlider) {
                 stagesSlider.style.transform = `translateX(0)`;
+            }
+            
+            // Инициализация/деинициализация свайпа
+            const stagesContainer = document.querySelector('.stages-slider-container');
+            if (stagesContainer) {
+                if (window.innerWidth <= 768) {
+                    new SwipeSlider(stagesContainer);
+                }
             }
             
             // Перезапуск автопереключения в зависимости от устройства
